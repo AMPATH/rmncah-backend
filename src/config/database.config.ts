@@ -14,7 +14,7 @@ export const getDatabaseConfig = (
 
   password: configService.getOrThrow<string>('DB_PASSWORD'),
 
-  database: configService.getOrThrow<string>('DB_NAME'),
+  database: configService.getOrThrow<string>('DB_DATABASE'),
 
   // Automatically register entities from feature modules.
   autoLoadEntities: true,
