@@ -21,6 +21,10 @@ export const getDatabaseConfig = (
 
   // Never let TypeORM automatically change the database schema.
   synchronize: false,
+  // migrations
+  migrationsRun:false,
+  entities: ['dist/**/*.entity.js'],
+    migrations: ['src/database/migrations/*.ts'],
 
   // Enable SQL logging during development.
   logging: configService.get<string>('NODE_ENV') === 'development',
