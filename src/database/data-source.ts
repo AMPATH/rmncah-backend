@@ -1,20 +1,38 @@
+
 import 'dotenv/config';
 import { DataSource } from 'typeorm';
 
-const AppDataSource = new DataSource({
-  type: 'mysql',
-  host: process.env.DB_HOST,
-  port: Number(process.env.DB_PORT ?? 3306),
-  username: process.env.DB_USERNAME,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
+const requiredEnv = (name: string): string => {
+  const value = process.env[name];
 
-  entities: ['src/shared/users/entities/*.entity.ts'],
-  migrations: ['src/database/migrations/*.ts'],
+  if (!value) {
+    throw new Error(`Missing environment variable: ${name}`);
+  }
+
+  return value;
+};
+
+const dataSource = new DataSource({
+  type: 'mysql',
+
+  host: requiredEnv('DB_HOST'),
+  port: Number(requiredEnv('DB_PORT')),
+  username: requiredEnv('DB_USERNAME'),
+  password: requiredEnv('DB_PASSWORD'),
+  database: requiredEnv('DB_NAME'),
+
+  charset: 'utf8mb4',
+
+  // Automatically discover all compiled entities.
+  entities: ['dist/**/*.entity.js'],
+
+  // Compiled TypeORM migrations.
+  migrations: ['dist/database/migrations/*.js'],
 
   synchronize: false,
   migrationsRun: false,
-  logging: true,
+
+  logging: process.env.NODE_ENV === 'development',
 });
 
-export default AppDataSource;
+export default dataSource;

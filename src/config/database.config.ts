@@ -19,15 +19,15 @@ export const getDatabaseConfig = (
   // Automatically register entities from feature modules.
   autoLoadEntities: true,
 
-  // Never let TypeORM automatically change the database schema.
-  synchronize: false,
+
+ 
   // migrations
   migrationsRun:false,
   entities: ['dist/**/*.entity.js'],
-    migrations: ['src/database/migrations/*.ts'],
-
+    migrations: ['dist/database/migrations/*.ts'],
+ synchronize: false,
   // Enable SQL logging during development.
-  logging: configService.get<string>('NODE_ENV') === 'development',
+  logging: true,
 
   charset: 'utf8mb4',
 });
