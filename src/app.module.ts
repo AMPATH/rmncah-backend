@@ -13,6 +13,7 @@ import { getDatabaseConfig } from './config/database.config.js';
 import { UsersModule } from './shared/users/users.module.js';
 import { MpdsrModule } from './mpdsr/mpdsr.module.js';
 // import { EmoncModule } from './emonc/emonc.module.js';
+import { EmoncModule } from './emonc/emonc.module.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -39,6 +40,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     // Business domains
     UsersModule,
     MpdsrModule,
+    EmoncModule,
     // EmoncModule,
   ],
 
