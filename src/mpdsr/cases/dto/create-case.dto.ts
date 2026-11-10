@@ -11,6 +11,8 @@ import {
   ValidatorConstraint,
   ValidatorConstraintInterface,
   ValidationArguments,
+  IsDefined,
+  IsObject,
 } from 'class-validator';
 
 import { CaseType, ReportingSetting, Gender } from '../enums/case.enum.js';
@@ -110,4 +112,8 @@ export class CreateCaseDto {
   @IsNotEmpty()
   @MaxLength(5000)
   comments?: string;
+
+  @IsDefined()
+  @IsObject()
+  details: Record<string, unknown>;
 }
