@@ -1,0 +1,40 @@
+export enum CaseType {
+  MATERNAL = 'MATERNAL',
+  PERINATAL = 'PERINATAL',
+  NEAR_MISS = 'NEAR_MISS',
+}
+
+export enum ReportingSetting {
+  FACILITY = 'FACILITY',
+  COMMUNITY = 'COMMUNITY',
+}
+
+export enum Gender {
+  MALE = 'MALE',
+  FEMALE = 'FEMALE',
+  UNKNOWN = 'UNKNOWN',
+}
+
+export enum PregnancyPeriod {
+  ANTENATAL = 'ANTENATAL',
+  INTRAPARTUM = 'INTRAPARTUM',
+  POSTPARTUM = 'POSTPARTUM',
+}
+
+// Method of delivery
+export enum DeliveryMode {
+  SPONTANEOUS_VAGINAL = 'SPONTANEOUS_VAGINAL',
+  ASSISTED_VAGINAL = 'ASSISTED_VAGINAL',
+  CAESAREAN_SECTION = 'CAESAREAN_SECTION',
+  OTHER = 'OTHER',
+  UNKNOWN = 'UNKNOWN',
+}
+
+export enum PregnancyOutcome {
+  LIVE_BIRTH = 'LIVE_BIRTH',
+  STILLBIRTH = 'STILLBIRTH',
+  MISCARRIAGE = 'MISCARRIAGE',
+  ABORTION = 'ABORTION',
+  OTHER = 'OTHER',
+  UNKNOWN = 'UNKNOWN',
+}

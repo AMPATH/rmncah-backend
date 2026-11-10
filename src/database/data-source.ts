@@ -26,13 +26,13 @@ const dataSource = new DataSource({
   // Automatically discover all compiled entities.
   entities: ['dist/**/*.entity.js'],
 
-  // Compiled TypeORM migrations.
+  // Load compiled TypeORM migrations.
   migrations: ['dist/database/migrations/*.js'],
 
   synchronize: false,
   migrationsRun: false,
 
-  logging: process.env.NODE_ENV === 'development',
+  logging: true,
 });
 
 export default dataSource;
