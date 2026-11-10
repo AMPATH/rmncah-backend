@@ -16,7 +16,7 @@ export enum OrganizationLevel {
   SUB_COUNTY = 'SUB_COUNTY',
   FACILITY = 'FACILITY',
   COMMUNITY = 'COMMUNITY',
-  OTHER = 'OTHER',
+ 
 }
 
 

@@ -13,8 +13,9 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
   @IsOptional()
   @IsEnum(AccountStatus)
   status?: AccountStatus;
-  
+
   @IsOptional()
   @IsEmail()
   email?: string;
+  
 }
