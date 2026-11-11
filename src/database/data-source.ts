@@ -1,9 +1,6 @@
-import { DataSource } from 'typeorm';
 
-import { Case } from '../mpdsr/cases/entities/case.entity.js';
-import { MaternalCaseDetail } from '../mpdsr/cases/entities/maternal-case-detail.entity.js';
-import { PerinatalCaseDetail } from '../mpdsr/cases/entities/perinatal-case-detail.entity.js';
-import { NearMissDetail } from '../mpdsr/cases/entities/near-miss-detail.entity.js';
+import 'dotenv/config';
+import { DataSource } from 'typeorm';
 
 const requiredEnv = (name: string): string => {
   const value = process.env[name];
@@ -26,12 +23,15 @@ const dataSource = new DataSource({
 
   charset: 'utf8mb4',
 
-  entities: [Case, MaternalCaseDetail, PerinatalCaseDetail, NearMissDetail],
+  // Automatically discover all compiled entities.
+  entities: ['dist/**/*.entity.js'],
 
+  // Load compiled TypeORM migrations.
   migrations: ['dist/database/migrations/*.js'],
 
   synchronize: false,
   migrationsRun: false,
+
   logging: true,
 });
 

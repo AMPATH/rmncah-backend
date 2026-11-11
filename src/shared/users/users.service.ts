@@ -7,10 +7,11 @@ import {
 
 import { UpdateUserDto } from './dto/update-user.dto.js';
 import { CreateUserDto } from './dto/create-user.dto.js';
-import { AccountStatus } from './entities/user.entity.js';
+// import { AccountStatus } from './entities/user.entity.js';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity.js';
 import { Repository } from 'typeorm';
+import { AccountStatus } from './enum/users.enum.js';
 
 @Injectable()
 export class UsersService {

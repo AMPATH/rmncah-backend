@@ -3,22 +3,7 @@ import { Column, Entity, PrimaryGeneratedColumn,
   UpdateDateColumn,
   DeleteDateColumn,
  } from 'typeorm';
- import {CreateUserDto} from '../dto/create-user.dto.js';
-
-export enum AccountStatus {
-  ACTIVE = 'ACTIVE',
-  INACTIVE = 'INACTIVE',
-  PENDING = 'PENDING',
-  DEACTIVATED = 'DEACTIVATED'
-}
-export enum OrganizationLevel {
-  COUNTY = 'COUNTY',
-  SUB_COUNTY = 'SUB_COUNTY',
-  FACILITY = 'FACILITY',
-  COMMUNITY = 'COMMUNITY',
-  OTHER = 'OTHER',
-}
-
+import { AccountStatus, OrganizationLevel } from '../enum/users.enum.js';
 
 
 @Entity('users')
@@ -26,14 +11,42 @@ export enum OrganizationLevel {
 export class User {
     @PrimaryGeneratedColumn('uuid')
     id : string;
-    @Column()
+    @Column({
+      name:'firstName',
+      type:'varchar',
+      length:255,
+    })
     firstName : string;
-    @Column()
+    @Column({
+      name:'lastName',
+      type:'varchar',
+      length:255,
+    })
     lastName : string;
-    @Column({unique:true})
+    
+    @Column({
+      name:'email',
+      type:'varchar',
+      length:255,
+      unique:true
+    })
     email : string;
-    @Column( {nullable:true, length:20})
+
+    @Column( {
+      name:'phoneNumber',
+      type:'varchar',
+      unique:true,
+      nullable:true, length:20})
     phoneNumber : string;
+
+//     @Column({
+//   name: 'invitationAcceptedAt',
+//   type: 'datetime',
+//   nullable: true,
+// })
+// invitationAcceptedAt: Date | null;
+
+
 @Column({
   name: 'password_hash',
   type: 'varchar',
@@ -59,7 +72,7 @@ passwordHash: string | null;
    @Column({
     type: 'enum',
     enum: AccountStatus,
-    default: AccountStatus.ACTIVE,
+    default: AccountStatus.PENDING,
   })
   status: AccountStatus;
  @Column({ name: 'last_login_at', nullable: true })
