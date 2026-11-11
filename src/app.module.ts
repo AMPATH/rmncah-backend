@@ -1,3 +1,4 @@
+
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -9,6 +10,7 @@ import { AppService } from './app.service.js';
 import { envValidationSchema } from './config/env.validation.js';
 import { getDatabaseConfig } from './config/database.config.js';
 
+import { UsersModule } from './shared/users/users.module.js';
 import { MpdsrModule } from './mpdsr/mpdsr.module.js';
 import { LocationsModule } from './locations/locations.module.js';
 import { FacilitiesModule } from './facilities/facilities.module.js';
@@ -17,21 +19,18 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
 @Module({
   imports: [
-    // Application configuration
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '.env',
       validationSchema: envValidationSchema,
     }),
 
-    // Database configuration
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: getDatabaseConfig,
     }),
 
-    // Application observability
     ObserveModule.forRoot({
       appKey: 'YOUR_APP_KEY',
       appSecret: 'YOUR_APP_SECRET',
@@ -39,6 +38,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     }),
 
     // Business domains
+    UsersModule,
     MpdsrModule,
     LocationsModule,
     FacilitiesModule,

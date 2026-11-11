@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { DataSource } from 'typeorm';
 
 const requiredEnv = (name: string): string => {
@@ -29,6 +30,7 @@ const dataSource = new DataSource({
 
   synchronize: false,
   migrationsRun: false,
+
   logging: true,
 });
 
