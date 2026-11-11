@@ -3,22 +3,7 @@ import { Column, Entity, PrimaryGeneratedColumn,
   UpdateDateColumn,
   DeleteDateColumn,
  } from 'typeorm';
-
-
-export enum AccountStatus {
-  ACTIVE = 'ACTIVE',
-  INACTIVE = 'INACTIVE',
-  PENDING = 'PENDING',
-  DEACTIVATED = 'DEACTIVATED'
-}
-export enum OrganizationLevel {
-  COUNTY = 'COUNTY',
-  SUB_COUNTY = 'SUB_COUNTY',
-  FACILITY = 'FACILITY',
-  COMMUNITY = 'COMMUNITY',
- 
-}
-
+import { AccountStatus, OrganizationLevel } from '../enum/users.enum.js';
 
 
 @Entity('users')
@@ -38,6 +23,7 @@ export class User {
       length:255,
     })
     lastName : string;
+    
     @Column({
       name:'email',
       type:'varchar',
