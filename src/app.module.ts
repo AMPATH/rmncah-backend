@@ -10,7 +10,8 @@ import { envValidationSchema } from './config/env.validation.js';
 import { getDatabaseConfig } from './config/database.config.js';
 
 import { MpdsrModule } from './mpdsr/mpdsr.module.js';
-// import { EmoncModule } from './emonc/emonc.module.js';
+import { LocationsModule } from './locations/locations.module.js';
+import { FacilitiesModule } from './facilities/facilities.module.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -39,7 +40,8 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
     // Business domains
     MpdsrModule,
-    // EmoncModule,
+    LocationsModule,
+    FacilitiesModule,
   ],
 
   controllers: [AppController],
