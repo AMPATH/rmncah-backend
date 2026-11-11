@@ -1,4 +1,3 @@
-
 import 'dotenv/config';
 import { DataSource } from 'typeorm';
 
@@ -23,10 +22,10 @@ const dataSource = new DataSource({
 
   charset: 'utf8mb4',
 
-  // Automatically discover all compiled entities.
+  // Load compiled JavaScript entities.
   entities: ['dist/**/*.entity.js'],
 
-  // Load compiled TypeORM migrations.
+  // Load compiled JavaScript migrations.
   migrations: ['dist/database/migrations/*.js'],
 
   synchronize: false,
