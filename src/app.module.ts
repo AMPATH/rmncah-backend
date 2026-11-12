@@ -12,6 +12,8 @@ import { getDatabaseConfig } from './config/database.config.js';
 
 import { UsersModule } from './shared/users/users.module.js';
 import { MpdsrModule } from './mpdsr/mpdsr.module.js';
+// import { EmoncModule } from './emonc/emonc.module.js';
+import { EmoncModule } from './emonc/emonc.module.js';
 import { LocationsModule } from './locations/locations.module.js';
 import { FacilitiesModule } from './facilities/facilities.module.js';
 
@@ -40,6 +42,8 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     // Business domains
     UsersModule,
     MpdsrModule,
+    EmoncModule,
+    // EmoncModule,
     LocationsModule,
     FacilitiesModule,
   ],
