@@ -24,7 +24,7 @@ export class UsersService {
   //create 
   
 // Create a new user account
-async create(createUserDto: CreateUserDto): Promise<User> {
+async create(createUserDto: CreateUserDto, createdBy?: string): Promise<User> {
   const email = createUserDto.email.toLowerCase();
 
   // Check whether email already exists
@@ -32,6 +32,14 @@ async create(createUserDto: CreateUserDto): Promise<User> {
 
   if (existingUser) {
     throw new ConflictException('Email is already registered');
+  }
+  //check if phone Nmber is unique
+  const existingPhoneNumber = await this.userRepository.findOne({
+    where: { phoneNumber: createUserDto.phoneNumber },
+  });
+
+  if (existingPhoneNumber) {
+    throw new ConflictException('Phone number is already registered');
   }
 
   // Prepare the new user
