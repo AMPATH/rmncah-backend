@@ -8,8 +8,8 @@ import {
   IsEnum,
   MaxLength,
 } from 'class-validator';
+import { OrganizationLevel } from '../enum/users.enum.js';
 
-import { OrganizationLevel } from '../entities/user.entity.js';
 
 export class CreateUserDto {
   @IsString()

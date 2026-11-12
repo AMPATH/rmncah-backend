@@ -10,6 +10,7 @@ import {
   HttpCode,
   HttpStatus,
   ParseUUIDPipe,
+  Req,
 } from '@nestjs/common';
 
 import { UsersService } from './users.service.js';
@@ -22,8 +23,8 @@ export class UsersController {
 
   // Create a new user
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
+  create(@Body() createUserDto: CreateUserDto, @Req() request: { user: { id: string } }) {
+    return this.usersService.create(createUserDto, request.user.id);
   }
 
   // Retrieve all users
