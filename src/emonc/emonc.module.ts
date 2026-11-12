@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
+import { MentorsModule } from './mentors/mentors.module.js';
 
 @Module({
-    imports: [// import other modules here  from your working code
-
+    imports: [
+        MentorsModule
     ],
 
 
