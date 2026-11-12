@@ -1,0 +1,8 @@
+export enum MentorInvitationStatus {
+  PENDING = 'PENDING',
+  OTP_SENT = 'OTP_SENT',
+  VERIFIED = 'VERIFIED',
+  COMPLETED = 'COMPLETED',
+  EXPIRED = 'EXPIRED',
+  REVOKED = 'REVOKED',
+}
