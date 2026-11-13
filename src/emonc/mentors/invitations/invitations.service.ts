@@ -18,10 +18,6 @@ import {
 
 import * as bcrypt from 'bcrypt';
 
-import {
-  User,
-  AccountStatus,
-} from '../../../shared/users/entities/user.entity.js';
 
 import { MentorInvitation } from './entities/mentor-invitation.entity.js';
 import { EmailService } from './email.service.js';
@@ -31,6 +27,8 @@ import { AcceptInvitationDto } from '../dto/accept-invitation.dto.js';
 import { VerifyMentorOtpDto } from '../dto/verify-mentor-otp.dto.js';
 
 import { MentorInvitationStatus } from './enum/invitation.enum.js';
+import { AccountStatus } from '../../../shared/users/enum/users.enum.js';
+import { User } from '../../../shared/users/entities/user.entity.js';
 
 @Injectable()
 export class InvitationsService {
@@ -274,7 +272,7 @@ export class InvitationsService {
     invitation.attempts = 0;
 
     invitation.acceptedAt = new Date();
-    
+
     invitation.status = MentorInvitationStatus.OTP_SENT;
 
     // Save OTP information

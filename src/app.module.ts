@@ -16,6 +16,7 @@ import { MpdsrModule } from './mpdsr/mpdsr.module.js';
 import { EmoncModule } from './emonc/emonc.module.js';
 import { LocationsModule } from './locations/locations.module.js';
 import { FacilitiesModule } from './facilities/facilities.module.js';
+import { UserLocationsModule } from './shared/users/user-locations/user-locations.module.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -45,6 +46,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     EmoncModule,
     // EmoncModule,
     LocationsModule,
+    UserLocationsModule,
     FacilitiesModule,
   ],
 
