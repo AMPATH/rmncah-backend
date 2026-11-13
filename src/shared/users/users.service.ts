@@ -1,4 +1,3 @@
-
 import {
   Injectable,
   NotFoundException,
@@ -20,33 +19,31 @@ export class UsersService {
     private readonly userRepository: Repository<User>,
   ) {}
 
+  //create
 
-  //create 
-  
-// Create a new user account
-async create(createUserDto: CreateUserDto): Promise<User> {
-  const email = createUserDto.email.toLowerCase();
+  // Create a new user account
+  async create(createUserDto: CreateUserDto): Promise<User> {
+    const email = createUserDto.email.toLowerCase();
 
-  // Check whether email already exists
-  const existingUser = await this.findByEmail(email);
+    // Check whether email already exists
+    const existingUser = await this.findByEmail(email);
 
-  if (existingUser) {
-    throw new ConflictException('Email is already registered');
+    if (existingUser) {
+      throw new ConflictException('Email is already registered');
+    }
+
+    // Prepare the new user
+    const newUser = this.userRepository.create({
+      ...createUserDto,
+      email,
+      passwordHash: null,
+      mustChangePassword: true,
+      status: AccountStatus.PENDING,
+    });
+
+    // Save user in the database
+    return this.userRepository.save(newUser);
   }
-
-  // Prepare the new user
-  const newUser = this.userRepository.create({
-    ...createUserDto,
-    email,
-    passwordHash: null,
-    mustChangePassword: true,
-    status: AccountStatus.PENDING,
-  });
-
-  // Save user in the database
-  return this.userRepository.save(newUser);
-}
-
 
   // Retrieve all users
   async findAll(): Promise<User[]> {
@@ -60,9 +57,7 @@ async create(createUserDto: CreateUserDto): Promise<User> {
     });
 
     if (!user) {
-      throw new NotFoundException(
-        `User with ID ${id} not found`,
-      );
+      throw new NotFoundException(`User with ID ${id} not found`);
     }
 
     return user;
@@ -74,12 +69,26 @@ async create(createUserDto: CreateUserDto): Promise<User> {
       where: { email: email.toLowerCase() },
     });
   }
+  // Find user by email, including password hash for authentication
+  async findByEmailWithPassword(email: string): Promise<User | null> {
+    return this.userRepository
+      .createQueryBuilder('user')
+      .addSelect('user.passwordHash')
+      .where('user.email = :email', {
+        email: email.toLowerCase(),
+      })
+      .getOne();
+  }
+
+  // Update the user's last successful login timestamp
+  async updateLastLogin(id: string): Promise<void> {
+    await this.userRepository.update(id, {
+      lastLoginAt: new Date(),
+    });
+  }
 
   // Update user details
-  async update(
-    id: string,
-    updateData: UpdateUserDto,
-  ): Promise<User> {
+  async update(id: string, updateData: UpdateUserDto): Promise<User> {
     const user = await this.findOne(id);
 
     if (updateData.email) {
@@ -88,9 +97,7 @@ async create(createUserDto: CreateUserDto): Promise<User> {
       const existingUser = await this.findByEmail(email);
 
       if (existingUser && existingUser.id !== id) {
-        throw new ConflictException(
-          'Email is already registered',
-        );
+        throw new ConflictException('Email is already registered');
       }
 
       updateData.email = email;
