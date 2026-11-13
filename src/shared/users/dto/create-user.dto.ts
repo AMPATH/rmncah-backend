@@ -1,4 +1,3 @@
-
 import {
   IsString,
   IsNotEmpty,
@@ -8,8 +7,7 @@ import {
   IsEnum,
   MaxLength,
 } from 'class-validator';
-import { OrganizationLevel } from '../enum/users.enum.js';
-
+// import { OrganizationLevel } from '../enum/users.enum.js';
 
 export class CreateUserDto {
   @IsString()
@@ -36,7 +34,6 @@ export class CreateUserDto {
   @IsUUID()
   cadreId?: string;
 
-  @IsEnum(OrganizationLevel)
-  level: OrganizationLevel;
+  // @IsEnum(OrganizationLevel)
+  // level: OrganizationLevel;
 }
-
