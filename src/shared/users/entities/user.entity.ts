@@ -9,7 +9,10 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-import { AccountStatus } from '../enum/users.enum.js';
+import { AccountStatus, OrganizationLevel } from '../enum/users.enum.js';
+
+export { AccountStatus, OrganizationLevel };
+
 import { UserOrganizationAssignment } from '../../user-organization-assignments/entities/user-organization-assignment.entity.js';
 
 @Entity('users')

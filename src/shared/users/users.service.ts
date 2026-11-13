@@ -3,13 +3,12 @@ import {
   NotFoundException,
   ConflictException,
 } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 import { UpdateUserDto } from './dto/update-user.dto.js';
 import { CreateUserDto } from './dto/create-user.dto.js';
-// import { AccountStatus } from './entities/user.entity.js';
-import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity.js';
-import { Repository } from 'typeorm';
 import { AccountStatus } from './enum/users.enum.js';
 
 @Injectable()
@@ -19,10 +18,11 @@ export class UsersService {
     private readonly userRepository: Repository<User>,
   ) {}
 
-  //create
-
   // Create a new user account
-  async create(createUserDto: CreateUserDto): Promise<User> {
+  async create(
+    createUserDto: CreateUserDto,
+    createdBy?: string,
+  ): Promise<User> {
     const email = createUserDto.email.toLowerCase();
 
     // Check whether email already exists
@@ -32,6 +32,17 @@ export class UsersService {
       throw new ConflictException('Email is already registered');
     }
 
+    // Check whether phone number already exists, if provided
+    if (createUserDto.phoneNumber) {
+      const existingPhoneNumber = await this.userRepository.findOne({
+        where: { phoneNumber: createUserDto.phoneNumber },
+      });
+
+      if (existingPhoneNumber) {
+        throw new ConflictException('Phone number is already registered');
+      }
+    }
+
     // Prepare the new user
     const newUser = this.userRepository.create({
       ...createUserDto,
@@ -39,6 +50,7 @@ export class UsersService {
       passwordHash: null,
       mustChangePassword: true,
       status: AccountStatus.PENDING,
+      createdBy: createdBy ?? null,
     });
 
     // Save user in the database
@@ -69,6 +81,7 @@ export class UsersService {
       where: { email: email.toLowerCase() },
     });
   }
+
   // Find user by email, including password hash for authentication
   async findByEmailWithPassword(email: string): Promise<User | null> {
     return this.userRepository
@@ -87,8 +100,11 @@ export class UsersService {
     });
   }
 
-  // Update user details
-  async update(id: string, updateData: UpdateUserDto): Promise<User> {
+  // Update user details and, where authorized, account status
+  async update(
+    id: string,
+    updateData: UpdateUserDto & { status?: AccountStatus },
+  ): Promise<User> {
     const user = await this.findOne(id);
 
     if (updateData.email) {
@@ -108,9 +124,9 @@ export class UsersService {
     return this.userRepository.save(user);
   }
 
-  // delete user
+  // Delete user
   async delete(id: string): Promise<void> {
-    const user = await this.findOne(id);
+    await this.findOne(id);
 
     await this.userRepository.delete(id);
   }
