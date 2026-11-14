@@ -5,12 +5,11 @@ import { CreateMentorDto } from './dto/create-mentor.dto.js';
 import { UpdateMentorDto } from './dto/update-mentor.dto.js';
 
 import { UsersService } from '../../shared/users/users.service.js';
-import {
-  AccountStatus,
-  User,
-} from '../../shared/users/entities/user.entity.js';
+
 
 import { InvitationsService } from './invitations/invitations.service.js';
+import { AccountStatus } from '../../shared/users/enum/users.enum.js';
+import { User } from '../../shared/users/entities/user.entity.js';
 
 @Injectable()
 export class MentorsService {
@@ -31,7 +30,7 @@ export class MentorsService {
 
     const pendingMentor = await this.usersService.update(mentor.id, {
       status: AccountStatus.PENDING,
-    });
+    } as any);
 
     const invitation = await this.invitationsService.createInvitation(
       pendingMentor.id,
@@ -86,6 +85,6 @@ export class MentorsService {
 
     return this.usersService.update(id, {
       status: AccountStatus.DEACTIVATED,
-    });
+    } as any);
   }
 }
