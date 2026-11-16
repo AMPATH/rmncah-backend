@@ -1,16 +1,14 @@
-
 import {
   Injectable,
   NotFoundException,
   ConflictException,
 } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 import { UpdateUserDto } from './dto/update-user.dto.js';
 import { CreateUserDto } from './dto/create-user.dto.js';
-// import { AccountStatus } from './entities/user.entity.js';
-import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity.js';
-import { Repository } from 'typeorm';
 import { AccountStatus } from './enum/users.enum.js';
 
 @Injectable()
@@ -20,41 +18,44 @@ export class UsersService {
     private readonly userRepository: Repository<User>,
   ) {}
 
+  // Create a new user account
+  async create(
+    createUserDto: CreateUserDto,
+    createdBy?: string,
+  ): Promise<User> {
+    const email = createUserDto.email.toLowerCase();
 
-  //create 
-  
-// Create a new user account
-async create(createUserDto: CreateUserDto, createdBy?: string): Promise<User> {
-  const email = createUserDto.email.toLowerCase();
+    // Check whether email already exists
+    const existingUser = await this.findByEmail(email);
 
-  // Check whether email already exists
-  const existingUser = await this.findByEmail(email);
+    if (existingUser) {
+      throw new ConflictException('Email is already registered');
+    }
 
-  if (existingUser) {
-    throw new ConflictException('Email is already registered');
+    // Check whether phone number already exists, if provided
+    if (createUserDto.phoneNumber) {
+      const existingPhoneNumber = await this.userRepository.findOne({
+        where: { phoneNumber: createUserDto.phoneNumber },
+      });
+
+      if (existingPhoneNumber) {
+        throw new ConflictException('Phone number is already registered');
+      }
+    }
+
+    // Prepare the new user
+    const newUser = this.userRepository.create({
+      ...createUserDto,
+      email,
+      passwordHash: null,
+      mustChangePassword: true,
+      status: AccountStatus.PENDING,
+      createdBy: createdBy ?? null,
+    });
+
+    // Save user in the database
+    return this.userRepository.save(newUser);
   }
-  //check if phone Nmber is unique
-  const existingPhoneNumber = await this.userRepository.findOne({
-    where: { phoneNumber: createUserDto.phoneNumber },
-  });
-
-  if (existingPhoneNumber) {
-    throw new ConflictException('Phone number is already registered');
-  }
-
-  // Prepare the new user
-  const newUser = this.userRepository.create({
-    ...createUserDto,
-    email,
-    passwordHash: null,
-    mustChangePassword: true,
-    status: AccountStatus.PENDING,
-  });
-
-  // Save user in the database
-  return this.userRepository.save(newUser);
-}
-
 
   // Retrieve all users
   async findAll(): Promise<User[]> {
@@ -68,9 +69,7 @@ async create(createUserDto: CreateUserDto, createdBy?: string): Promise<User> {
     });
 
     if (!user) {
-      throw new NotFoundException(
-        `User with ID ${id} not found`,
-      );
+      throw new NotFoundException(`User with ID ${id} not found`);
     }
 
     return user;
@@ -83,10 +82,28 @@ async create(createUserDto: CreateUserDto, createdBy?: string): Promise<User> {
     });
   }
 
-  // Update user details
+  // Find user by email, including password hash for authentication
+  async findByEmailWithPassword(email: string): Promise<User | null> {
+    return this.userRepository
+      .createQueryBuilder('user')
+      .addSelect('user.passwordHash')
+      .where('user.email = :email', {
+        email: email.toLowerCase(),
+      })
+      .getOne();
+  }
+
+  // Update the user's last successful login timestamp
+  async updateLastLogin(id: string): Promise<void> {
+    await this.userRepository.update(id, {
+      lastLoginAt: new Date(),
+    });
+  }
+
+  // Update user details and, where authorized, account status
   async update(
     id: string,
-    updateData: UpdateUserDto,
+    updateData: UpdateUserDto & { status?: AccountStatus },
   ): Promise<User> {
     const user = await this.findOne(id);
 
@@ -96,9 +113,7 @@ async create(createUserDto: CreateUserDto, createdBy?: string): Promise<User> {
       const existingUser = await this.findByEmail(email);
 
       if (existingUser && existingUser.id !== id) {
-        throw new ConflictException(
-          'Email is already registered',
-        );
+        throw new ConflictException('Email is already registered');
       }
 
       updateData.email = email;
@@ -109,9 +124,9 @@ async create(createUserDto: CreateUserDto, createdBy?: string): Promise<User> {
     return this.userRepository.save(user);
   }
 
-  // delete user
+  // Delete user
   async delete(id: string): Promise<void> {
-    const user = await this.findOne(id);
+    await this.findOne(id);
 
     await this.userRepository.delete(id);
   }
