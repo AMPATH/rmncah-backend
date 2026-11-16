@@ -1,0 +1,30 @@
+export enum CohortStatus {
+  DRAFT = 'DRAFT',
+  ACTIVE = 'ACTIVE',
+  PAUSED = 'PAUSED',
+  COMPLETED = 'COMPLETED',
+  CANCELLED = 'CANCELLED',
+}
+
+export enum CohortMembershipStatus {
+  ACTIVE = 'ACTIVE',
+  COMPLETED = 'COMPLETED',
+  PAUSED ='PAUSED',
+  TRANSFERRED = 'TRANSFERRED',
+  REMOVED = 'REMOVED',
+}
+
+export enum CohortTransferRequestStatus {
+  PENDING = 'PENDING',
+  APPROVED = 'APPROVED',
+  REJECTED = 'REJECTED',
+}
+
+
+export enum CohortTransferReason {
+  MENTORCHALLENGE = 'MENTOR CHALLENGE',
+  RELOCATION = 'RELOCATION',
+  PERSONALCIRCUMSTANCES = 'PERSONAL CIRCUMSTANCES',
+  HEALTH = 'HEALTH',
+  OTHER = 'OTHER',
+}

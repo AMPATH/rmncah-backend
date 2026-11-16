@@ -20,7 +20,7 @@ export class MentorInvitation {
 
   @Column({
     name: 'userId',
-    type: 'char',
+    type: 'varchar',
     length: 36,
   })
   userId: string;
