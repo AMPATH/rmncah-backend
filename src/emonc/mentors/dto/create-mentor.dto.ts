@@ -8,7 +8,8 @@ import {
   IsUUID,
   MaxLength,
 } from 'class-validator';
-import { OrganizationLevel } from '../../../shared/users/entities/user.entity.js';
+import { OrganizationLevel } from '../../../shared/users/enum/users.enum.js';
+
 //import { OrganizationLevel } from '../../../shared/users/enum/users.enum.js';
 
 

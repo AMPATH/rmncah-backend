@@ -15,6 +15,7 @@ import { MpdsrModule } from './mpdsr/mpdsr.module.js';
 import { EmoncModule } from './emonc/emonc.module.js';
 import { LocationsModule } from './locations/locations.module.js';
 import { FacilitiesModule } from './facilities/facilities.module.js';
+import { UserLocationsModule } from './shared/users/user-locations/user-locations.module.js';
 import { UserOrganizationAssignmentsModule } from './shared/user-organization-assignments/user-organization-assignments.module.js';
 import { RbacModule } from './shared/rbac/rbac.module.js';
 import { AuthModule } from './auth/auth.module.js';
@@ -47,6 +48,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     EmoncModule,
     // EmoncModule,
     LocationsModule,
+    UserLocationsModule,
     FacilitiesModule,
     UserOrganizationAssignmentsModule,
     RbacModule,
