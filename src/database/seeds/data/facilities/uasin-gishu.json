@@ -1,0 +1,102 @@
+[
+  {
+    "name": "TEST Uasin Gishu Facility 01",
+    "mflCode": "TEST-UG-F001",
+    "countyCode": "027",
+    "subCountyCode": "2701",
+    "level": "Level 3",
+    "type": "Health Centre",
+    "ownership": "Public",
+    "isActive": true
+  },
+  {
+    "name": "TEST Uasin Gishu Facility 02",
+    "mflCode": "TEST-UG-F002",
+    "countyCode": "027",
+    "subCountyCode": "2701",
+    "level": "Level 3",
+    "type": "Health Centre",
+    "ownership": "Public",
+    "isActive": true
+  },
+  {
+    "name": "TEST Uasin Gishu Facility 03",
+    "mflCode": "TEST-UG-F003",
+    "countyCode": "027",
+    "subCountyCode": "2701",
+    "level": "Level 3",
+    "type": "Health Centre",
+    "ownership": "Public",
+    "isActive": true
+  },
+  {
+    "name": "TEST Uasin Gishu Facility 04",
+    "mflCode": "TEST-UG-F004",
+    "countyCode": "027",
+    "subCountyCode": "2701",
+    "level": "Level 3",
+    "type": "Health Centre",
+    "ownership": "Public",
+    "isActive": true
+  },
+  {
+    "name": "TEST Uasin Gishu Facility 05",
+    "mflCode": "TEST-UG-F005",
+    "countyCode": "027",
+    "subCountyCode": "2701",
+    "level": "Level 3",
+    "type": "Health Centre",
+    "ownership": "Public",
+    "isActive": true
+  },
+  {
+    "name": "TEST Uasin Gishu Facility 06",
+    "mflCode": "TEST-UG-F006",
+    "countyCode": "027",
+    "subCountyCode": "2701",
+    "level": "Level 4",
+    "type": "Sub-County Hospital",
+    "ownership": "Public",
+    "isActive": true
+  },
+  {
+    "name": "TEST Uasin Gishu Facility 07",
+    "mflCode": "TEST-UG-F007",
+    "countyCode": "027",
+    "subCountyCode": "2701",
+    "level": "Level 4",
+    "type": "Sub-County Hospital",
+    "ownership": "Public",
+    "isActive": true
+  },
+  {
+    "name": "TEST Uasin Gishu Facility 08",
+    "mflCode": "TEST-UG-F008",
+    "countyCode": "027",
+    "subCountyCode": "2701",
+    "level": "Level 4",
+    "type": "Sub-County Hospital",
+    "ownership": "Public",
+    "isActive": true
+  },
+  {
+    "name": "TEST Uasin Gishu Facility 09",
+    "mflCode": "TEST-UG-F009",
+    "countyCode": "027",
+    "subCountyCode": "2701",
+    "level": "Level 5",
+    "type": "County Referral Hospital",
+    "ownership": "Public",
+    "isActive": true
+  },
+  {
+    "name": "TEST Uasin Gishu Facility 10",
+    "mflCode": "TEST-UG-F010",
+    "countyCode": "027",
+    "subCountyCode": "2701",
+    "level": "Level 5",
+    "type": "County Referral Hospital",
+    "ownership": "Public",
+    "isActive": true
+  }
+]
