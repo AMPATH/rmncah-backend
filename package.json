@@ -26,7 +26,10 @@
     "migration:revert": "npm run build && npm run typeorm -- migration:revert -d dist/database/data-source.js",
     "migration:show": "npm run build && npm run typeorm -- migration:show -d dist/database/data-source.js",
     "seed:location": "npm run build && node --env-file=.env dist/database/seeds/location.seed.js",
-    "seed:rbac": "npm run build && node --env-file=.env dist/database/seeds/rbac.seed.js"
+    "seed:facility": "npm run build && node --env-file=.env dist/database/seeds/facility.seed.js",
+    "seed:community-units": "npm run build && node --env-file=.env dist/database/seeds/community-unit.seed.js",
+    "seed:rbac": "npm run build && node --env-file=.env dist/database/seeds/rbac.seed.js",
+    "bootstrap:admin": "npm run build && node --env-file=.env dist/system-bootstrap/bootstrap-admin.js"
   },
   "dependencies": {
     "@nestjs-modules/mailer": "^4.0.0",
