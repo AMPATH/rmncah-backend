@@ -1,34 +1,28 @@
-import {
-  IsDateString,
-  IsEnum,
-  IsInt,
-  IsNotEmpty,
-  IsOptional,
-  IsString,
-  IsUUID,
-  Min,
-  Max,
-} from 'class-validator';
+import { IsDateString, IsEnum, IsInt, IsOptional, Min } from 'class-validator';
 
-import { DeliveryMode } from '../enums/case.enum.js';
+import { BirthOutcome, PlaceOfBirth } from '../enums/case.enum.js';
+import { IsNotFutureDate } from './validators/date.validators.js';
 
 export class CreatePerinatalCaseDetailDto {
-  @IsDateString()
-  dateOfDeath: string;
+  @IsEnum(BirthOutcome)
+  birthOutcome: BirthOutcome;
 
+  // Gestational age at birth, stored as total days.
   @IsOptional()
   @IsInt()
   @Min(1)
-  @Max(45)
-  gestationalAgeAtBirth?: number;
+  gestationalAgeDays?: number;
 
-  @IsEnum(DeliveryMode)
-  modeOfDelivery: DeliveryMode;
+  // Birth weight stored in grams.
+  @IsOptional()
+  @IsInt()
+  @Min(1)
+  birthWeightGrams?: number;
 
-  @IsUUID()
-  causeOfDeathId: string;
+  @IsEnum(PlaceOfBirth)
+  placeOfBirth: PlaceOfBirth;
 
-  @IsString()
-  @IsNotEmpty()
-  clinicalSummary: string;
+  @IsDateString({ strict: true })
+  @IsNotFutureDate()
+  dateOfDeath: string;
 }
