@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import {
   Column,
   CreateDateColumn,
@@ -70,6 +71,7 @@ export class User {
     select: false,
     nullable: true,
   })
+  @Exclude()
   passwordHash: string | null;
 
   // Indicates whether the user must change their password.
