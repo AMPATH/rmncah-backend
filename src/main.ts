@@ -1,7 +1,10 @@
-
+import { setDefaultResultOrder } from 'node:dns';
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { AppModule, ObserveInstrument } from './app.module.js';
+
+// Prefer IPv4 to avoid SMTP connection timeouts caused by IPv6 routing.
+setDefaultResultOrder('ipv4first');
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {

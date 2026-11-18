@@ -10,12 +10,14 @@ import { UpdateUserDto } from './dto/update-user.dto.js';
 import { CreateUserDto } from './dto/create-user.dto.js';
 import { User } from './entities/user.entity.js';
 import { AccountStatus } from './enum/users.enum.js';
+import { InvitationsService } from '../invitations/invitations.service.js';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
+    private readonly invitationsService: InvitationsService,
   ) {}
 
   // Create a new user account
@@ -43,7 +45,7 @@ export class UsersService {
       }
     }
 
-    // Prepare the new user
+    // Prepare the new pending user account
     const newUser = this.userRepository.create({
       ...createUserDto,
       email,
@@ -53,8 +55,15 @@ export class UsersService {
       createdBy: createdBy ?? null,
     });
 
-    // Save user in the database
-    return this.userRepository.save(newUser);
+    const user = await this.userRepository.save(newUser);
+
+    // Automatically invite the newly created pending account.
+    await this.invitationsService.issueInvitation(
+      user.id,
+      createdBy ?? null,
+    );
+
+    return user;
   }
 
   // Retrieve all users
@@ -93,6 +102,32 @@ export class UsersService {
       .getOne();
   }
 
+  // Find a user by ID and explicitly include the password hash.
+  async findByIdWithPassword(id: string): Promise<User | null> {
+    return this.userRepository
+      .createQueryBuilder('user')
+      .addSelect('user.passwordHash')
+      .where('user.id = :id', { id })
+      .getOne();
+  }
+
+  // Update the password only if the verified hash has not changed.
+  async updatePasswordIfUnchanged(
+    id: string,
+    currentPasswordHash: string,
+    newPasswordHash: string,
+  ): Promise<boolean> {
+    const result = await this.userRepository.update(
+      { id, passwordHash: currentPasswordHash },
+      {
+        passwordHash: newPasswordHash,
+        mustChangePassword: false,
+      },
+    );
+
+    return (result.affected ?? 0) === 1;
+  }
+
   // Update the user's last successful login timestamp
   async updateLastLogin(id: string): Promise<void> {
     await this.userRepository.update(id, {
@@ -100,11 +135,8 @@ export class UsersService {
     });
   }
 
-  // Update user details and, where authorized, account status
-  async update(
-    id: string,
-    updateData: UpdateUserDto & { status?: AccountStatus },
-  ): Promise<User> {
+  // Update user details
+  async update(id: string, updateData: UpdateUserDto): Promise<User> {
     const user = await this.findOne(id);
 
     if (updateData.email) {
@@ -127,7 +159,6 @@ export class UsersService {
   // Delete user
   async delete(id: string): Promise<void> {
     await this.findOne(id);
-
     await this.userRepository.delete(id);
   }
 }

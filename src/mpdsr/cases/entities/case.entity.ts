@@ -41,7 +41,7 @@ export class Case {
   reportingSetting: ReportingSetting;
 
   // Shared location references
-  @Column({ type: 'varchar', length: 36, nullable: true })
+  @Column({ type: 'varchar', length: 36 })
   facilityId: string | null;
 
   @Column({ type: 'varchar', length: 36, nullable: true })

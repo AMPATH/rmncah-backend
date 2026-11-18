@@ -9,10 +9,9 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-import { AccountStatus, OrganizationLevel } from '../enum/users.enum.js';
+import { AccountStatus } from '../enum/users.enum.js';
 
-export { AccountStatus, OrganizationLevel };
-
+import { Invitation } from '../../invitations/entities/invitation.entity.js';
 import { UserOrganizationAssignment } from '../../user-organization-assignments/entities/user-organization-assignment.entity.js';
 
 @Entity('users')
@@ -21,6 +20,7 @@ export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  // User's first name.
   @Column({
     name: 'firstName',
     type: 'varchar',
@@ -28,6 +28,7 @@ export class User {
   })
   firstName: string;
 
+  // User's last name.
   @Column({
     name: 'lastName',
     type: 'varchar',
@@ -35,6 +36,7 @@ export class User {
   })
   lastName: string;
 
+  // User's email address.
   @Column({
     name: 'email',
     type: 'varchar',
@@ -42,6 +44,7 @@ export class User {
   })
   email: string;
 
+  // User's phone number.
   @Column({
     name: 'phoneNumber',
     type: 'varchar',
@@ -51,6 +54,7 @@ export class User {
   })
   phoneNumber: string | null;
 
+  // Records when the user accepted their account invitation.
   @Column({
     name: 'invitationAcceptedAt',
     type: 'datetime',
@@ -58,6 +62,7 @@ export class User {
   })
   invitationAcceptedAt: Date | null;
 
+  // Stores the hashed user password.
   @Column({
     name: 'passwordHash',
     type: 'varchar',
@@ -67,6 +72,7 @@ export class User {
   })
   passwordHash: string | null;
 
+  // Indicates whether the user must change their password.
   @Column({
     name: 'mustChangePassword',
     type: 'boolean',
@@ -74,6 +80,7 @@ export class User {
   })
   mustChangePassword: boolean;
 
+  // Identifies the user's professional cadre.
   @Column({
     name: 'cadreId',
     type: 'char',
@@ -82,6 +89,7 @@ export class User {
   })
   cadreId: string | null;
 
+  // Tracks the user's account status.
   @Column({
     name: 'status',
     type: 'enum',
@@ -90,6 +98,7 @@ export class User {
   })
   status: AccountStatus;
 
+  // Records the user's last successful login.
   @Column({
     name: 'lastLoginAt',
     type: 'datetime',
@@ -97,6 +106,7 @@ export class User {
   })
   lastLoginAt: Date | null;
 
+  // Identifies the user who created this account.
   @Column({
     name: 'createdBy',
     type: 'char',
@@ -105,6 +115,7 @@ export class User {
   })
   createdBy: string | null;
 
+  // Records when the user account was created.
   @CreateDateColumn({
     name: 'createdAt',
     type: 'datetime',
@@ -113,6 +124,7 @@ export class User {
   })
   createdAt: Date;
 
+  // Records the last time the user account was updated.
   @UpdateDateColumn({
     name: 'updatedAt',
     type: 'datetime',
@@ -122,6 +134,7 @@ export class User {
   })
   updatedAt: Date;
 
+  // Supports soft deletion of user accounts.
   @DeleteDateColumn({
     name: 'deletedAt',
     type: 'datetime',
@@ -130,6 +143,11 @@ export class User {
   })
   deletedAt: Date | null;
 
+  // Invitations received by this user's account.
+  @OneToMany(() => Invitation, (invitation) => invitation.user)
+  invitations: Invitation[];
+
+  // Organizational assignments belonging to this user.
   @OneToMany(() => UserOrganizationAssignment, (assignment) => assignment.user)
   organizationAssignments: UserOrganizationAssignment[];
 }
