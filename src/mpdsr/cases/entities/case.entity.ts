@@ -7,6 +7,8 @@ import {
   DeleteDateColumn,
   Index,
   OneToOne,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 import type { Relation } from 'typeorm';
 
@@ -15,12 +17,15 @@ import { CaseType, Gender, ReportingSetting } from '../enums/case.enum.js';
 import { MaternalCaseDetail } from './maternal-case-detail.entity.js';
 import { PerinatalCaseDetail } from './perinatal-case-detail.entity.js';
 import { NearMissDetail } from './near-miss-detail.entity.js';
+import { Facility } from '../../../facilities/entities/facility.entity.js';
+import { CommunityUnit } from '../../../locations/community-units/entities/community-unit.entity.js';
 
 @Entity('cases')
 @Index('IDX_CASE_FACILITY', ['facilityId'])
 @Index('IDX_CASE_COMMUNITY_UNIT', ['communityUnitId'])
 @Index('IDX_CASE_REPORTER', ['reportedBy'])
 @Index('IDX_CASE_CREATED_AT', ['createdAt'])
+@Index('IDX_CASE_RESPONSIBLE_FACILITY', ['responsibleFacilityId'])
 export class Case {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -40,18 +45,41 @@ export class Case {
   })
   reportingSetting: ReportingSetting;
 
-  // Shared location references
-  @Column({ type: 'varchar', length: 36 })
+  @Column({ type: 'varchar', length: 36, nullable: true })
   facilityId: string | null;
+
+  @ManyToOne(() => Facility, {
+    nullable: true,
+    onDelete: 'RESTRICT',
+  })
+  @JoinColumn({ name: 'facilityId' })
+  facility: Relation<Facility> | null;
 
   @Column({ type: 'varchar', length: 36, nullable: true })
   communityUnitId: string | null;
+
+  @ManyToOne(() => CommunityUnit, {
+    nullable: true,
+    onDelete: 'RESTRICT',
+  })
+  @JoinColumn({ name: 'communityUnitId' })
+  communityUnit: Relation<CommunityUnit> | null;
+
+  @Column({ type: 'varchar', length: 36, nullable: true })
+  responsibleFacilityId: string | null;
+
+  @ManyToOne(() => Facility, {
+    nullable: true,
+    onDelete: 'RESTRICT',
+  })
+  @JoinColumn({ name: 'responsibleFacilityId' })
+  responsibleFacility: Relation<Facility> | null;
 
   // Reporting user reference
   @Column({ type: 'varchar', length: 36 })
   reportedBy: string;
 
-  // Person information
+  // Shared person information
   @Column({ type: 'date' })
   dateOfBirth: string;
 
