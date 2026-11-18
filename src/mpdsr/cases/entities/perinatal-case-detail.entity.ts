@@ -11,7 +11,7 @@ import {
 import type { Relation } from 'typeorm';
 
 import { Case } from './case.entity.js';
-import { DeliveryMode } from '../enums/case.enum.js';
+import { BirthOutcome, PlaceOfBirth } from '../enums/case.enum.js';
 
 @Entity('perinatalCaseDetails')
 export class PerinatalCaseDetail {
@@ -27,24 +27,33 @@ export class PerinatalCaseDetail {
   @JoinColumn({ name: 'caseId' })
   case: Relation<Case>;
 
-  @Column({ type: 'date' })
-  dateOfDeath: string; // Date the baby died
+  // Outcome at birth: live birth or stillbirth.
+  @Column({
+    type: 'enum',
+    enum: BirthOutcome,
+  })
+  birthOutcome: BirthOutcome;
 
+  // Gestational age at birth, recorded as total days.
   @Column({ type: 'int', nullable: true })
-  gestationalAgeAtBirth: number | null; // Pregnancy duration at birth in completed weeks
+  gestationalAgeDays: number | null;
 
-  @Column({ type: 'enum', enum: DeliveryMode })
-  modeOfDelivery: DeliveryMode; // Method of delivery, e.g. vaginal or caesarean
+  // Birth weight stored in grams.
+  @Column({ type: 'int', nullable: true })
+  birthWeightGrams: number | null;
 
-  @Column({ type: 'varchar', length: 36 })
-  causeOfDeathId: string; // Links to the ICD-11 cause of death
+  @Column({
+    type: 'enum',
+    enum: PlaceOfBirth,
+  })
+  placeOfBirth: PlaceOfBirth;
 
-  @Column({ type: 'text' })
-  clinicalSummary: string; // Summary of the clinical circumstances
+  @Column({ type: 'date' })
+  dateOfDeath: string;
 
   @CreateDateColumn({ type: 'datetime' })
-  createdAt: Date; // Date and time the record was created
+  createdAt: Date;
 
   @UpdateDateColumn({ type: 'datetime' })
-  updatedAt: Date; // Date and time the record was last updated
+  updatedAt: Date;
 }
