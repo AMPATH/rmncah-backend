@@ -21,6 +21,20 @@ export enum PregnancyPeriod {
   POSTPARTUM = 'POSTPARTUM',
 }
 
+export enum BirthOutcome {
+  STILLBIRTH = 'STILLBIRTH',
+  LIVE_BIRTH = 'LIVE_BIRTH',
+  UNKNOWN = 'UNKNOWN',
+}
+
+export enum PlaceOfBirth {
+  HEALTH_FACILITY = 'HEALTH_FACILITY',
+  HOME = 'HOME',
+  EN_ROUTE_TO_FACILITY = 'EN_ROUTE_TO_FACILITY',
+  OTHER = 'OTHER',
+  UNKNOWN = 'UNKNOWN',
+}
+
 // Method of delivery
 export enum DeliveryMode {
   SPONTANEOUS_VAGINAL = 'SPONTANEOUS_VAGINAL',
@@ -30,6 +44,7 @@ export enum DeliveryMode {
   UNKNOWN = 'UNKNOWN',
 }
 
+// Retained pending review of existing references.
 export enum PregnancyOutcome {
   LIVE_BIRTH = 'LIVE_BIRTH',
   STILLBIRTH = 'STILLBIRTH',

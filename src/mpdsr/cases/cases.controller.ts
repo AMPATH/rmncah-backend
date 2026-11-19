@@ -30,10 +30,6 @@ import { ListCasesQueryDto } from './dto/list-cases-query.dto.js';
 export class CasesController {
   constructor(private readonly casesService: CasesService) {}
 
-  // --------------------------------------------------
-  // CREATE CASE
-  // --------------------------------------------------
-
   @Post()
   @RequirePermissions(SystemModule.MPDSR, 'mpdsr.cases.create')
   create(
@@ -43,10 +39,6 @@ export class CasesController {
   ) {
     return this.casesService.createCase(dto, user.id, assignmentId);
   }
-
-  // --------------------------------------------------
-  // LIST AND SEARCH CASES
-  // --------------------------------------------------
 
   @Get()
   @RequirePermissions(SystemModule.MPDSR, 'mpdsr.cases.read')
@@ -58,10 +50,6 @@ export class CasesController {
     return this.casesService.findAll(query, user.id, assignmentId);
   }
 
-  // --------------------------------------------------
-  // GET ONE CASE
-  // --------------------------------------------------
-
   @Get(':id')
   @RequirePermissions(SystemModule.MPDSR, 'mpdsr.cases.read')
   findOne(
@@ -71,10 +59,6 @@ export class CasesController {
   ) {
     return this.casesService.findOne(id, user.id, assignmentId);
   }
-
-  // --------------------------------------------------
-  // UPDATE CASE
-  // --------------------------------------------------
 
   @Patch(':id')
   @RequirePermissions(SystemModule.MPDSR, 'mpdsr.cases.update')
@@ -86,10 +70,6 @@ export class CasesController {
   ) {
     return this.casesService.updateCase(id, dto, user.id, assignmentId);
   }
-
-  // --------------------------------------------------
-  // SOFT DELETE CASE
-  // --------------------------------------------------
 
   @Delete(':id')
   @RequirePermissions(SystemModule.MPDSR, 'mpdsr.cases.archive')
