@@ -6,6 +6,7 @@ import {
   Min,
   Max,
   ValidateIf,
+  IsUUID,
 } from 'class-validator';
 
 import { PregnancyPeriod } from '../enums/case.enum.js';
@@ -19,6 +20,9 @@ export class CreateMaternalCaseDetailDto {
 
   @IsEnum(PregnancyPeriod)
   deathPeriod: PregnancyPeriod;
+
+  @IsUUID()
+  provisionalCauseId: string;
 
   // Required for antenatal and intrapartum deaths.
   @ValidateIf(
