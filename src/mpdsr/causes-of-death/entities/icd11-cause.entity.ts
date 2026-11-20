@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 
 @Entity('icd11Causes')
-@Index('UQ_icd11_causes_code', ['code'], { unique: true })
+@Index('UQ_icd11Causes_code', ['code'], { unique: true })
 export class Icd11Cause {
   @PrimaryGeneratedColumn('uuid')
   id: string;
