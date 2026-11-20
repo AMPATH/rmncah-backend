@@ -1,0 +1,117 @@
+[
+  {
+    "code": "D1_001",
+    "delayLevel": "FIRST",
+    "name": "Failure to recognize danger signs"
+  },
+  {
+    "code": "D1_002",
+    "delayLevel": "FIRST",
+    "name": "Ignorance of available services"
+  },
+  {
+    "code": "D1_003",
+    "delayLevel": "FIRST",
+    "name": "Cultural or religious reasons or objections"
+  },
+  {
+    "code": "D1_004",
+    "delayLevel": "FIRST",
+    "name": "Poverty"
+  },
+  {
+    "code": "D1_999",
+    "delayLevel": "FIRST",
+    "name": "Any other factor"
+  },
+  {
+    "code": "D2_001",
+    "delayLevel": "SECOND",
+    "name": "Lack of transport from home to health care facility"
+  },
+  {
+    "code": "D2_002",
+    "delayLevel": "SECOND",
+    "name": "Lack of transport between health care facilities"
+  },
+  {
+    "code": "D2_003",
+    "delayLevel": "SECOND",
+    "name": "Lack of communication"
+  },
+  {
+    "code": "D2_004",
+    "delayLevel": "SECOND",
+    "name": "Long distance"
+  },
+  {
+    "code": "D2_005",
+    "delayLevel": "SECOND",
+    "name": "Poor roads"
+  },
+  {
+    "code": "D2_999",
+    "delayLevel": "SECOND",
+    "name": "Any other factor"
+  },
+  {
+    "code": "D3_001",
+    "delayLevel": "THIRD",
+    "name": "Staff shortage"
+  },
+  {
+    "code": "D3_002",
+    "delayLevel": "THIRD",
+    "name": "Poor attitude"
+  },
+  {
+    "code": "D3_003",
+    "delayLevel": "THIRD",
+    "name": "Low morale"
+  },
+  {
+    "code": "D3_004",
+    "delayLevel": "THIRD",
+    "name": "Poor interpersonal relationship"
+  },
+  {
+    "code": "D3_005",
+    "delayLevel": "THIRD",
+    "name": "Language barrier"
+  },
+  {
+    "code": "D3_006",
+    "delayLevel": "THIRD",
+    "name": "Inadequate competencies and skills"
+  },
+  {
+    "code": "D3_007",
+    "delayLevel": "THIRD",
+    "name": "Lack of blood and blood products for transfusion"
+  },
+  {
+    "code": "D3_008",
+    "delayLevel": "THIRD",
+    "name": "Lack of emergency or essential drugs"
+  },
+  {
+    "code": "D3_009",
+    "delayLevel": "THIRD",
+    "name": "Lack of theatre supplies"
+  },
+  {
+    "code": "D3_010",
+    "delayLevel": "THIRD",
+    "name": "Lack of equipment"
+  },
+  {
+    "code": "D3_011",
+    "delayLevel": "THIRD",
+    "name": "Inadequate infrastructure to support critical care"
+  },
+  {
+    "code": "D3_999",
+    "delayLevel": "THIRD",
+    "name": "Any other factor"
+  }
+]
