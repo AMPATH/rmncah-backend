@@ -10,19 +10,21 @@ import {
   DataSource,
   EntityManager,
   IsNull,
+  In,
   SelectQueryBuilder,
 } from 'typeorm';
 
-import { randomUUID } from 'node:crypto';
 import { plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
 
 import { Case } from './entities/case.entity.js';
+import { CaseContributingFactor } from './entities/case-contributing-factor.entity.js';
+import { ContributingFactor } from '../contributing-factors/entities/contributing-factor.entity.js';
 import { MaternalCaseDetail } from './entities/maternal-case-detail.entity.js';
 import { PerinatalCaseDetail } from './entities/perinatal-case-detail.entity.js';
 import { NearMissDetail } from './entities/near-miss-detail.entity.js';
 
-import { CaseType, ReportingSetting } from './enums/case.enum.js';
+import { CaseType, ReportingSetting, Gender } from './enums/case.enum.js';
 
 import { CreateCaseDto } from './dto/create-case.dto.js';
 import { UpdateCaseDto } from './dto/update-case.dto.js';
@@ -38,6 +40,7 @@ import { OrganizationLevel } from '../../shared/user-organization-assignments/en
 import { Facility } from '../../facilities/entities/facility.entity.js';
 import { CommunityUnit } from '../../locations/community-units/entities/community-unit.entity.js';
 import { FacilityPcnMembership } from '../pcns/entities/facility-pcn-membership.entity.js';
+import { Icd11CauseType, Icd11CauseCaseType } from '../causes-of-death/entities/icd11-cause-type.entity.js';
 
 type ClinicalDetails = Record<string, unknown>;
 
@@ -163,6 +166,12 @@ export class CasesService {
         if (dateOfComplication > notificationDate) {
           throw new BadRequestException(
             'notificationDate cannot be earlier than dateOfComplication.',
+          );
+        }
+
+        if (dateOfAdmission > notificationDate) {
+          throw new BadRequestException(
+            'notificationDate cannot be earlier than dateOfAdmission.',
           );
         }
 
@@ -351,20 +360,13 @@ export class CasesService {
       return;
     }
 
-    // Built from entity metadata so table and column names always match
-    // the configured naming strategy.
-    const communityUnitSubQuery = queryBuilder
-      .subQuery()
-      .select('scopedCommunityUnit.id')
-      .from(CommunityUnit, 'scopedCommunityUnit')
-      .where('scopedCommunityUnit.facilityId IN (:...scopeFacilityIds)')
-      .getQuery();
-
+    // Community cases are scoped using the facility responsible when
+    // the case was reported, not the Community Unit's current facility.
     queryBuilder.andWhere(
       new Brackets((scope) => {
         scope
           .where('case.facilityId IN (:...scopeFacilityIds)')
-          .orWhere(`case.communityUnitId IN ${communityUnitSubQuery}`);
+          .orWhere('case.responsibleFacilityId IN (:...scopeFacilityIds)');
       }),
     );
 
@@ -380,7 +382,7 @@ export class CasesService {
     facilityId: string | null,
     communityUnitId: string | null,
     manager: EntityManager,
-  ): Promise<void> {
+  ): Promise<Facility> {
     if (
       caseType === CaseType.NEAR_MISS &&
       reportingSetting !== ReportingSetting.FACILITY
@@ -412,8 +414,8 @@ export class CasesService {
           id: facilityId,
           isActive: true,
         },
-        select: {
-          id: true,
+        lock: {
+          mode: 'pessimistic_write',
         },
       });
 
@@ -434,7 +436,7 @@ export class CasesService {
         );
       }
 
-      return;
+      return facility;
     }
 
     if (reportingSetting === ReportingSetting.COMMUNITY) {
@@ -449,14 +451,30 @@ export class CasesService {
           id: communityUnitId,
           isActive: true,
         },
-        relations: {
-          facility: true,
+        lock: {
+          mode: 'pessimistic_write',
         },
       });
 
-      if (!communityUnit || !communityUnit.facility?.isActive) {
+      if (!communityUnit) {
         throw new BadRequestException(
-          'The selected community unit or its linked facility is inactive or unavailable.',
+          'The selected community unit is inactive or unavailable.',
+        );
+      }
+
+      const facility = await manager.getRepository(Facility).findOne({
+        where: {
+          id: communityUnit.facilityId,
+          isActive: true,
+        },
+        lock: {
+          mode: 'pessimistic_write',
+        },
+      });
+
+      if (!facility) {
+        throw new BadRequestException(
+          'The community unit linked facility is inactive or unavailable.',
         );
       }
 
@@ -467,7 +485,7 @@ export class CasesService {
           );
         }
 
-        return;
+        return facility;
       }
 
       const scopedFacilityIds = await this.getScopedFacilityIds(
@@ -481,7 +499,7 @@ export class CasesService {
         );
       }
 
-      return;
+      return facility;
     }
 
     throw new BadRequestException('Invalid reporting setting.');
@@ -489,22 +507,91 @@ export class CasesService {
 
   // GENERATE CASE NUMBER
 
-  private generateCaseNumber(): string {
-    const parts = new Intl.DateTimeFormat('en-CA', {
+  private getNairobiYear(): string {
+    return new Intl.DateTimeFormat('en', {
       timeZone: 'Africa/Nairobi',
       year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-    }).formatToParts(new Date());
+    }).format(new Date());
+  }
 
-    const values = Object.fromEntries(
-      parts.map((part) => [part.type, part.value]),
+  /**
+   * The caller must hold a pessimistic write lock on this facility row.
+   * This serializes sequence allocation for this facility and year.
+   */
+  private async generateCaseNumber(
+    manager: EntityManager,
+    facility: Facility,
+  ): Promise<string> {
+    const year = this.getNairobiYear();
+    const prefix = `MPDSR-${facility.mflCode}-${year}-`;
+
+    const latest = await manager
+      .getRepository(Case)
+      .createQueryBuilder('case')
+      .withDeleted()
+      .select(
+        "MAX(CAST(SUBSTRING_INDEX(case.caseNumber, '-', -1) AS UNSIGNED))",
+        'maxSequence',
+      )
+      .where('case.caseNumber LIKE :prefix', {
+        prefix: `${prefix}%`,
+      })
+      .getRawOne<{ maxSequence: string | null }>();
+
+    const nextSequence = Number(latest?.maxSequence ?? 0) + 1;
+
+    return `${prefix}${String(nextSequence).padStart(6, '0')}`;
+  }
+
+  // VALIDATE PROVISIONAL ICD-11 CAUSE
+
+  private async validateProvisionalCause(
+    caseType: CaseType,
+    details: ClinicalDetails,
+    manager: EntityManager,
+  ): Promise<void> {
+    if (caseType === CaseType.NEAR_MISS) {
+      return;
+    }
+
+    const provisionalCauseId = details.provisionalCauseId;
+
+    if (typeof provisionalCauseId !== 'string') {
+      throw new BadRequestException('A provisional ICD-11 cause is required.');
+    }
+
+    const expectedCauseType =
+      caseType === CaseType.MATERNAL
+        ? Icd11CauseCaseType.MATERNAL
+        : Icd11CauseCaseType.PERINATAL;
+
+    const causeType = await manager
+      .getRepository(Icd11CauseType)
+      .findOne({
+        where: {
+          causeId: provisionalCauseId,
+          caseType: expectedCauseType,
+        },
+      });
+
+    if (!causeType) {
+      throw new BadRequestException(
+        `The selected provisional cause does not exist or is not classified for ${caseType.toLowerCase()} cases.`,
+      );
+    }
+  }
+
+  // Reuse the case-specific ICD-11 validation during facility review.
+  async validateCauseForReview(
+    caseType: CaseType,
+    causeId: string,
+    manager: EntityManager,
+  ): Promise<void> {
+    await this.validateProvisionalCause(
+      caseType,
+      { provisionalCauseId: causeId },
+      manager,
     );
-
-    const date = `${values.year}${values.month}${values.day}`;
-    const suffix = randomUUID().replace(/-/g, '').slice(0, 12).toUpperCase();
-
-    return `MPDSR-${date}-${suffix}`;
   }
 
   // SEARCH HELPERS
@@ -693,6 +780,73 @@ export class CasesService {
 
   // CREATE CASE
 
+  private async saveReporterContributingFactors(
+    caseId: string,
+    contributingFactorIds: string[],
+    manager: EntityManager,
+  ): Promise<void> {
+    const requestedIds = [...new Set(contributingFactorIds)];
+
+    const factorRepository = manager.getRepository(ContributingFactor);
+    const activeFactors = requestedIds.length
+      ? await factorRepository.find({
+          where: {
+            id: In(requestedIds),
+            isActive: true,
+          },
+        })
+      : [];
+
+    if (activeFactors.length !== requestedIds.length) {
+      throw new BadRequestException(
+        'One or more contributing factors are invalid or inactive.',
+      );
+    }
+
+    const selectionRepository = manager.getRepository(CaseContributingFactor);
+    const existingRows = await selectionRepository.find({
+      where: { caseId },
+    });
+
+    const selectedIds = new Set(requestedIds);
+    const existingByFactorId = new Map(
+      existingRows.map((row) => [row.contributingFactorId, row]),
+    );
+
+    const rowsToSave: CaseContributingFactor[] = [];
+
+    for (const row of existingRows) {
+      const selected = selectedIds.has(row.contributingFactorId);
+
+      row.reporterSelected = selected;
+      row.reviewerSelected = selected;
+
+      rowsToSave.push(row);
+    }
+
+    for (const factorId of requestedIds) {
+      if (existingByFactorId.has(factorId)) {
+        continue;
+      }
+
+      rowsToSave.push(
+        selectionRepository.create({
+          caseId,
+          contributingFactorId: factorId,
+          reporterSelected: true,
+          reviewerSelected: true,
+          reviewedBy: null,
+          reviewedAt: null,
+          reviewerNotes: null,
+        }),
+      );
+    }
+
+    if (rowsToSave.length) {
+      await selectionRepository.save(rowsToSave);
+    }
+  }
+
   async createCase(
     dto: CreateCaseDto,
     reportedBy: string,
@@ -721,7 +875,7 @@ export class CasesService {
         manager,
       );
 
-      await this.validateReportingLocation(
+      const reportingFacility = await this.validateReportingLocation(
         assignment,
         dto.caseType,
         dto.reportingSetting,
@@ -730,22 +884,43 @@ export class CasesService {
         manager,
       );
 
+      await this.validateProvisionalCause(
+        dto.caseType,
+        validatedDetails,
+        manager,
+      );
+
       const caseRepository = manager.getRepository(Case);
 
       const newCase = caseRepository.create({
-        caseNumber: this.generateCaseNumber(),
+        caseNumber: await this.generateCaseNumber(manager, reportingFacility),
         caseType: dto.caseType,
         reportingSetting: dto.reportingSetting,
         facilityId: dto.facilityId ?? null,
         communityUnitId: dto.communityUnitId ?? null,
+        responsibleFacilityId:
+          dto.reportingSetting === ReportingSetting.COMMUNITY
+            ? reportingFacility.id
+            : null,
         reportedBy,
         dateOfBirth: dto.dateOfBirth,
-        gender: dto.gender,
+        gender:
+          dto.caseType === CaseType.PERINATAL
+            ? dto.gender!
+            : Gender.FEMALE,
         notificationDate: dto.notificationDate,
         comments: dto.comments ?? null,
       });
 
       const savedCase = await caseRepository.save(newCase);
+
+      if (dto.contributingFactorIds !== undefined) {
+        await this.saveReporterContributingFactors(
+          savedCase.id,
+          dto.contributingFactorIds,
+          manager,
+        );
+      }
 
       switch (dto.caseType) {
         case CaseType.MATERNAL: {
@@ -793,6 +968,9 @@ export class CasesService {
           maternalDetails: true,
           perinatalDetails: true,
           nearMissDetails: true,
+          contributingFactors: {
+            contributingFactor: true,
+          },
         },
       });
     });
@@ -995,11 +1173,10 @@ export class CasesService {
         throw new NotFoundException(`Case with ID ${id} was not found.`);
       }
 
-      // These fields cannot be cleared with null.
+      // Reporting location, case type, case number and reporter identity
+      // are immutable after case creation.
       const nonNullableFields = [
-        'reportingSetting',
         'dateOfBirth',
-        'gender',
         'notificationDate',
       ] as const;
 
@@ -1009,13 +1186,8 @@ export class CasesService {
         }
       }
 
-      // Case type, case number and reporter identity are immutable.
       const allowedFields = [
-        'reportingSetting',
-        'facilityId',
-        'communityUnitId',
         'dateOfBirth',
-        'gender',
         'notificationDate',
         'comments',
       ] as const;
@@ -1028,34 +1200,16 @@ export class CasesService {
         }
       }
 
-      const locationChanged =
-        dto.reportingSetting !== undefined ||
-        dto.facilityId !== undefined ||
-        dto.communityUnitId !== undefined;
+      if (dto.contributingFactorIds !== undefined) {
+        if (caseRecord.status !== 'NOTIFIED') {
+          throw new BadRequestException(
+            'Reporter contributing factors can only be changed before review starts.',
+          );
+        }
 
-      // When the reporting setting switches, clear the opposite location
-      // field unless the client explicitly set it.
-      if (
-        dto.reportingSetting === ReportingSetting.FACILITY &&
-        dto.communityUnitId === undefined
-      ) {
-        caseRecord.communityUnitId = null;
-      }
-
-      if (
-        dto.reportingSetting === ReportingSetting.COMMUNITY &&
-        dto.facilityId === undefined
-      ) {
-        caseRecord.facilityId = null;
-      }
-
-      if (locationChanged) {
-        await this.validateReportingLocation(
-          assignment,
-          caseRecord.caseType,
-          caseRecord.reportingSetting,
-          caseRecord.facilityId,
-          caseRecord.communityUnitId,
+        await this.saveReporterContributingFactors(
+          caseRecord.id,
+          dto.contributingFactorIds,
           manager,
         );
       }
@@ -1073,6 +1227,12 @@ export class CasesService {
           ...finalDetails,
           ...(dto.details ?? {}),
         });
+
+        await this.validateProvisionalCause(
+          caseRecord.caseType,
+          finalDetails,
+          manager,
+        );
       }
 
       if (detailsChanged || datesChanged) {
@@ -1098,6 +1258,9 @@ export class CasesService {
           maternalDetails: true,
           perinatalDetails: true,
           nearMissDetails: true,
+          contributingFactors: {
+            contributingFactor: true,
+          },
         },
       });
     });
