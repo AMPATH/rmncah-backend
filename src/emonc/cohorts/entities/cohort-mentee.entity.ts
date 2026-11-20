@@ -17,8 +17,8 @@ import { CohortMembershipStatus } from '../enum/cohorts.enum.js';
 import type { Relation } from 'typeorm';
 
 @Entity('cohortMentees')
-@Index(['menteeId', 'status'])
-@Index(['cohortId', 'status'])
+@Index('IDX_cohortMentees_mentee_status', ['menteeId', 'status'])
+@Index('IDX_cohortMentees_cohort_status', ['cohortId', 'status'])
 export class CohortMentee {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -94,6 +94,7 @@ export class CohortMentee {
   @JoinColumn({
     name: 'cohortId',
     referencedColumnName: 'id',
+    foreignKeyConstraintName: 'FK_cohortMentees_cohort',
   })
   cohort: Relation<Cohort>;
 
@@ -105,6 +106,7 @@ export class CohortMentee {
   @JoinColumn({
     name: 'menteeId',
     referencedColumnName: 'id',
+    foreignKeyConstraintName: 'FK_cohortMentees_mentee',
   })
   mentee: Relation<User>;
 
