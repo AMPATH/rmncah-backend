@@ -44,7 +44,6 @@ export enum DeliveryMode {
   UNKNOWN = 'UNKNOWN',
 }
 
-// Retained pending review of existing references.
 export enum PregnancyOutcome {
   LIVE_BIRTH = 'LIVE_BIRTH',
   STILLBIRTH = 'STILLBIRTH',
@@ -52,4 +51,14 @@ export enum PregnancyOutcome {
   ABORTION = 'ABORTION',
   OTHER = 'OTHER',
   UNKNOWN = 'UNKNOWN',
+}
+
+export enum CaseStatus {
+  NOTIFIED = 'NOTIFIED',
+  UNDER_REVIEW = 'UNDER_REVIEW',
+  REVIEW_COMPLETED = 'REVIEW_COMPLETED',
+  RESPONSE_IN_PROGRESS = 'RESPONSE_IN_PROGRESS',
+  REOPENED = 'REOPENED',
+  CLOSED = 'CLOSED',
+  VOIDED = 'VOIDED',
 }

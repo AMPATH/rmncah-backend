@@ -30,7 +30,8 @@
     "seed:community-units": "npm run build && node --env-file=.env dist/database/seeds/community-unit.seed.js",
     "seed:rbac": "npm run build && node --env-file=.env dist/database/seeds/rbac.seed.js",
     "seed:icd11-causes": "npm run build && node --env-file=.env dist/database/seeds/icd11-cause.seed.js",
-    "bootstrap:admin": "npm run build && node --env-file=.env dist/system-bootstrap/bootstrap-admin.js"
+    "bootstrap:admin": "npm run build && node --env-file=.env dist/system-bootstrap/bootstrap-admin.js",
+    "seed:contributing-factors": "npm run build && node --env-file=.env dist/database/seeds/contributing-factor.seed.js"
   },
   "dependencies": {
     "@nestjs-modules/mailer": "^4.0.0",

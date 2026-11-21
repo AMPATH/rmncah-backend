@@ -13,8 +13,10 @@ import type { Relation } from 'typeorm';
 import { User } from '../../entities/user.entity.js';
 import { Facility } from '../../../../facilities/entities/facility.entity.js';
 
-@Entity('user_locations')
-@Index(['userId', 'facilityId'], { unique: true })
+@Entity('userLocations')
+@Index('IDX_userLocations_user_facility', ['userId', 'facilityId'], {
+  unique: true,
+})
 export class UserLocation {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -37,14 +39,14 @@ export class UserLocation {
     nullable: false,
     onDelete: 'RESTRICT',
   })
-  @JoinColumn({ name: 'userId', referencedColumnName: 'id' })
+  @JoinColumn({ name: 'userId', referencedColumnName: 'id', foreignKeyConstraintName: 'FK_userLocations_user' })
   user: Relation<User>;
 
   @ManyToOne(() => Facility, {
     nullable: false,
     onDelete: 'RESTRICT',
   })
-  @JoinColumn({ name: 'facilityId', referencedColumnName: 'id' })
+  @JoinColumn({ name: 'facilityId', referencedColumnName: 'id', foreignKeyConstraintName: 'FK_userLocations_facility' })
   facility: Relation<Facility>;
 
   @CreateDateColumn({ name: 'createdAt' })

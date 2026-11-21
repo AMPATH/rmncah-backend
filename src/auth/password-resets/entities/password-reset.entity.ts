@@ -7,10 +7,10 @@ import {
 } from 'typeorm';
 
 // Stores hashed, single-use password-reset tokens.
-@Entity('password_resets')
-@Index('IDX_password_resets_userId', ['userId'])
-@Index('IDX_password_resets_expiresAt', ['expiresAt'])
-@Index('UQ_password_resets_tokenHash', ['tokenHash'], { unique: true })
+@Entity('passwordResets')
+@Index('IDX_passwordResets_userId', ['userId'])
+@Index('IDX_passwordResets_expiresAt', ['expiresAt'])
+@Index('UQ_passwordResets_tokenHash', ['tokenHash'], { unique: true })
 export class PasswordReset {
   @PrimaryGeneratedColumn('uuid')
   id: string;

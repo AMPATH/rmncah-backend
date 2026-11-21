@@ -12,7 +12,7 @@ export enum SystemBootstrapStatus {
   COMPLETED = 'COMPLETED',
 }
 
-@Entity('system_bootstrap')
+@Entity('systemBootstrap')
 export class SystemBootstrap {
   @PrimaryColumn({ type: 'varchar', length: 50 })
   bootstrapKey: string;

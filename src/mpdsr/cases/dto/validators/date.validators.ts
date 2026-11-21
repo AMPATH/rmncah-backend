@@ -159,3 +159,62 @@ export function IsSameOrAfterDate(
     });
   };
 }
+
+
+/**
+ * Validate a perinatal death date against the parent Case dateOfBirth.
+ * Applied to CreateCaseDto.details because the two dates belong to
+ * separate DTO objects.
+ */
+@ValidatorConstraint({
+  name: 'isPerinatalDeathDateOnOrAfterBirthDate',
+  async: false,
+})
+export class IsPerinatalDeathDateOnOrAfterBirthDateConstraint
+  implements ValidatorConstraintInterface
+{
+  validate(details: unknown, args: ValidationArguments): boolean {
+    if (!details || typeof details !== 'object') {
+      return true;
+    }
+
+    const parent = args.object as Record<string, unknown>;
+    const detail = details as Record<string, unknown>;
+
+    const birthDate = parent.dateOfBirth;
+    const deathDate = detail.dateOfDeath;
+
+    // Other validators handle missing required dates.
+    if (
+      birthDate === undefined ||
+      birthDate === null ||
+      deathDate === undefined ||
+      deathDate === null
+    ) {
+      return true;
+    }
+
+    if (!isValidDateOnly(birthDate) || !isValidDateOnly(deathDate)) {
+      return false;
+    }
+
+    return deathDate >= birthDate;
+  }
+
+  defaultMessage(): string {
+    return 'Perinatal dateOfDeath must be on or after the Case dateOfBirth.';
+  }
+}
+
+export function IsPerinatalDeathDateOnOrAfterBirthDate(
+  validationOptions?: ValidationOptions,
+) {
+  return function (object: object, propertyName: string) {
+    registerDecorator({
+      target: object.constructor,
+      propertyName,
+      options: validationOptions,
+      validator: IsPerinatalDeathDateOnOrAfterBirthDateConstraint,
+    });
+  };
+}

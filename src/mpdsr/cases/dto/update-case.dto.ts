@@ -1,16 +1,14 @@
 import {
+  ArrayUnique,
+  IsArray,
+  IsUUID,
   IsDateString,
-  IsEnum,
   IsNotEmpty,
   IsObject,
   IsOptional,
   IsString,
-  IsUUID,
   MaxLength,
-  ValidateIf,
 } from 'class-validator';
-
-import { ReportingSetting, Gender } from '../enums/case.enum.js';
 
 import {
   IsNotFutureDate,
@@ -19,27 +17,9 @@ import {
 
 export class UpdateCaseDto {
   @IsOptional()
-  @IsEnum(ReportingSetting)
-  reportingSetting?: ReportingSetting;
-
-  @ValidateIf((dto) => dto.facilityId !== undefined && dto.facilityId !== null)
-  @IsUUID()
-  facilityId?: string | null;
-
-  @ValidateIf(
-    (dto) => dto.communityUnitId !== undefined && dto.communityUnitId !== null,
-  )
-  @IsUUID()
-  communityUnitId?: string | null;
-
-  @IsOptional()
   @IsDateString({ strict: true })
   @IsNotFutureDate()
   dateOfBirth?: string;
-
-  @IsOptional()
-  @IsEnum(Gender)
-  gender?: Gender;
 
   @IsOptional()
   @IsDateString({ strict: true })
@@ -52,6 +32,14 @@ export class UpdateCaseDto {
   @IsNotEmpty()
   @MaxLength(5000)
   comments?: string;
+
+  // IDs selected from the seeded contributing-factor catalogue.
+  @IsOptional()
+  @IsArray()
+  @ArrayUnique()
+  @IsUUID(undefined, { each: true })
+  contributingFactorIds?: string[];
+
 
   @IsOptional()
   @IsObject()

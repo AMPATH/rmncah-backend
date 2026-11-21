@@ -47,26 +47,6 @@ export class CreateCohorts1794578713961 implements MigrationInterface {
     );
   }
 
-  private async dropForeignKeyIfExists(
-    queryRunner: QueryRunner,
-    tableName: string,
-    constraintName: string,
-  ): Promise<void> {
-    const table = await queryRunner.getTable(tableName);
-
-    if (!table) {
-      return;
-    }
-
-    const foreignKey = table.foreignKeys.find(
-      (fk) => fk.name === constraintName,
-    );
-
-    if (foreignKey) {
-      await queryRunner.dropForeignKey(tableName, foreignKey);
-    }
-  }
-
   public async up(queryRunner: QueryRunner): Promise<void> {
     // --------------------------------------------------
     // 1. Create cohorts
@@ -77,7 +57,7 @@ export class CreateCohorts1794578713961 implements MigrationInterface {
         CREATE TABLE \`cohorts\` (
           \`id\` varchar(36)
             CHARACTER SET utf8mb4
-            COLLATE utf8mb4_unicode_ci
+            COLLATE utf8mb4_0900_ai_ci
             NOT NULL,
 
           \`name\` varchar(150) NOT NULL,
@@ -86,7 +66,7 @@ export class CreateCohorts1794578713961 implements MigrationInterface {
 
           \`facilityId\` varchar(36)
             CHARACTER SET utf8mb4
-            COLLATE utf8mb4_unicode_ci
+            COLLATE utf8mb4_0900_ai_ci
             NOT NULL,
 
           \`mentorId\` varchar(36)
@@ -123,7 +103,7 @@ export class CreateCohorts1794578713961 implements MigrationInterface {
         )
         ENGINE=InnoDB
         DEFAULT CHARSET=utf8mb4
-        COLLATE=utf8mb4_unicode_ci
+        COLLATE=utf8mb4_0900_ai_ci
       `);
     }
 
@@ -136,12 +116,12 @@ export class CreateCohorts1794578713961 implements MigrationInterface {
         CREATE TABLE \`cohortMentees\` (
           \`id\` varchar(36)
             CHARACTER SET utf8mb4
-            COLLATE utf8mb4_unicode_ci
+            COLLATE utf8mb4_0900_ai_ci
             NOT NULL,
 
           \`cohortId\` varchar(36)
             CHARACTER SET utf8mb4
-            COLLATE utf8mb4_unicode_ci
+            COLLATE utf8mb4_0900_ai_ci
             NOT NULL,
 
           \`menteeId\` varchar(36)
@@ -187,7 +167,7 @@ export class CreateCohorts1794578713961 implements MigrationInterface {
         )
         ENGINE=InnoDB
         DEFAULT CHARSET=utf8mb4
-        COLLATE=utf8mb4_unicode_ci
+        COLLATE=utf8mb4_0900_ai_ci
       `);
     }
 
@@ -200,7 +180,7 @@ export class CreateCohorts1794578713961 implements MigrationInterface {
         CREATE TABLE \`cohortTransferRequests\` (
           \`id\` varchar(36)
             CHARACTER SET utf8mb4
-            COLLATE utf8mb4_unicode_ci
+            COLLATE utf8mb4_0900_ai_ci
             NOT NULL,
 
           \`menteeId\` varchar(36)
@@ -210,17 +190,17 @@ export class CreateCohorts1794578713961 implements MigrationInterface {
 
           \`currentCohortId\` varchar(36)
             CHARACTER SET utf8mb4
-            COLLATE utf8mb4_unicode_ci
+            COLLATE utf8mb4_0900_ai_ci
             NOT NULL,
 
           \`requestedCohortId\` varchar(36)
             CHARACTER SET utf8mb4
-            COLLATE utf8mb4_unicode_ci
+            COLLATE utf8mb4_0900_ai_ci
             NULL,
 
           \`approvedCohortId\` varchar(36)
             CHARACTER SET utf8mb4
-            COLLATE utf8mb4_unicode_ci
+            COLLATE utf8mb4_0900_ai_ci
             NULL,
 
           \`reason\` enum(
@@ -265,46 +245,9 @@ export class CreateCohorts1794578713961 implements MigrationInterface {
         )
         ENGINE=InnoDB
         DEFAULT CHARSET=utf8mb4
-        COLLATE=utf8mb4_unicode_ci
+        COLLATE=utf8mb4_0900_ai_ci
       `);
     }
-
-    // --------------------------------------------------
-    // 4. Update users table
-    // --------------------------------------------------
-
-    // No users currently have level = OTHER.
-    await queryRunner.query(`
-      ALTER TABLE \`users\`
-      MODIFY COLUMN \`level\`
-      enum(
-        'COUNTY',
-        'SUB_COUNTY',
-        'FACILITY',
-        'COMMUNITY'
-      ) NOT NULL
-    `);
-
-    // The column exists, but all six users have NULL.
-    if (await queryRunner.hasColumn('users', 'invitationAcceptedAt')) {
-      await queryRunner.query(`
-        ALTER TABLE \`users\`
-        DROP COLUMN \`invitationAcceptedAt\`
-      `);
-    }
-
-    // --------------------------------------------------
-    // 5. Restore mentor invitation foreign key
-    // --------------------------------------------------
-
-    await this.ensureForeignKey(
-      queryRunner,
-      'mentor_invitations',
-      'FK_167a7572f7d708eaa500124792a',
-      'userId',
-      'users',
-      'id',
-    );
 
     // --------------------------------------------------
     // 6. Add cohort foreign keys
@@ -401,50 +344,9 @@ export class CreateCohorts1794578713961 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    // Remove only the foreign key this migration added
-    // to the pre-existing mentor_invitations table.
-
-    await this.dropForeignKeyIfExists(
-      queryRunner,
-      'mentor_invitations',
-      'FK_167a7572f7d708eaa500124792a',
-    );
-
-    // Remove only the three tables created by this migration.
+    // Remove only the cohort tables created by this migration.
     await queryRunner.dropTable('cohortTransferRequests', true);
     await queryRunner.dropTable('cohortMentees', true);
     await queryRunner.dropTable('cohorts', true);
-
-    // Restore the previous users.level enum.
-    await queryRunner.query(`
-      ALTER TABLE \`users\`
-      MODIFY COLUMN \`level\`
-      enum(
-        'COUNTY',
-        'SUB_COUNTY',
-        'FACILITY',
-        'COMMUNITY',
-        'OTHER'
-      ) NOT NULL
-    `);
-
-    // Restore the column structurally.
-    // Its previous values cannot be recovered after it was dropped.
-    if (!(await queryRunner.hasColumn('users', 'invitationAcceptedAt'))) {
-      await queryRunner.query(`
-        ALTER TABLE \`users\`
-        ADD COLUMN \`invitationAcceptedAt\` datetime NULL
-      `);
-    }
-
-    // Restore the original mentor invitation relationship.
-    await this.ensureForeignKey(
-      queryRunner,
-      'mentor_invitations',
-      'FK_mentor_invitations_user',
-      'userId',
-      'users',
-      'id',
-    );
   }
 }

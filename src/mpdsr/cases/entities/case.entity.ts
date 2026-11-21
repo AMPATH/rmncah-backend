@@ -7,24 +7,33 @@ import {
   DeleteDateColumn,
   Index,
   OneToOne,
+  OneToMany,
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
 import type { Relation } from 'typeorm';
 
-import { CaseType, Gender, ReportingSetting } from '../enums/case.enum.js';
+import {
+  CaseType,
+  CaseStatus,
+  Gender,
+  ReportingSetting,
+} from '../enums/case.enum.js';
 
 import { MaternalCaseDetail } from './maternal-case-detail.entity.js';
 import { PerinatalCaseDetail } from './perinatal-case-detail.entity.js';
 import { NearMissDetail } from './near-miss-detail.entity.js';
 import { Facility } from '../../../facilities/entities/facility.entity.js';
 import { CommunityUnit } from '../../../locations/community-units/entities/community-unit.entity.js';
+import { CaseStatusHistory } from './case-status-history.entity.js';
+import { CaseContributingFactor } from './case-contributing-factor.entity.js';
 
 @Entity('cases')
 @Index('IDX_CASE_FACILITY', ['facilityId'])
 @Index('IDX_CASE_COMMUNITY_UNIT', ['communityUnitId'])
 @Index('IDX_CASE_REPORTER', ['reportedBy'])
 @Index('IDX_CASE_CREATED_AT', ['createdAt'])
+@Index('IDX_CASE_STATUS', ['status'])
 @Index('IDX_CASE_RESPONSIBLE_FACILITY', ['responsibleFacilityId'])
 export class Case {
   @PrimaryGeneratedColumn('uuid')
@@ -38,6 +47,13 @@ export class Case {
     enum: CaseType,
   })
   caseType: CaseType;
+
+  @Column({
+    type: 'enum',
+    enum: CaseStatus,
+    default: CaseStatus.NOTIFIED,
+  })
+  status: CaseStatus;
 
   @Column({
     type: 'enum',
@@ -105,6 +121,15 @@ export class Case {
 
   @OneToOne(() => NearMissDetail, (detail) => detail.case)
   nearMissDetails: Relation<NearMissDetail> | null;
+
+  @OneToMany(
+    () => CaseContributingFactor,
+    (contributingFactor) => contributingFactor.case,
+  )
+  contributingFactors: Relation<CaseContributingFactor[]>;
+
+  @OneToMany(() => CaseStatusHistory, (history) => history.case)
+  statusHistory: Relation<CaseStatusHistory[]>;
 
   @CreateDateColumn({ type: 'datetime' })
   createdAt: Date;

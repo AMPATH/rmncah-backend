@@ -19,8 +19,8 @@ import {
 } from '../enum/cohorts.enum.js';
 
 @Entity('cohortTransferRequests')
-@Index(['menteeId', 'status'])
-@Index(['status', 'createdAt'])
+@Index('IDX_cohortTransferRequests_mentee_status', ['menteeId', 'status'])
+@Index('IDX_cohortTransferRequests_status_createdAt', ['status', 'createdAt'])
 export class CohortTransferRequest {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -109,6 +109,7 @@ export class CohortTransferRequest {
   @JoinColumn({
     name: 'menteeId',
     referencedColumnName: 'id',
+    foreignKeyConstraintName: 'FK_cohortTransferRequests_mentee',
   })
   mentee: User;
 
@@ -120,6 +121,7 @@ export class CohortTransferRequest {
   @JoinColumn({
     name: 'currentCohortId',
     referencedColumnName: 'id',
+    foreignKeyConstraintName: 'FK_cohortTransferRequests_currentCohort',
   })
   currentCohort: Cohort;
 
@@ -131,6 +133,7 @@ export class CohortTransferRequest {
   @JoinColumn({
     name: 'requestedCohortId',
     referencedColumnName: 'id',
+    foreignKeyConstraintName: 'FK_cohortTransferRequests_requestedCohort',
   })
   requestedCohort: Cohort | null;
 
@@ -142,6 +145,7 @@ export class CohortTransferRequest {
   @JoinColumn({
     name: 'approvedCohortId',
     referencedColumnName: 'id',
+    foreignKeyConstraintName: 'FK_cohortTransferRequests_approvedCohort',
   })
   approvedCohort: Cohort | null;
 
@@ -153,6 +157,7 @@ export class CohortTransferRequest {
   @JoinColumn({
     name: 'reviewedById',
     referencedColumnName: 'id',
+    foreignKeyConstraintName: 'FK_cohortTransferRequests_reviewer',
   })
   reviewedBy: User | null;
 

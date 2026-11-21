@@ -1,6 +1,6 @@
-import { IsDateString, IsEnum, IsInt, IsOptional, Min } from 'class-validator';
+import { IsDateString, IsEnum, IsInt, IsOptional, IsUUID, Min } from 'class-validator';
 
-import { BirthOutcome, PlaceOfBirth } from '../enums/case.enum.js';
+import { BirthOutcome } from '../enums/case.enum.js';
 import { IsNotFutureDate } from './validators/date.validators.js';
 
 export class CreatePerinatalCaseDetailDto {
@@ -13,16 +13,10 @@ export class CreatePerinatalCaseDetailDto {
   @Min(1)
   gestationalAgeDays?: number;
 
-  // Birth weight stored in grams.
-  @IsOptional()
-  @IsInt()
-  @Min(1)
-  birthWeightGrams?: number;
-
-  @IsEnum(PlaceOfBirth)
-  placeOfBirth: PlaceOfBirth;
-
   @IsDateString({ strict: true })
   @IsNotFutureDate()
   dateOfDeath: string;
+
+  @IsUUID()
+  provisionalCauseId: string;
 }

@@ -18,7 +18,7 @@ export enum Icd11CauseCaseType {
 }
 
 @Entity('icd11CauseTypes')
-@Unique('UQ_icd11_cause_types_cause_case_type', ['causeId', 'caseType'])
+@Unique('UQ_icd11CauseTypes_cause_caseType', ['causeId', 'caseType'])
 export class Icd11CauseType {
   @PrimaryGeneratedColumn('uuid')
   id: string;

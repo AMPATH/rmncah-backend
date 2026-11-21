@@ -3,17 +3,21 @@ import {
   PrimaryGeneratedColumn,
   Column,
   OneToOne,
+  ManyToOne,
   JoinColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  Index,
 } from 'typeorm';
 
 import type { Relation } from 'typeorm';
 
 import { Case } from './case.entity.js';
-import { BirthOutcome, PlaceOfBirth } from '../enums/case.enum.js';
+import { Icd11Cause } from '../../causes-of-death/entities/icd11-cause.entity.js';
+import { BirthOutcome } from '../enums/case.enum.js';
 
 @Entity('perinatalCaseDetails')
+@Index('IDX_PERINATAL_PROVISIONAL_CAUSE', ['provisionalCauseId'])
 export class PerinatalCaseDetail {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -22,34 +26,33 @@ export class PerinatalCaseDetail {
   caseId: string;
 
   @OneToOne(() => Case, (caseRecord) => caseRecord.perinatalDetails, {
+    nullable: false,
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'caseId' })
   case: Relation<Case>;
 
-  // Outcome at birth: live birth or stillbirth.
   @Column({
     type: 'enum',
     enum: BirthOutcome,
   })
   birthOutcome: BirthOutcome;
 
-  // Gestational age at birth, recorded as total days.
+  @Column({ type: 'date' })
+  dateOfDeath: string;
+
   @Column({ type: 'int', nullable: true })
   gestationalAgeDays: number | null;
 
-  // Birth weight stored in grams.
-  @Column({ type: 'int', nullable: true })
-  birthWeightGrams: number | null;
+  @Column({ type: 'varchar', length: 36 })
+  provisionalCauseId: string;
 
-  @Column({
-    type: 'enum',
-    enum: PlaceOfBirth,
+  @ManyToOne(() => Icd11Cause, {
+    nullable: false,
+    onDelete: 'RESTRICT',
   })
-  placeOfBirth: PlaceOfBirth;
-
-  @Column({ type: 'date' })
-  dateOfDeath: string;
+  @JoinColumn({ name: 'provisionalCauseId' })
+  provisionalCause: Relation<Icd11Cause>;
 
   @CreateDateColumn({ type: 'datetime' })
   createdAt: Date;
