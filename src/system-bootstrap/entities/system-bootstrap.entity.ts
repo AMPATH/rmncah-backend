@@ -1,9 +1,13 @@
+import { User } from '../../shared/users/entities/user.entity.js';
+
 import {
   Column,
   CreateDateColumn,
   Entity,
   PrimaryColumn,
   UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 
 export enum SystemBootstrapStatus {
@@ -20,6 +24,13 @@ export class SystemBootstrap {
   @Column({ type: 'varchar', length: 36, unique: true })
   initialAdminUserId: string;
 
+  @ManyToOne(() => User, { onDelete: 'RESTRICT' })
+  @JoinColumn({
+    name: 'initialAdminUserId',
+    foreignKeyConstraintName: 'FK_system_bootstrap_initialAdminUserId',
+  })
+  initialAdminUser: User;
+
   @Column({
     type: 'varchar',
     length: 30,
@@ -27,9 +38,9 @@ export class SystemBootstrap {
   })
   status: SystemBootstrapStatus;
 
-  @CreateDateColumn({ type: 'datetime', precision: 0 })
+  @CreateDateColumn({ type: 'datetime', precision: 6 })
   createdAt: Date;
 
-  @UpdateDateColumn({ type: 'datetime', precision: 0 })
+  @UpdateDateColumn({ type: 'datetime', precision: 6 })
   updatedAt: Date;
 }
