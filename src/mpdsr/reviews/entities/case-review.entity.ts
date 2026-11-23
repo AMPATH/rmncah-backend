@@ -5,6 +5,7 @@ import {
   Index,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -13,6 +14,7 @@ import type { Relation } from 'typeorm';
 
 import { Case } from '../../cases/entities/case.entity.js';
 import { User } from '../../../shared/users/entities/user.entity.js';
+import { CaseReviewChange } from './case-review-change.entity.js';
 
 @Entity('caseReviews')
 @Index('IDX_caseReviews_reviewedBy', ['reviewedBy'])
@@ -42,6 +44,18 @@ export class CaseReview {
 
   @Column({ type: 'date' })
   reviewDate: string;
+
+  @Column({ type: 'boolean', default: false })
+  causeReviewed: boolean;
+
+  @Column({ type: 'boolean', default: false })
+  contributingFactorsReviewed: boolean;
+
+  @Column({ type: 'boolean', default: false })
+  recommendationsReviewed: boolean;
+
+  @OneToMany(() => CaseReviewChange, (change) => change.review)
+  changes: Relation<CaseReviewChange[]>;
 
   @CreateDateColumn({ type: 'datetime' })
   createdAt: Date;
