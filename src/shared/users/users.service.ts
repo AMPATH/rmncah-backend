@@ -1,10 +1,16 @@
+
 import {
   Injectable,
   NotFoundException,
   ConflictException,
 } from '@nestjs/common';
+
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+
+import {
+  Repository,
+  EntityManager,
+} from 'typeorm';
 
 import { UpdateUserDto } from './dto/update-user.dto.js';
 import { CreateUserDto } from './dto/create-user.dto.js';
@@ -22,29 +28,42 @@ export class UsersService {
   async create(
     createUserDto: CreateUserDto,
     createdBy?: string,
+    manager?: EntityManager,
   ): Promise<User> {
+    const repository = manager
+      ? manager.getRepository(User)
+      : this.userRepository;
+
     const email = createUserDto.email.toLowerCase();
 
     // Check whether email already exists
-    const existingUser = await this.findByEmail(email);
+    const existingUser = await repository.findOne({
+      where: { email },
+    });
 
     if (existingUser) {
-      throw new ConflictException('Email is already registered');
+      throw new ConflictException(
+        'Email is already registered',
+      );
     }
 
-    // Check whether phone number already exists, if provided
+    // Check whether phone number already exists
     if (createUserDto.phoneNumber) {
-      const existingPhoneNumber = await this.userRepository.findOne({
-        where: { phoneNumber: createUserDto.phoneNumber },
+      const existingPhoneNumber = await repository.findOne({
+        where: {
+          phoneNumber: createUserDto.phoneNumber,
+        },
       });
 
       if (existingPhoneNumber) {
-        throw new ConflictException('Phone number is already registered');
+        throw new ConflictException(
+          'Phone number is already registered',
+        );
       }
     }
 
     // Prepare the new user
-    const newUser = this.userRepository.create({
+    const newUser = repository.create({
       ...createUserDto,
       email,
       passwordHash: null,
@@ -53,8 +72,8 @@ export class UsersService {
       createdBy: createdBy ?? null,
     });
 
-    // Save user in the database
-    return this.userRepository.save(newUser);
+    // Save user
+    return repository.save(newUser);
   }
 
   // Retrieve all users
@@ -69,7 +88,9 @@ export class UsersService {
     });
 
     if (!user) {
-      throw new NotFoundException(`User with ID ${id} not found`);
+      throw new NotFoundException(
+        `User with ID ${id} not found`,
+      );
     }
 
     return user;
@@ -82,8 +103,10 @@ export class UsersService {
     });
   }
 
-  // Find user by email, including password hash for authentication
-  async findByEmailWithPassword(email: string): Promise<User | null> {
+  // Find user by email, including password hash
+  async findByEmailWithPassword(
+    email: string,
+  ): Promise<User | null> {
     return this.userRepository
       .createQueryBuilder('user')
       .addSelect('user.passwordHash')
@@ -93,17 +116,19 @@ export class UsersService {
       .getOne();
   }
 
-  // Update the user's last successful login timestamp
+  // Update last successful login timestamp
   async updateLastLogin(id: string): Promise<void> {
     await this.userRepository.update(id, {
       lastLoginAt: new Date(),
     });
   }
 
-  // Update user details and, where authorized, account status
+  // Update user details
   async update(
     id: string,
-    updateData: UpdateUserDto & { status?: AccountStatus },
+    updateData: UpdateUserDto & {
+      status?: AccountStatus;
+    },
   ): Promise<User> {
     const user = await this.findOne(id);
 
@@ -113,7 +138,9 @@ export class UsersService {
       const existingUser = await this.findByEmail(email);
 
       if (existingUser && existingUser.id !== id) {
-        throw new ConflictException('Email is already registered');
+        throw new ConflictException(
+          'Email is already registered',
+        );
       }
 
       updateData.email = email;
