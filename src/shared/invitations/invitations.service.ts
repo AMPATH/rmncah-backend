@@ -6,7 +6,7 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { createHash, randomBytes } from 'node:crypto';
-import { DataSource, Repository } from 'typeorm';
+import { DataSource, EntityManager, Repository } from 'typeorm';
 
 import { EmailService } from '../email/email.service.js';
 import { AccountStatus } from '../users/enum/users.enum.js';
@@ -72,9 +72,7 @@ export class InvitationsService {
     const token = randomBytes(32).toString('hex');
 
     // Store only the SHA-256 hash of the token.
-    const tokenHash = createHash('sha256')
-      .update(token)
-      .digest('hex');
+    const tokenHash = createHash('sha256').update(token).digest('hex');
 
     const expiresAt = new Date(
       Date.now() + this.invitationExpiryHours * 60 * 60 * 1000,
@@ -93,8 +91,7 @@ export class InvitationsService {
       .getOrThrow<string>('FRONTEND_URL')
       .replace(/\/+$/, '');
 
-    const invitationUrl =
-      `${frontendUrl}/accept-invitation?token=${encodeURIComponent(token)}`;
+    const invitationUrl = `${frontendUrl}/accept-invitation?token=${encodeURIComponent(token)}`;
 
     const fullName = `${user.firstName} ${user.lastName}`;
 
@@ -141,10 +138,7 @@ export class InvitationsService {
   }
 
   // Resend an invitation to an existing pending user.
-  async resendInvitation(
-    userId: string,
-    invitedByUserId: string,
-  ) {
+  async resendInvitation(userId: string, invitedByUserId: string) {
     const user = await this.findUser(userId);
 
     if (user.status !== AccountStatus.PENDING) {
@@ -171,9 +165,7 @@ export class InvitationsService {
     }
 
     if (invitation.acceptedAt) {
-      throw new BadRequestException(
-        'An accepted invitation cannot be revoked',
-      );
+      throw new BadRequestException('An accepted invitation cannot be revoked');
     }
 
     if (invitation.revokedAt) {
@@ -186,10 +178,7 @@ export class InvitationsService {
   }
 
   // Accept an invitation and activate the associated user account atomically.
-  async acceptInvitation(
-    token: string,
-    passwordHash: string,
-  ): Promise<void> {
+  async acceptInvitation(token: string, passwordHash: string): Promise<void> {
     const tokenHash = createHash('sha256').update(token).digest('hex');
 
     await this.dataSource.transaction(async (manager) => {
@@ -251,5 +240,24 @@ export class InvitationsService {
 
       return entities[character];
     });
+  }
+
+  // Revoke all outstanding invitations belonging to a user.
+  async revokeUserInvitations(
+    userId: string,
+    manager?: EntityManager,
+  ): Promise<void> {
+    const repository = manager
+      ? manager.getRepository(Invitation)
+      : this.invitationRepository;
+
+    await repository
+      .createQueryBuilder()
+      .update(Invitation)
+      .set({ revokedAt: new Date() })
+      .where('userId = :userId', { userId })
+      .andWhere('acceptedAt IS NULL')
+      .andWhere('revokedAt IS NULL')
+      .execute();
   }
 }
