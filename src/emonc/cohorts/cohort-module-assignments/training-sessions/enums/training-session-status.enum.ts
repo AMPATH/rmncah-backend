@@ -1,0 +1,10 @@
+
+export enum TrainingSessionStatus {
+  PLANNED = 'PLANNED',
+  IN_PROGRESS = 'IN_PROGRESS',
+  COMPLETED = 'COMPLETED',
+  CANCELLED = 'CANCELLED',
+  POSTPONED = 'POSTPONED',
+}
+
+

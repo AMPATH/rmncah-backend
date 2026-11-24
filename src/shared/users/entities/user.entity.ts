@@ -51,12 +51,12 @@ export class User {
   })
   phoneNumber: string | null;
 
-  @Column({
-    name: 'invitationAcceptedAt',
-    type: 'datetime',
-    nullable: true,
-  })
-  invitationAcceptedAt: Date | null;
+  // @Column({
+  //   name: 'invitationAcceptedAt',
+  //   type: 'datetime',
+  //   nullable: true,
+  // })
+  // invitationAcceptedAt: Date | null;
 
   @Column({
     name: 'passwordHash',

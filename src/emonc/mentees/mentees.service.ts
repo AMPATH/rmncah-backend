@@ -197,7 +197,7 @@ export class MenteesService {
         fullName: `${mentee.firstName} ${mentee.lastName}`,
         email: mentee.email,
         phoneNumber: mentee.phoneNumber,
-        level: mentee.level,
+        level: mentee.organizationAssignments,
         status: mentee.status,
         cadreId: mentee.cadreId,
         joinedAt: mentee.createdAt,

@@ -9,11 +9,13 @@ import { AuthService } from './auth.service.js';
 import { PasswordService } from './password.service.js';
 import { JwtStrategy } from './strategies/jwt.strategy.js';
 import { SessionsModule } from './sessions/sessions.module.js';
+import { PasswordResetsModule } from './password-reset/password-reset.module.js';
 
 @Module({
   imports: [
     UsersModule,
     PassportModule,
+       PasswordResetsModule,
     SessionsModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],
