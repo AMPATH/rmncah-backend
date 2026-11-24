@@ -1,3 +1,7 @@
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+
+import { ApiStandardSuccessResponse } from '../../common/decorators/api-success-response.decorator.js';
+
 import {
   Body,
   Controller,
@@ -16,15 +20,23 @@ import { PermissionsGuard } from '../../shared/rbac/authorization/guards/permiss
 import { SystemModule } from '../../shared/rbac/enum/system-module.enum.js';
 
 import { CreateCaseRecommendationDto } from './dto/create-case-recommendation.dto.js';
+import { CaseRecommendationResponseDto } from './dto/responses/case-recommendation-response.dto.js';
 import { RecommendationsService } from './recommendations.service.js';
 
 @Controller('recommendations')
+@ApiTags('MPDSR - Recommendations')
+@ApiBearerAuth()
 @UseGuards(PermissionsGuard)
 export class RecommendationsController {
   constructor(
     private readonly recommendationsService: RecommendationsService,
   ) {}
 
+  @ApiOperation({ summary: 'Create a recommendation for a case' })
+  @ApiStandardSuccessResponse(CaseRecommendationResponseDto, {
+    description: 'Recommendation created successfully.',
+    status: 201,
+  })
   @Post('cases/:caseId')
   @RequirePermissions(SystemModule.MPDSR, 'mpdsr.recommendations.create')
   create(
@@ -41,6 +53,12 @@ export class RecommendationsController {
     );
   }
 
+  @ApiOperation({ summary: 'Retrieve recommendations for a case' })
+  @ApiStandardSuccessResponse(CaseRecommendationResponseDto, {
+    description:
+      'Recommendations retrieved successfully. Each item includes its associated case contributing factor and contributing factor details.',
+    isArray: true,
+  })
   @Get('cases/:caseId')
   @RequirePermissions(SystemModule.MPDSR, 'mpdsr.recommendations.read')
   findAll(
