@@ -1,3 +1,5 @@
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+
 import {
   Body,
   Controller,
@@ -19,6 +21,8 @@ import { AssignPermissionsDto } from './dto/assign-permissions.dto.js';
 import { RolePermissionsService } from './role-permissions.service.js';
 
 @Controller('roles/:roleId/permissions')
+@ApiTags('RBAC - Role Permissions')
+@ApiBearerAuth()
 @UseGuards(JwtAuthGuard, PermissionsGuard)
 export class RolePermissionsController {
   constructor(
@@ -26,6 +30,7 @@ export class RolePermissionsController {
   ) {}
 
   // Retrieve permissions assigned to a role.
+  @ApiOperation({ summary: 'Retrieve permissions assigned to a role' })
   @Get()
   @RequirePermissions(SystemModule.PLATFORM, 'platform.permissions.read')
   findRolePermissions(
@@ -35,6 +40,7 @@ export class RolePermissionsController {
   }
 
   // Assign one or more permissions to a role.
+  @ApiOperation({ summary: 'Assign permissions to a role' })
   @Post()
   @RequirePermissions(SystemModule.PLATFORM, 'platform.permissions.manage')
   assignPermissions(
@@ -45,6 +51,7 @@ export class RolePermissionsController {
   }
 
   // Remove a permission from a role.
+  @ApiOperation({ summary: 'Remove a permission from a role' })
   @Delete(':permissionId')
   @RequirePermissions(SystemModule.PLATFORM, 'platform.permissions.manage')
   removePermission(

@@ -1,3 +1,5 @@
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+
 import {
   Controller,
   Get,
@@ -17,10 +19,13 @@ import { PermissionsGuard } from '../authorization/guards/permissions.guard.js';
 import { PermissionsService } from './permissions.service.js';
 
 @Controller('permissions')
+@ApiTags('RBAC - Permissions')
+@ApiBearerAuth()
 @UseGuards(JwtAuthGuard, PermissionsGuard)
 export class PermissionsController {
   constructor(private readonly permissionsService: PermissionsService) {}
 
+  @ApiOperation({ summary: 'Retrieve all permissions, optionally filtered by module' })
   @Get()
   @RequirePermissions(SystemModule.PLATFORM, 'platform.permissions.read')
   findAll(
@@ -30,6 +35,7 @@ export class PermissionsController {
     return this.permissionsService.findAll(module);
   }
 
+  @ApiOperation({ summary: 'Retrieve a permission by its code' })
   @Get(':code')
   @RequirePermissions(SystemModule.PLATFORM, 'platform.permissions.read')
   async findByCode(@Param('code') code: string) {
