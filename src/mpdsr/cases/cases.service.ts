@@ -44,7 +44,6 @@ import { OrganizationLevel } from '../../shared/user-organization-assignments/en
 
 import { Facility } from '../../facilities/entities/facility.entity.js';
 import { CommunityUnit } from '../../locations/community-units/entities/community-unit.entity.js';
-import { FacilityPcnMembership } from '../pcns/entities/facility-pcn-membership.entity.js';
 import { Icd11CauseType, Icd11CauseCaseType } from '../causes-of-death/entities/icd11-cause-type.entity.js';
 
 type ClinicalDetails = Record<string, unknown>;
@@ -270,28 +269,6 @@ export class CasesService {
         });
 
         return facility ? [facility.id] : [];
-      }
-
-      case OrganizationLevel.PCN: {
-        if (!assignment.pcnId) {
-          return [];
-        }
-
-        const memberships = await manager
-          .getRepository(FacilityPcnMembership)
-          .createQueryBuilder('membership')
-          .innerJoin('membership.facility', 'facility')
-          .where('membership.pcnId = :pcnId', {
-            pcnId: assignment.pcnId,
-          })
-          .andWhere('membership.endedAt IS NULL')
-          .andWhere('facility.isActive = :isActive', {
-            isActive: true,
-          })
-          .select('membership.facilityId', 'facilityId')
-          .getRawMany<{ facilityId: string }>();
-
-        return memberships.map((item) => item.facilityId);
       }
 
       case OrganizationLevel.SUB_COUNTY: {
