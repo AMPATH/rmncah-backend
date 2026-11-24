@@ -135,6 +135,23 @@ export class User {
     onUpdate: 'CURRENT_TIMESTAMP',
   })
   updatedAt: Date;
+  // Records the administrator who deactivated this account.
+  @Column({
+    name: 'deletedBy',
+    type: 'char',
+    length: 36,
+    nullable: true,
+  })
+  deletedBy: string | null;
+
+  // Preserves the account status before deactivation.
+  @Column({
+    name: 'statusBeforeDeletion',
+    type: 'enum',
+    enum: AccountStatus,
+    nullable: true,
+  })
+  statusBeforeDeletion: AccountStatus | null;
 
   // Supports soft deletion of user accounts.
   @DeleteDateColumn({
