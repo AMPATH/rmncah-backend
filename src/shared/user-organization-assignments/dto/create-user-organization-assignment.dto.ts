@@ -19,10 +19,6 @@ export class CreateUserOrganizationAssignmentDto {
 
   @IsOptional()
   @IsUUID()
-  pcnId?: string;
-
-  @IsOptional()
-  @IsUUID()
   facilityId?: string;
 
   @IsOptional()
