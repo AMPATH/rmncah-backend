@@ -12,7 +12,10 @@ import type { Relation } from 'typeorm';
 
 import { Case } from './case.entity.js';
 import { ContributingFactor } from '../../contributing-factors/entities/contributing-factor.entity.js';
-import { User } from '../../../shared/users/entities/user.entity.js';
+import {
+  CaseContributingFactorReviewStatus,
+  CaseContributingFactorSource,
+} from '../enums/case-contributing-factor.enum.js';
 
 @Entity('caseContributingFactors')
 @Index(
@@ -48,24 +51,19 @@ export class CaseContributingFactor {
   @Column({ type: 'boolean', default: false })
   reporterSelected: boolean;
 
-  @Column({ type: 'boolean', default: false })
-  reviewerSelected: boolean;
-
-  @Column({ type: 'varchar', length: 36, nullable: true })
-  reviewedBy: string | null;
-
-  @ManyToOne(() => User, {
-    nullable: true,
-    onDelete: 'RESTRICT',
+  @Column({
+    type: 'enum',
+    enum: CaseContributingFactorSource,
+    default: CaseContributingFactorSource.REPORTER,
   })
-  @JoinColumn({ name: 'reviewedBy' })
-  reviewer: Relation<User> | null;
+  source: CaseContributingFactorSource;
 
-  @Column({ type: 'datetime', nullable: true })
-  reviewedAt: Date | null;
-
-  @Column({ type: 'text', nullable: true })
-  reviewerNotes: string | null;
+  @Column({
+    type: 'enum',
+    enum: CaseContributingFactorReviewStatus,
+    default: CaseContributingFactorReviewStatus.PENDING,
+  })
+  reviewStatus: CaseContributingFactorReviewStatus;
 
   @CreateDateColumn({ type: 'datetime' })
   createdAt: Date;
