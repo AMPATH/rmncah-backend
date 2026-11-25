@@ -1,8 +1,15 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
 import { UsersService } from '../shared/users/users.service.js';
 import { AccountStatus } from '../shared/users/enum/users.enum.js';
+import { InvitationsService } from '../shared/invitations/invitations.service.js';
+import { AcceptInvitationDto } from './dto/accept-invitation.dto.js';
+import { ChangePasswordDto } from './dto/change-password.dto.js';
 import { PasswordService } from './password.service.js';
 import { LoginDto } from './dto/login.dto.js';
 import { SessionsService } from './sessions/sessions.service.js';
@@ -14,7 +21,86 @@ export class AuthService {
     private readonly passwordService: PasswordService,
     private readonly jwtService: JwtService,
     private readonly sessionsService: SessionsService,
+    private readonly invitationsService: InvitationsService,
   ) {}
+
+  // Activates a pending account using a valid invitation and a new password.
+  async acceptInvitation(
+    acceptInvitationDto: AcceptInvitationDto,
+  ): Promise<{ message: string }> {
+    const passwordHash = await this.passwordService.hash(
+      acceptInvitationDto.password,
+    );
+
+    await this.invitationsService.acceptInvitation(
+      acceptInvitationDto.token,
+      passwordHash,
+    );
+
+    return {
+      message: 'Account activated successfully. You can now log in.',
+    };
+  }
+
+  // Changes the authenticated user's password and revokes all active sessions.
+  async changePassword(
+    userId: string,
+    dto: ChangePasswordDto,
+  ): Promise<{ message: string }> {
+    const user = await this.usersService.findByIdWithPassword(userId);
+
+    if (
+      !user ||
+      !user.passwordHash ||
+      user.status !== AccountStatus.ACTIVE
+    ) {
+      throw new UnauthorizedException('Current password is incorrect');
+    }
+
+    const currentPasswordIsValid = await this.passwordService.verify(
+      user.passwordHash,
+      dto.currentPassword,
+    );
+
+    if (!currentPasswordIsValid) {
+      throw new UnauthorizedException('Current password is incorrect');
+    }
+
+    const newPasswordIsSame = await this.passwordService.verify(
+      user.passwordHash,
+      dto.newPassword,
+    );
+
+    if (newPasswordIsSame) {
+      throw new BadRequestException(
+        'New password must be different from the current password',
+      );
+    }
+
+    const newPasswordHash = await this.passwordService.hash(
+      dto.newPassword,
+    );
+
+    const passwordUpdated =
+      await this.usersService.updatePasswordIfUnchanged(
+        user.id,
+        user.passwordHash,
+        newPasswordHash,
+      );
+
+    if (!passwordUpdated) {
+      throw new UnauthorizedException(
+        'Password could not be changed. Please log in again.',
+      );
+    }
+
+    // All existing sessions, including the current one, must authenticate again.
+    await this.sessionsService.revokeAllSessions(user.id);
+
+    return {
+      message: 'Password changed successfully. Please log in again.',
+    };
+  }
 
   // Authenticates a user and creates a login session.
   async login(

@@ -627,7 +627,7 @@
   {
     "name": "TETU",
     "code": "1901",
-    "countyCode": "018"
+    "countyCode": "019"
   },
   {
     "name": "KIENI EAST",
@@ -667,7 +667,7 @@
   {
     "name": "KIRINYAGA CENTRAL",
     "code": "2001",
-    "countyCode": "019"
+    "countyCode": "020"
   },
   {
     "name": "KIRINYAGA EAST",
@@ -692,7 +692,7 @@
   {
     "name": "MURANG'A EAST",
     "code": "2101",
-    "countyCode": "020"
+    "countyCode": "021"
   },
   {
     "name": "KANGEMA",
@@ -732,7 +732,7 @@
   {
     "name": "GATUNDU NORTH",
     "code": "2201",
-    "countyCode": "021"
+    "countyCode": "022"
   },
   {
     "name": "GATUNDU SOUTH",
@@ -797,7 +797,7 @@
   {
     "name": "KIBISH",
     "code": "2301",
-    "countyCode": "022"
+    "countyCode": "023"
   },
   {
     "name": "LOIMA",
@@ -832,7 +832,7 @@
   {
     "name": "KIPKOMO",
     "code": "2401",
-    "countyCode": "023"
+    "countyCode": "024"
   },
   {
     "name": "POKOT CENTRAL",
@@ -857,7 +857,7 @@
   {
     "name": "SAMBURU CENTRAL",
     "code": "2501",
-    "countyCode": "024"
+    "countyCode": "025"
   },
   {
     "name": "SAMBURU EAST",
@@ -872,7 +872,7 @@
   {
     "name": "TRANS NZOIA WEST",
     "code": "2601",
-    "countyCode": "025"
+    "countyCode": "026"
   },
   {
     "name": "TRANS NZOIA EAST",
@@ -897,7 +897,7 @@
   {
     "name": "AINABKOI",
     "code": "2701",
-    "countyCode": "026"
+    "countyCode": "027"
   },
   {
     "name": "KAPSERET",

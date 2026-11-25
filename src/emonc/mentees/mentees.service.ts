@@ -1,22 +1,13 @@
-
-import {
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 
 import { InjectRepository } from '@nestjs/typeorm';
-import {
-  Repository,
-  SelectQueryBuilder,
-  Brackets,
-} from 'typeorm';
+import { Repository, SelectQueryBuilder, Brackets } from 'typeorm';
 
 import { User } from '../../shared/users/entities/user.entity.js';
 
-import {
-  AccountStatus,
-  OrganizationLevel,
-} from '../../shared/users/enum/users.enum.js';
+import { AccountStatus } from '../../shared/users/enum/users.enum.js';
+
+import { OrganizationLevel } from '../../shared/user-organization-assignments/enum/organization-level.enum.js';
 
 @Injectable()
 export class MenteesService {
@@ -25,7 +16,7 @@ export class MenteesService {
     private readonly userRepository: Repository<User>,
   ) {}
 
-  // Select only the user information needed by the Mentees module.
+  // Select users who have an active facility-level organization assignment.
   private createMenteeQuery(): SelectQueryBuilder<User> {
     return this.userRepository
       .createQueryBuilder('user')
@@ -35,14 +26,22 @@ export class MenteesService {
         'user.lastName',
         'user.email',
         'user.phoneNumber',
-        'user.level',
         'user.status',
         'user.cadreId',
         'user.createdAt',
       ])
-      .where('user.level = :level', {
-        level: OrganizationLevel.FACILITY,
-      });
+      .innerJoin(
+        'user.organizationAssignments',
+        'organizationAssignment',
+        `organizationAssignment.level = :level
+         AND organizationAssignment.endDate IS NULL
+         AND organizationAssignment.startDate <= :now`,
+        {
+          level: OrganizationLevel.FACILITY,
+          now: new Date(),
+        },
+      )
+      .distinct(true);
   }
 
   // 1. Get all mentees with search, status filtering and pagination.
@@ -53,10 +52,7 @@ export class MenteesService {
     limit?: number;
   }) {
     const page = Math.max(1, Number(query.page) || 1);
-    const limit = Math.min(
-      100,
-      Math.max(1, Number(query.limit) || 20),
-    );
+    const limit = Math.min(100, Math.max(1, Number(query.limit) || 20));
 
     const queryBuilder = this.createMenteeQuery();
 
@@ -105,16 +101,13 @@ export class MenteesService {
       .getOne();
 
     if (!mentee) {
-      throw new NotFoundException(
-        `Mentee with ID ${id} not found`,
-      );
+      throw new NotFoundException(`Mentee with ID ${id} not found`);
     }
 
     return mentee;
   }
 
-  // 3. Get eligible mentees.
-  // Eligible -active facility-level users.
+  // 3. Get eligible active facility-level users.
   async findEligible() {
     return this.createMenteeQuery()
       .andWhere('user.status = :status', {
@@ -125,15 +118,23 @@ export class MenteesService {
       .getMany();
   }
 
-  // 4. Get mentee counts grouped by account status.
+  // 4. Get user counts grouped by account status.
   async getStatistics() {
     const results = await this.userRepository
       .createQueryBuilder('user')
       .select('user.status', 'status')
-      .addSelect('COUNT(user.id)', 'count')
-      .where('user.level = :level', {
-        level: OrganizationLevel.FACILITY,
-      })
+      .addSelect('COUNT(DISTINCT user.id)', 'count')
+      .innerJoin(
+        'user.organizationAssignments',
+        'organizationAssignment',
+        `organizationAssignment.level = :level
+         AND organizationAssignment.endDate IS NULL
+         AND organizationAssignment.startDate <= :now`,
+        {
+          level: OrganizationLevel.FACILITY,
+          now: new Date(),
+        },
+      )
       .groupBy('user.status')
       .getRawMany();
 
@@ -172,7 +173,7 @@ export class MenteesService {
     return statistics;
   }
 
-  // 5. Get the logged in mentee's personal dashboard.
+  // 5. Get the logged-in mentee's personal dashboard.
   async getMyDashboard(userId: string) {
     const mentee = await this.createMenteeQuery()
       .andWhere('user.id = :userId', { userId })
@@ -182,9 +183,7 @@ export class MenteesService {
       .getOne();
 
     if (!mentee) {
-      throw new NotFoundException(
-        'Active mentee account not found',
-      );
+      throw new NotFoundException('Active mentee account not found');
     }
 
     return {
@@ -222,5 +221,4 @@ export class MenteesService {
       },
     };
   }
-
 }

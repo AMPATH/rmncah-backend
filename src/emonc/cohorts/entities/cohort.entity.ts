@@ -19,8 +19,8 @@ import { CohortStatus } from '../enum/cohorts.enum.js';
 import { Facility } from '../../../facilities/entities/facility.entity.js';
 
 @Entity('cohorts')
-@Index(['facilityId', 'status'])
-@Index(['mentorId', 'status'])
+@Index('IDX_cohorts_facility_status', ['facilityId', 'status'])
+@Index('IDX_cohorts_mentor_status', ['mentorId', 'status'])
 export class Cohort {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -80,6 +80,7 @@ export class Cohort {
   @JoinColumn({
     name: 'facilityId',
     referencedColumnName: 'id',
+    foreignKeyConstraintName: 'FK_cohorts_facility',
   })
   facility: Relation<Facility>;
 
@@ -91,6 +92,7 @@ export class Cohort {
   @JoinColumn({
     name: 'mentorId',
     referencedColumnName: 'id',
+    foreignKeyConstraintName: 'FK_cohorts_mentor',
   })
   mentor: Relation<User>;
 

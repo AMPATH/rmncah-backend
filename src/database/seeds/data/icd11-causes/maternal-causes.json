@@ -1,0 +1,2094 @@
+[
+  {
+    "code": "JA00",
+    "description": "Abortion"
+  },
+  {
+    "code": "JA00.0",
+    "description": "Spontaneous abortion"
+  },
+  {
+    "code": "JA00.00",
+    "description": "Spontaneous abortion, incomplete, complicated by genital tract or pelvic infection"
+  },
+  {
+    "code": "JA00.01",
+    "description": "Spontaneous abortion, incomplete, complicated by delayed or excessive haemorrhage"
+  },
+  {
+    "code": "JA00.02",
+    "description": "Spontaneous abortion, incomplete, complicated by embolism"
+  },
+  {
+    "code": "JA00.03",
+    "description": "Spontaneous abortion, incomplete, with other or unspecified complications"
+  },
+  {
+    "code": "JA00.04",
+    "description": "Spontaneous abortion, incomplete, without complication"
+  },
+  {
+    "code": "JA00.05",
+    "description": "Spontaneous abortion, complete or unspecified, complicated by genital tract or pelvic infection"
+  },
+  {
+    "code": "JA00.06",
+    "description": "Spontaneous abortion, complete or unspecified, complicated by delayed or excessive haemorrhage"
+  },
+  {
+    "code": "JA00.07",
+    "description": "Spontaneous abortion, complete or unspecified, complicated by embolism"
+  },
+  {
+    "code": "JA00.08",
+    "description": "Spontaneous abortion, complete or unspecified, with other or unspecified complications"
+  },
+  {
+    "code": "JA00.09",
+    "description": "Spontaneous abortion, complete or unspecified, without complication"
+  },
+  {
+    "code": "JA00.1",
+    "description": "Induced abortion"
+  },
+  {
+    "code": "JA00.10",
+    "description": "Induced abortion, incomplete, complicated by genital tract or pelvic infection"
+  },
+  {
+    "code": "JA00.11",
+    "description": "Induced abortion, incomplete, complicated by delayed or excessive haemorrhage"
+  },
+  {
+    "code": "JA00.12",
+    "description": "Induced abortion, incomplete, complicated by embolism"
+  },
+  {
+    "code": "JA00.13",
+    "description": "Induced abortion, incomplete, with other or unspecified complications"
+  },
+  {
+    "code": "JA00.14",
+    "description": "Induced abortion, incomplete, without complication"
+  },
+  {
+    "code": "JA00.15",
+    "description": "Induced abortion, complete or unspecified, complicated by genital tract or pelvic infection"
+  },
+  {
+    "code": "JA00.16",
+    "description": "Induced abortion, complete or unspecified, complicated by delayed or excessive haemorrhage"
+  },
+  {
+    "code": "JA00.17",
+    "description": "Induced abortion, complete or unspecified, complicated by embolism"
+  },
+  {
+    "code": "JA00.18",
+    "description": "Induced abortion, complete or unspecified, with other complication"
+  },
+  {
+    "code": "JA00.19",
+    "description": "Induced abortion, complete or unspecified, without complication"
+  },
+  {
+    "code": "JA00.2",
+    "description": "Unspecified abortion"
+  },
+  {
+    "code": "JA00.20",
+    "description": "Unspecified abortion, incomplete, complicated by genital tract or pelvic infection"
+  },
+  {
+    "code": "JA00.21",
+    "description": "Unspecified abortion, incomplete, complicated by delayed or excessive haemorrhage"
+  },
+  {
+    "code": "JA00.22",
+    "description": "Unspecified abortion, incomplete, complicated by embolism"
+  },
+  {
+    "code": "JA00.23",
+    "description": "Unspecified abortion, incomplete, with other or unspecified complications"
+  },
+  {
+    "code": "JA00.24",
+    "description": "Unspecified abortion, incomplete, without complication"
+  },
+  {
+    "code": "JA00.25",
+    "description": "Unspecified abortion, complete or unspecified, complicated by genital tract or pelvic infection"
+  },
+  {
+    "code": "JA00.26",
+    "description": "Unspecified abortion, complete or unspecified, complicated by delayed or excessive haemorrhage"
+  },
+  {
+    "code": "JA00.27",
+    "description": "Unspecified abortion, complete or unspecified, complicated by embolism"
+  },
+  {
+    "code": "JA00.28",
+    "description": "Unspecified abortion, complete or unspecified, with other or unspecified complications"
+  },
+  {
+    "code": "JA00.29",
+    "description": "Unspecified abortion, complete or unspecified, without complication"
+  },
+  {
+    "code": "JA00.3",
+    "description": "Failed attempted abortion"
+  },
+  {
+    "code": "JA00.30",
+    "description": "Failed medical abortion, complicated by genital tract or pelvic infection"
+  },
+  {
+    "code": "JA00.31",
+    "description": "Failed medical abortion, complicated by delayed or excessive haemorrhage"
+  },
+  {
+    "code": "JA00.32",
+    "description": "Failed medical abortion, complicated by embolism"
+  },
+  {
+    "code": "JA00.33",
+    "description": "Failed medical abortion, with other or unspecified complications"
+  },
+  {
+    "code": "JA00.34",
+    "description": "Failed medical abortion, without complication"
+  },
+  {
+    "code": "JA00.35",
+    "description": "Other or unspecified failed attempted abortion, complicated by genital tract or pelvic infection"
+  },
+  {
+    "code": "JA00.36",
+    "description": "Other or unspecified failed attempted abortion, complicated by delayed or excessive haemorrhage"
+  },
+  {
+    "code": "JA00.37",
+    "description": "Other or unspecified failed attempted abortion, complicated by embolism"
+  },
+  {
+    "code": "JA00.38",
+    "description": "Other or unspecified failed attempted abortion, with other or unspecified complications"
+  },
+  {
+    "code": "JA00.39",
+    "description": "Other or unspecified failed attempted abortion, without complication"
+  },
+  {
+    "code": "JA01",
+    "description": "Ectopic pregnancy"
+  },
+  {
+    "code": "JA01.0",
+    "description": "Abdominal pregnancy"
+  },
+  {
+    "code": "JA01.1",
+    "description": "Tubal pregnancy"
+  },
+  {
+    "code": "JA01.2",
+    "description": "Ovarian pregnancy"
+  },
+  {
+    "code": "JA01.Y",
+    "description": "Other specified ectopic pregnancy"
+  },
+  {
+    "code": "JA01.Z",
+    "description": "Ectopic pregnancy, unspecified"
+  },
+  {
+    "code": "JA02",
+    "description": "Molar pregnancy"
+  },
+  {
+    "code": "JA02.0",
+    "description": "Complete hydatidiform mole"
+  },
+  {
+    "code": "JA02.1",
+    "description": "Incomplete or partial hydatidiform mole"
+  },
+  {
+    "code": "JA02.Y",
+    "description": "Other specified molar pregnancy"
+  },
+  {
+    "code": "JA02.Z",
+    "description": "Molar pregnancy, unspecified"
+  },
+  {
+    "code": "JA03",
+    "description": "Missed abortion"
+  },
+  {
+    "code": "JA04",
+    "description": "Blighted ovum or nonhydatidiform mole"
+  },
+  {
+    "code": "JA05",
+    "description": "Complications following abortion, ectopic or molar pregnancy"
+  },
+  {
+    "code": "JA05.0",
+    "description": "Genital tract or pelvic infection following abortion, ectopic or molar pregnancy"
+  },
+  {
+    "code": "JA05.1",
+    "description": "Delayed or excessive haemorrhage following abortion, ectopic or molar pregnancy"
+  },
+  {
+    "code": "JA05.2",
+    "description": "Embolism following abortion, ectopic or molar pregnancy"
+  },
+  {
+    "code": "JA05.3",
+    "description": "Shock following abortion, ectopic or molar pregnancy"
+  },
+  {
+    "code": "JA05.4",
+    "description": "Renal failure following abortion, ectopic or molar pregnancy"
+  },
+  {
+    "code": "JA05.5",
+    "description": "Metabolic disorders following abortion, ectopic or molar pregnancy"
+  },
+  {
+    "code": "JA05.6",
+    "description": "Damage to pelvic organs and tissues following abortion, ectopic or molar pregnancy"
+  },
+  {
+    "code": "JA05.7",
+    "description": "Other venous complications following abortion, ectopic or molar pregnancy"
+  },
+  {
+    "code": "JA05.Y",
+    "description": "Other specified complications following abortion, ectopic or molar pregnancy"
+  },
+  {
+    "code": "JA05.Z",
+    "description": "Complications following abortion, ectopic or molar pregnancy, unspecified"
+  },
+  {
+    "code": "JA0Z",
+    "description": "Abortive outcome of pregnancy, unspecified"
+  },
+  {
+    "code": "JA20",
+    "description": "Pre-existing hypertension complicating pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JA20.0",
+    "description": "Pre-existing essential hypertension complicating pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JA20.1",
+    "description": "Pre-existing hypertensive heart disease complicating pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JA20.2",
+    "description": "Pre-existing hypertensive renal disease complicating pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JA20.3",
+    "description": "Pre-existing hypertensive heart and renal disease complicating pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JA20.4",
+    "description": "Pre-existing secondary hypertension complicating pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JA20.Y",
+    "description": "Other specified pre-existing hypertension complicating pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JA20.Z",
+    "description": "Pre-existing hypertension complicating pregnancy, childbirth or the puerperium, unspecified"
+  },
+  {
+    "code": "JA21",
+    "description": "Pre-eclampsia superimposed on chronic hypertension"
+  },
+  {
+    "code": "JA22",
+    "description": "Gestational oedema or proteinuria without hypertension"
+  },
+  {
+    "code": "JA22.0",
+    "description": "Gestational proteinuria without hypertension"
+  },
+  {
+    "code": "JA22.1",
+    "description": "Gestational oedema without hypertension"
+  },
+  {
+    "code": "JA22.2",
+    "description": "Gestational oedema with proteinuria without hypertension"
+  },
+  {
+    "code": "JA23",
+    "description": "Gestational hypertension"
+  },
+  {
+    "code": "JA24",
+    "description": "Pre-eclampsia"
+  },
+  {
+    "code": "JA24.0",
+    "description": "Mild to moderate pre-eclampsia"
+  },
+  {
+    "code": "JA24.1",
+    "description": "Severe pre-eclampsia"
+  },
+  {
+    "code": "JA24.2",
+    "description": "HELLP syndrome"
+  },
+  {
+    "code": "JA24.Z",
+    "description": "Pre-eclampsia, unspecified"
+  },
+  {
+    "code": "JA25",
+    "description": "Eclampsia"
+  },
+  {
+    "code": "JA25.0",
+    "description": "Eclampsia in pregnancy"
+  },
+  {
+    "code": "JA25.1",
+    "description": "Eclampsia in labour"
+  },
+  {
+    "code": "JA25.2",
+    "description": "Eclampsia in the puerperium"
+  },
+  {
+    "code": "JA25.3",
+    "description": "Eclampsia, time period unspecified"
+  },
+  {
+    "code": "JA2Z",
+    "description": "Oedema, proteinuria, or hypertensive disorders in pregnancy, childbirth, or the puerperium, unspecified"
+  },
+  {
+    "code": "JA40",
+    "description": "Haemorrhage in early pregnancy"
+  },
+  {
+    "code": "JA40.0",
+    "description": "Threatened abortion"
+  },
+  {
+    "code": "JA40.Y",
+    "description": "Other specified haemorrhage in early pregnancy"
+  },
+  {
+    "code": "JA40.Z",
+    "description": "Haemorrhage in early pregnancy, unspecified"
+  },
+  {
+    "code": "JA41",
+    "description": "Antepartum haemorrhage"
+  },
+  {
+    "code": "JA41.0",
+    "description": "Antepartum haemorrhage with coagulation defect"
+  },
+  {
+    "code": "JA41.Y",
+    "description": "Other specified antepartum haemorrhage"
+  },
+  {
+    "code": "JA41.Z",
+    "description": "Antepartum haemorrhage, unspecified"
+  },
+  {
+    "code": "JA42",
+    "description": "Intrapartum haemorrhage"
+  },
+  {
+    "code": "JA42.0",
+    "description": "Intrapartum haemorrhage with coagulation defect"
+  },
+  {
+    "code": "JA42.1",
+    "description": "Intrapartum haemorrhage resulting from obstructed labour with uterine rupture"
+  },
+  {
+    "code": "JA42.2",
+    "description": "Intrapartum haemorrhage resulting from obstructed labour without mention of uterine rupture"
+  },
+  {
+    "code": "JA42.Y",
+    "description": "Other specified intrapartum haemorrhage"
+  },
+  {
+    "code": "JA42.Z",
+    "description": "Intrapartum haemorrhage, unspecified"
+  },
+  {
+    "code": "JA43",
+    "description": "Postpartum haemorrhage"
+  },
+  {
+    "code": "JA43.0",
+    "description": "Third-stage haemorrhage"
+  },
+  {
+    "code": "JA43.1",
+    "description": "Other immediate postpartum haemorrhage"
+  },
+  {
+    "code": "JA43.2",
+    "description": "Delayed or secondary postpartum haemorrhage"
+  },
+  {
+    "code": "JA43.3",
+    "description": "Postpartum coagulation defects"
+  },
+  {
+    "code": "JA43.4",
+    "description": "Postpartum haemorrhage following obstructed labour with uterine rupture"
+  },
+  {
+    "code": "JA43.5",
+    "description": "Postpartum haemorrhage following obstructed labour without mention of uterine rupture"
+  },
+  {
+    "code": "JA43.Y",
+    "description": "Other specified postpartum haemorrhage"
+  },
+  {
+    "code": "JA43.Z",
+    "description": "Postpartum haemorrhage, unspecified"
+  },
+  {
+    "code": "JA4Z",
+    "description": "Obstetric haemorrhage, unspecified"
+  },
+  {
+    "code": "JA60",
+    "description": "Excessive vomiting in pregnancy"
+  },
+  {
+    "code": "JA60.0",
+    "description": "Mild hyperemesis gravidarum"
+  },
+  {
+    "code": "JA60.1",
+    "description": "Hyperemesis gravidarum with metabolic disturbance"
+  },
+  {
+    "code": "JA60.2",
+    "description": "Late vomiting of pregnancy"
+  },
+  {
+    "code": "JA60.Y",
+    "description": "Other specified excessive vomiting in pregnancy"
+  },
+  {
+    "code": "JA60.Z",
+    "description": "Excessive vomiting in pregnancy, unspecified"
+  },
+  {
+    "code": "JA61",
+    "description": "Venous complications in pregnancy"
+  },
+  {
+    "code": "JA61.0",
+    "description": "Varicose veins of lower extremity in pregnancy"
+  },
+  {
+    "code": "JA61.1",
+    "description": "Genital varices in pregnancy"
+  },
+  {
+    "code": "JA61.2",
+    "description": "Superficial thrombophlebitis in pregnancy"
+  },
+  {
+    "code": "JA61.3",
+    "description": "Deep phlebothrombosis in pregnancy"
+  },
+  {
+    "code": "JA61.4",
+    "description": "Haemorrhoids in pregnancy"
+  },
+  {
+    "code": "JA61.5",
+    "description": "Cerebral venous thrombosis in pregnancy"
+  },
+  {
+    "code": "JA61.Y",
+    "description": "Other specified venous complications in pregnancy"
+  },
+  {
+    "code": "JA61.Z",
+    "description": "Venous complications in pregnancy, unspecified"
+  },
+  {
+    "code": "JA62",
+    "description": "Infections of genitourinary tract in pregnancy"
+  },
+  {
+    "code": "JA62.0",
+    "description": "Infections of kidney in pregnancy"
+  },
+  {
+    "code": "JA62.1",
+    "description": "Infections of bladder in pregnancy"
+  },
+  {
+    "code": "JA62.2",
+    "description": "Infections of urethra in pregnancy"
+  },
+  {
+    "code": "JA62.3",
+    "description": "Infections of other parts of urinary tract in pregnancy"
+  },
+  {
+    "code": "JA62.4",
+    "description": "Infections of the genital tract in pregnancy"
+  },
+  {
+    "code": "JA62.Y",
+    "description": "Infections of genitourinary tract in pregnancy, other specified site"
+  },
+  {
+    "code": "JA62.Z",
+    "description": "Infection of genitourinary tract in pregnancy, site unspecified"
+  },
+  {
+    "code": "JA63",
+    "description": "Diabetes mellitus in pregnancy"
+  },
+  {
+    "code": "JA63.0",
+    "description": "Pre-existing type 1 diabetes mellitus in pregnancy"
+  },
+  {
+    "code": "JA63.1",
+    "description": "Pre-existing type 2 diabetes mellitus in pregnancy"
+  },
+  {
+    "code": "JA63.2",
+    "description": "Diabetes mellitus arising in pregnancy"
+  },
+  {
+    "code": "JA63.Y",
+    "description": "Other specified diabetes mellitus in pregnancy"
+  },
+  {
+    "code": "JA63.Z",
+    "description": "Diabetes mellitus in pregnancy, unspecified"
+  },
+  {
+    "code": "JA64",
+    "description": "Malnutrition in pregnancy"
+  },
+  {
+    "code": "JA65",
+    "description": "Maternal care for other conditions predominantly related to pregnancy"
+  },
+  {
+    "code": "JA65.0",
+    "description": "Liver disorders in pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JA65.1",
+    "description": "Pregnancy dermatoses"
+  },
+  {
+    "code": "JA65.10",
+    "description": "Gestational pemphigoid"
+  },
+  {
+    "code": "JA65.11",
+    "description": "Pruritus of pregnancy"
+  },
+  {
+    "code": "JA65.12",
+    "description": "Polymorphic eruption of pregnancy"
+  },
+  {
+    "code": "JA65.1Y",
+    "description": "Other specified pregnancy dermatoses"
+  },
+  {
+    "code": "JA65.1Z",
+    "description": "Pregnancy dermatoses, unspecified"
+  },
+  {
+    "code": "JA65.2",
+    "description": "Excessive weight gain in pregnancy"
+  },
+  {
+    "code": "JA65.3",
+    "description": "Low weight gain in pregnancy"
+  },
+  {
+    "code": "JA65.4",
+    "description": "Pregnancy care of habitual aborter"
+  },
+  {
+    "code": "JA65.5",
+    "description": "Retained intrauterine contraceptive device in pregnancy"
+  },
+  {
+    "code": "JA65.6",
+    "description": "Maternal hypotension syndrome"
+  },
+  {
+    "code": "JA65.7",
+    "description": "Subluxation of symphysis pubis in pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JA65.Y",
+    "description": "Maternal care for other specified conditions predominantly related to pregnancy"
+  },
+  {
+    "code": "JA65.Z",
+    "description": "Maternal care for unspecified conditions predominantly related to pregnancy"
+  },
+  {
+    "code": "JA66",
+    "description": "Clinical findings on antenatal screening of mother"
+  },
+  {
+    "code": "JA66.0",
+    "description": "Abnormal haematological finding on antenatal screening of mother"
+  },
+  {
+    "code": "JA66.1",
+    "description": "Abnormal biochemical finding on antenatal screening of mother"
+  },
+  {
+    "code": "JA66.2",
+    "description": "Abnormal cytological finding on antenatal screening of mother"
+  },
+  {
+    "code": "JA66.3",
+    "description": "Abnormal ultrasonic finding on antenatal screening of mother"
+  },
+  {
+    "code": "JA66.4",
+    "description": "Abnormal radiological finding on antenatal screening of mother"
+  },
+  {
+    "code": "JA66.5",
+    "description": "Abnormal chromosomal or genetic finding on antenatal screening of mother"
+  },
+  {
+    "code": "JA66.Y",
+    "description": "Other specified clinical findings on antenatal screening of mother"
+  },
+  {
+    "code": "JA66.Z",
+    "description": "Clinical findings on antenatal screening of mother, unspecified"
+  },
+  {
+    "code": "JA67",
+    "description": "Complications of anaesthesia during pregnancy"
+  },
+  {
+    "code": "JA67.0",
+    "description": "Pulmonary complications of anaesthesia during pregnancy"
+  },
+  {
+    "code": "JA67.1",
+    "description": "Cardiac complications of anaesthesia during pregnancy"
+  },
+  {
+    "code": "JA67.2",
+    "description": "Central nervous system complications of anaesthesia during pregnancy"
+  },
+  {
+    "code": "JA67.3",
+    "description": "Toxic reaction to local anaesthesia during pregnancy"
+  },
+  {
+    "code": "JA67.4",
+    "description": "Spinal or epidural anaesthesia-induced headache during pregnancy"
+  },
+  {
+    "code": "JA67.5",
+    "description": "Failed or difficult intubation during pregnancy"
+  },
+  {
+    "code": "JA67.50",
+    "description": "Failed intubation during pregnancy"
+  },
+  {
+    "code": "JA67.51",
+    "description": "Difficult intubation during pregnancy"
+  },
+  {
+    "code": "JA67.5Y",
+    "description": "Other specified failed or difficult intubation during pregnancy"
+  },
+  {
+    "code": "JA67.5Z",
+    "description": "Failed or difficult intubation during pregnancy, unspecified"
+  },
+  {
+    "code": "JA67.6",
+    "description": "Awareness under general anaesthesia during pregnancy"
+  },
+  {
+    "code": "JA67.Y",
+    "description": "Other specified complications of anaesthesia during pregnancy"
+  },
+  {
+    "code": "JA67.Z",
+    "description": "Complications of anaesthesia during pregnancy, unspecified"
+  },
+  {
+    "code": "JA6Z",
+    "description": "Maternal disorders predominantly related to pregnancy, unspecified"
+  },
+  {
+    "code": "JA80",
+    "description": "Maternal care related to multiple gestation"
+  },
+  {
+    "code": "JA80.0",
+    "description": "Twin pregnancy"
+  },
+  {
+    "code": "JA80.1",
+    "description": "Triplet pregnancy"
+  },
+  {
+    "code": "JA80.2",
+    "description": "Quadruplet pregnancy"
+  },
+  {
+    "code": "JA80.Y",
+    "description": "Maternal care related to other specified multiple gestation"
+  },
+  {
+    "code": "JA80.Z",
+    "description": "Maternal care related to unspecified multiple gestation"
+  },
+  {
+    "code": "JA81",
+    "description": "Maternal care related to complications specific to multiple gestation"
+  },
+  {
+    "code": "JA81.0",
+    "description": "Papyraceous fetus"
+  },
+  {
+    "code": "JA81.1",
+    "description": "Continuing pregnancy after abortion of one fetus or more"
+  },
+  {
+    "code": "JA81.2",
+    "description": "Continuing pregnancy after intrauterine death of one fetus or more"
+  },
+  {
+    "code": "JA81.3",
+    "description": "Loss of pregnancy after abortion or intrauterine death of one fetus or more"
+  },
+  {
+    "code": "JA81.Y",
+    "description": "Other specified maternal care related to complications specific to multiple gestation"
+  },
+  {
+    "code": "JA81.Z",
+    "description": "Maternal care related to complications specific to multiple gestation, unspecified"
+  },
+  {
+    "code": "JA82",
+    "description": "Maternal care for malpresentation of fetus"
+  },
+  {
+    "code": "JA82.0",
+    "description": "Maternal care for unstable lie"
+  },
+  {
+    "code": "JA82.1",
+    "description": "Maternal care for breech presentation"
+  },
+  {
+    "code": "JA82.2",
+    "description": "Maternal care for transverse or oblique lie"
+  },
+  {
+    "code": "JA82.3",
+    "description": "Maternal care for face, brow or chin presentation"
+  },
+  {
+    "code": "JA82.4",
+    "description": "Maternal care for high head at term"
+  },
+  {
+    "code": "JA82.5",
+    "description": "Maternal care for multiple gestation with malpresentation of one fetus or more"
+  },
+  {
+    "code": "JA82.6",
+    "description": "Maternal care for compound presentation"
+  },
+  {
+    "code": "JA82.Y",
+    "description": "Maternal care for other specified malpresentation of fetus"
+  },
+  {
+    "code": "JA82.Z",
+    "description": "Maternal care for malpresentation of fetus, unspecified"
+  },
+  {
+    "code": "JA83",
+    "description": "Maternal care for disproportion"
+  },
+  {
+    "code": "JA83.0",
+    "description": "Maternal care for disproportion due to deformity of maternal pelvic bones"
+  },
+  {
+    "code": "JA83.1",
+    "description": "Maternal care for disproportion due to generally contracted pelvis"
+  },
+  {
+    "code": "JA83.2",
+    "description": "Maternal care for disproportion due to inlet contraction of pelvis"
+  },
+  {
+    "code": "JA83.3",
+    "description": "Maternal care for disproportion due to outlet contraction of pelvis"
+  },
+  {
+    "code": "JA83.4",
+    "description": "Maternal care for disproportion of mixed maternal and fetal origin"
+  },
+  {
+    "code": "JA83.5",
+    "description": "Maternal care for disproportion due to unusually large fetus"
+  },
+  {
+    "code": "JA83.6",
+    "description": "Maternal care for disproportion due to hydrocephalic fetus"
+  },
+  {
+    "code": "JA83.Y",
+    "description": "Maternal care for other specified disproportion"
+  },
+  {
+    "code": "JA83.Z",
+    "description": "Maternal care for disproportion, unspecified"
+  },
+  {
+    "code": "JA84",
+    "description": "Maternal care for abnormality of pelvic organs"
+  },
+  {
+    "code": "JA84.0",
+    "description": "Maternal care for congenital malformation of uterus"
+  },
+  {
+    "code": "JA84.1",
+    "description": "Maternal care for tumour of corpus uteri"
+  },
+  {
+    "code": "JA84.2",
+    "description": "Maternal care due to uterine scar from previous surgery"
+  },
+  {
+    "code": "JA84.3",
+    "description": "Maternal care for cervical incompetence"
+  },
+  {
+    "code": "JA84.4",
+    "description": "Maternal care for abnormality of vagina"
+  },
+  {
+    "code": "JA84.5",
+    "description": "Maternal care for abnormality of vulva or perineum"
+  },
+  {
+    "code": "JA84.Y",
+    "description": "Maternal care for other specified abnormality of pelvic organs"
+  },
+  {
+    "code": "JA84.Z",
+    "description": "Maternal care for abnormality of pelvic organs, unspecified"
+  },
+  {
+    "code": "JA85",
+    "description": "Maternal care for fetal abnormality or damage"
+  },
+  {
+    "code": "JA85.0",
+    "description": "Maternal care for central nervous system malformation in fetus"
+  },
+  {
+    "code": "JA85.1",
+    "description": "Maternal care for chromosomal abnormality in fetus"
+  },
+  {
+    "code": "JA85.2",
+    "description": "Maternal care for hereditary disease in fetus"
+  },
+  {
+    "code": "JA85.3",
+    "description": "Maternal care for damage to fetus from viral disease in mother"
+  },
+  {
+    "code": "JA85.Y",
+    "description": "Maternal care for other specified fetal abnormality or damage"
+  },
+  {
+    "code": "JA85.Z",
+    "description": "Maternal care for fetal abnormality or damage, unspecified"
+  },
+  {
+    "code": "JA86",
+    "description": "Maternal care for other fetal problems"
+  },
+  {
+    "code": "JA86.0",
+    "description": "Maternal care for red cell antibodies"
+  },
+  {
+    "code": "JA86.1",
+    "description": "Maternal care for hydrops fetalis"
+  },
+  {
+    "code": "JA86.2",
+    "description": "Maternal care for signs of fetal hypoxia"
+  },
+  {
+    "code": "JA86.3",
+    "description": "Maternal care for intrauterine death"
+  },
+  {
+    "code": "JA86.4",
+    "description": "Maternal care for fetal growth restriction"
+  },
+  {
+    "code": "JA86.5",
+    "description": "Maternal care for suspected macrosomia"
+  },
+  {
+    "code": "JA86.6",
+    "description": "Maternal care for viable fetus in abdominal pregnancy"
+  },
+  {
+    "code": "JA86.Y",
+    "description": "Maternal care for other specified fetal problems"
+  },
+  {
+    "code": "JA86.Z",
+    "description": "Maternal care for other fetal problems, unspecified"
+  },
+  {
+    "code": "JA87",
+    "description": "Maternal care related to polyhydramnios"
+  },
+  {
+    "code": "JA88",
+    "description": "Maternal care related to certain specified disorders of amniotic fluid or membranes"
+  },
+  {
+    "code": "JA88.0",
+    "description": "Oligohydramnios"
+  },
+  {
+    "code": "JA88.1",
+    "description": "Infection of amniotic sac or membranes"
+  },
+  {
+    "code": "JA88.Y",
+    "description": "Other specified disorders of amniotic fluid and membranes"
+  },
+  {
+    "code": "JA88.Z",
+    "description": "Disorders of amniotic fluid and membranes, unspecified"
+  },
+  {
+    "code": "JA89",
+    "description": "Maternal care related to premature rupture of membranes"
+  },
+  {
+    "code": "JA89.0",
+    "description": "Premature rupture of membranes, onset of labour within 24 hours"
+  },
+  {
+    "code": "JA89.1",
+    "description": "Premature rupture of membranes, onset of labour after 24 hours"
+  },
+  {
+    "code": "JA89.2",
+    "description": "Premature rupture of membranes, labour delayed by therapy"
+  },
+  {
+    "code": "JA89.3",
+    "description": "Preterm premature rupture of membranes"
+  },
+  {
+    "code": "JA89.Y",
+    "description": "Other specified maternal care related to premature rupture of membranes"
+  },
+  {
+    "code": "JA89.Z",
+    "description": "Maternal care related to premature rupture of membranes, unspecified"
+  },
+  {
+    "code": "JA8A",
+    "description": "Maternal care related to placental disorders"
+  },
+  {
+    "code": "JA8A.0",
+    "description": "Placental transfusion syndromes"
+  },
+  {
+    "code": "JA8A.1",
+    "description": "Malformation of placenta"
+  },
+  {
+    "code": "JA8A.2",
+    "description": "Morbidly adherent placenta"
+  },
+  {
+    "code": "JA8A.Y",
+    "description": "Other specified maternal care related to placental disorders"
+  },
+  {
+    "code": "JA8A.Z",
+    "description": "Maternal care related to placental disorders, unspecified"
+  },
+  {
+    "code": "JA8B",
+    "description": "Maternal care related to placenta praevia or low lying placenta"
+  },
+  {
+    "code": "JA8B.0",
+    "description": "Placenta praevia specified as without haemorrhage"
+  },
+  {
+    "code": "JA8B.1",
+    "description": "Placenta praevia with haemorrhage"
+  },
+  {
+    "code": "JA8B.Z",
+    "description": "Maternal care related to placenta praevia or low lying placenta, unspecified"
+  },
+  {
+    "code": "JA8C",
+    "description": "Maternal care related to premature separation of placenta"
+  },
+  {
+    "code": "JA8C.0",
+    "description": "Premature separation of placenta with coagulation defect"
+  },
+  {
+    "code": "JA8C.Y",
+    "description": "Other specified maternal care related to premature separation of placenta"
+  },
+  {
+    "code": "JA8C.Z",
+    "description": "Maternal care related to premature separation of placenta, unspecified"
+  },
+  {
+    "code": "JA8D",
+    "description": "Maternal care related to false labour"
+  },
+  {
+    "code": "JA8D.0",
+    "description": "False labour before 37 completed weeks of gestation"
+  },
+  {
+    "code": "JA8D.1",
+    "description": "False labour at or after 37 completed weeks of gestation"
+  },
+  {
+    "code": "JA8D.Z",
+    "description": "Maternal care related to false labour, unspecified"
+  },
+  {
+    "code": "JA8E",
+    "description": "Maternal care related to prolonged pregnancy"
+  },
+  {
+    "code": "JA8Y",
+    "description": "Maternal care related to other specified fetus, amniotic cavity or possible delivery problems"
+  },
+  {
+    "code": "JA8Z",
+    "description": "Maternal care related to unspecified fetus, amniotic cavity or possible delivery problems"
+  },
+  {
+    "code": "JB00",
+    "description": "Preterm labour or delivery"
+  },
+  {
+    "code": "JB00.0",
+    "description": "Preterm labour without delivery"
+  },
+  {
+    "code": "JB00.1",
+    "description": "Preterm spontaneous labour with preterm delivery"
+  },
+  {
+    "code": "JB00.2",
+    "description": "Preterm labour with term delivery"
+  },
+  {
+    "code": "JB00.3",
+    "description": "Preterm delivery following iatrogenic induction of labour or caesarean section"
+  },
+  {
+    "code": "JB00.Y",
+    "description": "Other specified preterm labour or delivery"
+  },
+  {
+    "code": "JB00.Z",
+    "description": "Preterm labour or delivery, unspecified"
+  },
+  {
+    "code": "JB01",
+    "description": "Failed induction of labour"
+  },
+  {
+    "code": "JB01.0",
+    "description": "Failed medical induction of labour"
+  },
+  {
+    "code": "JB01.1",
+    "description": "Failed instrumental induction of labour"
+  },
+  {
+    "code": "JB01.Z",
+    "description": "Failed induction of labour, unspecified"
+  },
+  {
+    "code": "JB02",
+    "description": "Abnormalities of forces of labour"
+  },
+  {
+    "code": "JB02.0",
+    "description": "Primary uterine inertia"
+  },
+  {
+    "code": "JB02.1",
+    "description": "Secondary uterine inertia"
+  },
+  {
+    "code": "JB02.2",
+    "description": "Other uterine inertia"
+  },
+  {
+    "code": "JB02.3",
+    "description": "Precipitate labour"
+  },
+  {
+    "code": "JB02.4",
+    "description": "Hypertonic, incoordinate, or prolonged uterine contractions"
+  },
+  {
+    "code": "JB02.Y",
+    "description": "Other specified abnormalities of forces of labour"
+  },
+  {
+    "code": "JB02.Z",
+    "description": "Abnormalities of forces of labour, unspecified"
+  },
+  {
+    "code": "JB03",
+    "description": "Long labour"
+  },
+  {
+    "code": "JB03.0",
+    "description": "Prolonged first stage of labour"
+  },
+  {
+    "code": "JB03.1",
+    "description": "Prolonged second stage of labour"
+  },
+  {
+    "code": "JB03.2",
+    "description": "Delayed delivery of successive neonates"
+  },
+  {
+    "code": "JB03.Z",
+    "description": "Long labour, unspecified"
+  },
+  {
+    "code": "JB04",
+    "description": "Obstructed labour due to malposition or malpresentation of fetus"
+  },
+  {
+    "code": "JB04.0",
+    "description": "Obstructed labour due to incomplete rotation of fetal head"
+  },
+  {
+    "code": "JB04.1",
+    "description": "Obstructed labour due to breech presentation"
+  },
+  {
+    "code": "JB04.2",
+    "description": "Obstructed labour due to face presentation"
+  },
+  {
+    "code": "JB04.3",
+    "description": "Obstructed labour due to brow presentation"
+  },
+  {
+    "code": "JB04.4",
+    "description": "Obstructed labour due to shoulder presentation"
+  },
+  {
+    "code": "JB04.5",
+    "description": "Obstructed labour due to compound presentation"
+  },
+  {
+    "code": "JB04.Y",
+    "description": "Obstructed labour due to other malposition and malpresentation of fetus"
+  },
+  {
+    "code": "JB04.Z",
+    "description": "Obstructed labour due to malposition or malpresentation of fetus, unspecified"
+  },
+  {
+    "code": "JB05",
+    "description": "Obstructed labour due to maternal pelvic abnormality"
+  },
+  {
+    "code": "JB05.0",
+    "description": "Obstructed labour due to deformed pelvis"
+  },
+  {
+    "code": "JB05.1",
+    "description": "Obstructed labour due to generally contracted pelvis"
+  },
+  {
+    "code": "JB05.2",
+    "description": "Obstructed labour due to pelvic inlet contraction"
+  },
+  {
+    "code": "JB05.3",
+    "description": "Obstructed labour due to pelvic outlet or mid-cavity contraction"
+  },
+  {
+    "code": "JB05.4",
+    "description": "Obstructed labour due to foetopelvic disproportion, unspecified"
+  },
+  {
+    "code": "JB05.5",
+    "description": "Obstructed labour due to abnormality of maternal pelvic organs"
+  },
+  {
+    "code": "JB05.Y",
+    "description": "Obstructed labour due to other maternal pelvic abnormalities"
+  },
+  {
+    "code": "JB05.Z",
+    "description": "Obstructed labour due to maternal pelvic abnormality, unspecified"
+  },
+  {
+    "code": "JB06",
+    "description": "Obstructed labour due to other causes"
+  },
+  {
+    "code": "JB06.0",
+    "description": "Obstructed labour due to shoulder dystocia"
+  },
+  {
+    "code": "JB06.1",
+    "description": "Obstructed labour due to locked twins"
+  },
+  {
+    "code": "JB06.2",
+    "description": "Obstructed labour due to unusually large fetus"
+  },
+  {
+    "code": "JB06.3",
+    "description": "Obstructed labour due to other abnormalities of fetus"
+  },
+  {
+    "code": "JB06.Y",
+    "description": "Obstructed labour due to other specified causes"
+  },
+  {
+    "code": "JB06.Z",
+    "description": "Obstructed labour due to unspecified causes"
+  },
+  {
+    "code": "JB07",
+    "description": "Labour or delivery complicated by fetal distress"
+  },
+  {
+    "code": "JB07.0",
+    "description": "Labour or delivery complicated by fetal heart rate anomaly"
+  },
+  {
+    "code": "JB07.1",
+    "description": "Labour or delivery complicated by meconium in amniotic fluid"
+  },
+  {
+    "code": "JB07.2",
+    "description": "Labour or delivery complicated by biochemical evidence of fetal stress"
+  },
+  {
+    "code": "JB07.Y",
+    "description": "Other specified labour or delivery complicated by fetal distress"
+  },
+  {
+    "code": "JB07.Z",
+    "description": "Labour or delivery complicated by fetal distress, unspecified"
+  },
+  {
+    "code": "JB08",
+    "description": "Labour or delivery complicated by umbilical cord complications"
+  },
+  {
+    "code": "JB08.0",
+    "description": "Labour or delivery complicated by prolapse of cord"
+  },
+  {
+    "code": "JB08.1",
+    "description": "Labour or delivery complicated by cord around neck, with compression"
+  },
+  {
+    "code": "JB08.2",
+    "description": "Labour or delivery complicated by short cord"
+  },
+  {
+    "code": "JB08.3",
+    "description": "Labour or delivery complicated by vasa praevia"
+  },
+  {
+    "code": "JB08.4",
+    "description": "Labour or delivery complicated by vascular lesion of cord"
+  },
+  {
+    "code": "JB08.5",
+    "description": "Labour or delivery complicated by other cord entanglement, with compression"
+  },
+  {
+    "code": "JB08.Y",
+    "description": "Labour and delivery complicated by other specified umbilical cord complications"
+  },
+  {
+    "code": "JB08.Z",
+    "description": "Labour or delivery complicated by umbilical cord complications, unspecified"
+  },
+  {
+    "code": "JB09",
+    "description": "Perineal laceration during delivery"
+  },
+  {
+    "code": "JB09.0",
+    "description": "First degree perineal laceration during delivery"
+  },
+  {
+    "code": "JB09.1",
+    "description": "Second degree perineal laceration during delivery"
+  },
+  {
+    "code": "JB09.2",
+    "description": "Third degree perineal laceration during delivery"
+  },
+  {
+    "code": "JB09.3",
+    "description": "Fourth degree perineal laceration during delivery"
+  },
+  {
+    "code": "JB09.Z",
+    "description": "Perineal laceration during delivery, unspecified"
+  },
+  {
+    "code": "JB0A",
+    "description": "Certain specified obstetric trauma"
+  },
+  {
+    "code": "JB0A.0",
+    "description": "Rupture of uterus before onset of labour"
+  },
+  {
+    "code": "JB0A.1",
+    "description": "Rupture of uterus during labour"
+  },
+  {
+    "code": "JB0A.2",
+    "description": "Postpartum inversion of uterus"
+  },
+  {
+    "code": "JB0A.3",
+    "description": "Obstetric laceration of cervix"
+  },
+  {
+    "code": "JB0A.4",
+    "description": "Obstetric high vaginal laceration"
+  },
+  {
+    "code": "JB0A.5",
+    "description": "Obstetric uterine laceration or tear"
+  },
+  {
+    "code": "JB0A.6",
+    "description": "Other obstetric injury to pelvic organs"
+  },
+  {
+    "code": "JB0A.7",
+    "description": "Obstetric damage to pelvic joints or ligaments"
+  },
+  {
+    "code": "JB0A.8",
+    "description": "Obstetric haematoma of pelvis"
+  },
+  {
+    "code": "JB0A.Y",
+    "description": "Other specified obstetric trauma"
+  },
+  {
+    "code": "JB0A.Z",
+    "description": "Obstetric trauma, unspecified"
+  },
+  {
+    "code": "JB0B",
+    "description": "Retained placenta or membranes, without haemorrhage"
+  },
+  {
+    "code": "JB0B.0",
+    "description": "Retained placenta without haemorrhage"
+  },
+  {
+    "code": "JB0B.1",
+    "description": "Retained portions of placenta or membranes, without haemorrhage"
+  },
+  {
+    "code": "JB0C",
+    "description": "Complications of anaesthesia during labour or delivery"
+  },
+  {
+    "code": "JB0C.0",
+    "description": "Aspiration pneumonitis due to anaesthesia during labour or delivery"
+  },
+  {
+    "code": "JB0C.1",
+    "description": "Other pulmonary complications of anaesthesia during labour or delivery"
+  },
+  {
+    "code": "JB0C.2",
+    "description": "Cardiac complications of anaesthesia during labour or delivery"
+  },
+  {
+    "code": "JB0C.3",
+    "description": "Central nervous system complications of anaesthesia during labour or delivery"
+  },
+  {
+    "code": "JB0C.4",
+    "description": "Toxic reaction to local anaesthesia during labour or delivery"
+  },
+  {
+    "code": "JB0C.5",
+    "description": "Spinal or epidural anaesthesia-induced headache during labour or delivery"
+  },
+  {
+    "code": "JB0C.6",
+    "description": "Other complications of spinal or epidural anaesthesia during labour or delivery"
+  },
+  {
+    "code": "JB0C.7",
+    "description": "Failed or difficult intubation during labour or delivery"
+  },
+  {
+    "code": "JB0C.70",
+    "description": "Failed intubation during labour or delivery"
+  },
+  {
+    "code": "JB0C.71",
+    "description": "Difficult intubation during labour or delivery"
+  },
+  {
+    "code": "JB0C.7Y",
+    "description": "Other specified failed or difficult intubation during labour or delivery"
+  },
+  {
+    "code": "JB0C.7Z",
+    "description": "Failed or difficult intubation during labour or delivery, unspecified"
+  },
+  {
+    "code": "JB0C.8",
+    "description": "Awareness under general anaesthesia during labour or delivery"
+  },
+  {
+    "code": "JB0C.Y",
+    "description": "Other specified complications of anaesthesia during labour or delivery"
+  },
+  {
+    "code": "JB0C.Z",
+    "description": "Complications of anaesthesia during labour or delivery, unspecified"
+  },
+  {
+    "code": "JB0D",
+    "description": "Certain specified complications of labour or delivery, not elsewhere classified"
+  },
+  {
+    "code": "JB0D.0",
+    "description": "Maternal distress during labour or delivery"
+  },
+  {
+    "code": "JB0D.1",
+    "description": "Shock during or following labour or delivery"
+  },
+  {
+    "code": "JB0D.2",
+    "description": "Pyrexia during labour, not elsewhere classified"
+  },
+  {
+    "code": "JB0D.3",
+    "description": "Other complications of obstetric surgery or procedures"
+  },
+  {
+    "code": "JB0D.4",
+    "description": "Delayed delivery after artificial rupture of membranes"
+  },
+  {
+    "code": "JB0D.5",
+    "description": "Delayed delivery after spontaneous or unspecified rupture of membranes"
+  },
+  {
+    "code": "JB0D.6",
+    "description": "Vaginal delivery following previous caesarean section"
+  },
+  {
+    "code": "JB0D.7",
+    "description": "Failed application of vacuum extractor or forceps, unspecified"
+  },
+  {
+    "code": "JB0D.8",
+    "description": "Failed trial of labour, unspecified"
+  },
+  {
+    "code": "JB0D.Y",
+    "description": "Other specified complications of labour or delivery, not elsewhere classified"
+  },
+  {
+    "code": "JB0Y",
+    "description": "Other specified complications of labour or delivery"
+  },
+  {
+    "code": "JB0Z",
+    "description": "Complications of labour or delivery, unspecified"
+  },
+  {
+    "code": "JB20",
+    "description": "Single spontaneous delivery"
+  },
+  {
+    "code": "JB20.0",
+    "description": "Spontaneous vertex delivery"
+  },
+  {
+    "code": "JB20.1",
+    "description": "Spontaneous breech delivery"
+  },
+  {
+    "code": "JB20.Y",
+    "description": "Single spontaneous delivery with other specified presentation"
+  },
+  {
+    "code": "JB20.Z",
+    "description": "Single spontaneous delivery, unspecified"
+  },
+  {
+    "code": "JB21",
+    "description": "Single delivery by forceps or vacuum extractor"
+  },
+  {
+    "code": "JB22",
+    "description": "Single delivery by caesarean section"
+  },
+  {
+    "code": "JB22.0",
+    "description": "Delivery by elective caesarean section"
+  },
+  {
+    "code": "JB22.1",
+    "description": "Delivery by emergency caesarean section"
+  },
+  {
+    "code": "JB22.2",
+    "description": "Single delivery by caesarean hysterectomy"
+  },
+  {
+    "code": "JB22.Z",
+    "description": "Single delivery by caesarean section, unspecified"
+  },
+  {
+    "code": "JB23",
+    "description": "Other assisted single delivery"
+  },
+  {
+    "code": "JB23.0",
+    "description": "Breech extraction"
+  },
+  {
+    "code": "JB23.1",
+    "description": "Other assisted breech delivery"
+  },
+  {
+    "code": "JB23.2",
+    "description": "Other manipulation-assisted delivery"
+  },
+  {
+    "code": "JB23.3",
+    "description": "Delivery of viable fetus in abdominal pregnancy"
+  },
+  {
+    "code": "JB23.4",
+    "description": "Destructive operation for delivery"
+  },
+  {
+    "code": "JB23.Z",
+    "description": "Other assisted single delivery, unspecified"
+  },
+  {
+    "code": "JB24",
+    "description": "Multiple delivery"
+  },
+  {
+    "code": "JB24.0",
+    "description": "Multiple delivery, all spontaneous"
+  },
+  {
+    "code": "JB24.1",
+    "description": "Multiple delivery, all by forceps or vacuum extractor"
+  },
+  {
+    "code": "JB24.2",
+    "description": "Multiple delivery, all by caesarean section"
+  },
+  {
+    "code": "JB24.3",
+    "description": "Multiple delivery by combination of methods with caesarean"
+  },
+  {
+    "code": "JB24.Y",
+    "description": "Other specified multiple delivery"
+  },
+  {
+    "code": "JB24.Z",
+    "description": "Multiple delivery, unspecified"
+  },
+  {
+    "code": "JB2Z",
+    "description": "Delivery, unspecified"
+  },
+  {
+    "code": "JB40",
+    "description": "Infections in the puerperium"
+  },
+  {
+    "code": "JB40.0",
+    "description": "Puerperal sepsis"
+  },
+  {
+    "code": "JB40.1",
+    "description": "Infection of obstetric surgical wound"
+  },
+  {
+    "code": "JB40.2",
+    "description": "Other infection of genital tract following delivery"
+  },
+  {
+    "code": "JB40.3",
+    "description": "Urinary tract infection following delivery"
+  },
+  {
+    "code": "JB40.4",
+    "description": "Pyrexia of unknown origin following delivery"
+  },
+  {
+    "code": "JB40.Y",
+    "description": "Other specified infections in the puerperium"
+  },
+  {
+    "code": "JB40.Z",
+    "description": "Infections in the puerperium, unspecified"
+  },
+  {
+    "code": "JB41",
+    "description": "Venous complications in the puerperium"
+  },
+  {
+    "code": "JB41.0",
+    "description": "Superficial thrombophlebitis in the puerperium"
+  },
+  {
+    "code": "JB41.1",
+    "description": "Deep phlebothrombosis in the puerperium"
+  },
+  {
+    "code": "JB41.2",
+    "description": "Haemorrhoids in the puerperium"
+  },
+  {
+    "code": "JB41.3",
+    "description": "Cerebral venous thrombosis in the puerperium"
+  },
+  {
+    "code": "JB41.Y",
+    "description": "Other specified venous complications in the puerperium"
+  },
+  {
+    "code": "JB41.Z",
+    "description": "Venous complications in the puerperium, unspecified"
+  },
+  {
+    "code": "JB42",
+    "description": "Obstetric embolism"
+  },
+  {
+    "code": "JB42.0",
+    "description": "Obstetric air embolism"
+  },
+  {
+    "code": "JB42.1",
+    "description": "Amniotic fluid embolism"
+  },
+  {
+    "code": "JB42.2",
+    "description": "Obstetric blood-clot embolism"
+  },
+  {
+    "code": "JB42.3",
+    "description": "Obstetric pyaemic or septic embolism"
+  },
+  {
+    "code": "JB42.Y",
+    "description": "Other specified obstetric embolism"
+  },
+  {
+    "code": "JB42.Z",
+    "description": "Obstetric embolism, unspecified"
+  },
+  {
+    "code": "JB43",
+    "description": "Complications of anaesthesia during the puerperium"
+  },
+  {
+    "code": "JB43.0",
+    "description": "Pulmonary complications of anaesthesia during the puerperium"
+  },
+  {
+    "code": "JB43.1",
+    "description": "Cardiac complications of anaesthesia during the puerperium"
+  },
+  {
+    "code": "JB43.2",
+    "description": "Central nervous system complications of anaesthesia during the puerperium"
+  },
+  {
+    "code": "JB43.3",
+    "description": "Spinal or epidural anaesthesia-induced headache during the puerperium"
+  },
+  {
+    "code": "JB43.4",
+    "description": "Other complications of spinal or epidural anaesthesia during the puerperium"
+  },
+  {
+    "code": "JB43.5",
+    "description": "Failed or difficult intubation during the puerperium"
+  },
+  {
+    "code": "JB43.50",
+    "description": "Failed intubation during the puerperium"
+  },
+  {
+    "code": "JB43.51",
+    "description": "Difficult intubation during the puerperium"
+  },
+  {
+    "code": "JB43.5Y",
+    "description": "Other specified failed or difficult intubation during the puerperium"
+  },
+  {
+    "code": "JB43.5Z",
+    "description": "Failed or difficult intubation during the puerperium, unspecified"
+  },
+  {
+    "code": "JB43.6",
+    "description": "Awareness under general anaesthesia during the puerperium"
+  },
+  {
+    "code": "JB43.Y",
+    "description": "Other specified complications of anaesthesia during the puerperium"
+  },
+  {
+    "code": "JB43.Z",
+    "description": "Complications of anaesthesia during the puerperium, unspecified"
+  },
+  {
+    "code": "JB44",
+    "description": "Certain specified complications of the puerperium"
+  },
+  {
+    "code": "JB44.0",
+    "description": "Disruption of caesarean section wound"
+  },
+  {
+    "code": "JB44.1",
+    "description": "Disruption of perineal obstetric wound"
+  },
+  {
+    "code": "JB44.2",
+    "description": "Haematoma of obstetric wound"
+  },
+  {
+    "code": "JB44.3",
+    "description": "Cardiomyopathy in the puerperium"
+  },
+  {
+    "code": "JB44.4",
+    "description": "Postpartum acute renal failure"
+  },
+  {
+    "code": "JB44.5",
+    "description": "Postpartum thyroiditis"
+  },
+  {
+    "code": "JB44.6",
+    "description": "Puerperal osteomalacia"
+  },
+  {
+    "code": "JB44.Y",
+    "description": "Other specified complications of the puerperium"
+  },
+  {
+    "code": "JB44.Z",
+    "description": "Complications of the puerperium, unspecified"
+  },
+  {
+    "code": "JB45",
+    "description": "Infections of breast associated with childbirth"
+  },
+  {
+    "code": "JB45.0",
+    "description": "Abscess of breast associated with childbirth"
+  },
+  {
+    "code": "JB45.1",
+    "description": "Nonpurulent mastitis associated with childbirth"
+  },
+  {
+    "code": "JB45.Y",
+    "description": "Other specified infections of breast associated with childbirth"
+  },
+  {
+    "code": "JB45.Z",
+    "description": "Infections of breast associated with childbirth, unspecified"
+  },
+  {
+    "code": "JB46",
+    "description": "Certain specified disorders of breast or lactation associated with childbirth"
+  },
+  {
+    "code": "JB46.0",
+    "description": "Retracted nipple associated with childbirth"
+  },
+  {
+    "code": "JB46.1",
+    "description": "Cracked nipple associated with childbirth"
+  },
+  {
+    "code": "JB46.2",
+    "description": "Other or unspecified disorders of breast associated with childbirth"
+  },
+  {
+    "code": "JB46.3",
+    "description": "Agalactia"
+  },
+  {
+    "code": "JB46.4",
+    "description": "Hypogalactia"
+  },
+  {
+    "code": "JB46.5",
+    "description": "Suppressed lactation"
+  },
+  {
+    "code": "JB46.6",
+    "description": "Galactorrhoea"
+  },
+  {
+    "code": "JB46.7",
+    "description": "Other or unspecified disorders of lactation"
+  },
+  {
+    "code": "JB4Z",
+    "description": "Complications predominantly related to the puerperium, unspecified"
+  },
+  {
+    "code": "JB60",
+    "description": "Obstetric death of unspecified cause"
+  },
+  {
+    "code": "JB61",
+    "description": "Death from any obstetric cause occurring more than 42 days but less than one year after delivery"
+  },
+  {
+    "code": "JB61.0",
+    "description": "Death from direct obstetric cause occurring more than 42 days but less than one year after delivery"
+  },
+  {
+    "code": "JB61.1",
+    "description": "Death from indirect obstetric cause occurring more than 42 days but less than one year after delivery"
+  },
+  {
+    "code": "JB61.Z",
+    "description": "Death from obstetric cause occurring more than 42 days but less than one year after delivery, unspecified whether direct or indirect"
+  },
+  {
+    "code": "JB62",
+    "description": "Death from sequelae of obstetric causes"
+  },
+  {
+    "code": "JB62.0",
+    "description": "Death from sequelae of direct obstetric cause"
+  },
+  {
+    "code": "JB62.1",
+    "description": "Death from sequelae of indirect obstetric cause"
+  },
+  {
+    "code": "JB62.Z",
+    "description": "Death from sequelae of obstetric causes, unspecified"
+  },
+  {
+    "code": "JB63",
+    "description": "Maternal infectious diseases classifiable elsewhere but complicating pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JB63.0",
+    "description": "Tuberculosis complicating pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JB63.00",
+    "description": "Tuberculous placenta"
+  },
+  {
+    "code": "JB63.0Y",
+    "description": "Other specified tuberculosis complicating pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JB63.0Z",
+    "description": "Tuberculosis complicating pregnancy, childbirth or the puerperium, unspecified"
+  },
+  {
+    "code": "JB63.1",
+    "description": "Syphilis complicating pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JB63.2",
+    "description": "Gonorrhoea complicating pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JB63.3",
+    "description": "Other infections with a predominantly sexual mode of transmission complicating pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JB63.4",
+    "description": "Viral hepatitis complicating pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JB63.5",
+    "description": "Other viral diseases complicating pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JB63.6",
+    "description": "Protozoal diseases complicating pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JB63.60",
+    "description": "Malaria complicating pregnancy, childbirth, or the puerperium"
+  },
+  {
+    "code": "JB63.6Y",
+    "description": "Other specified protozoal diseases complicating pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JB63.6Z",
+    "description": "Protozoal diseases complicating pregnancy, childbirth or the puerperium, unspecified"
+  },
+  {
+    "code": "JB63.7",
+    "description": "Human immunodeficiency disease complicating pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JB63.Y",
+    "description": "Other specified maternal infectious diseases classifiable elsewhere but complicating pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JB63.Z",
+    "description": "Maternal infectious diseases classifiable elsewhere but complicating pregnancy, childbirth or the puerperium, unspecified"
+  },
+  {
+    "code": "JB64",
+    "description": "Certain maternal diseases classifiable elsewhere but complicating pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JB64.0",
+    "description": "Anaemia complicating pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JB64.1",
+    "description": "Other diseases of the blood or blood-forming organs or certain disorders involving the immune mechanism complicating pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JB64.2",
+    "description": "Endocrine, nutritional or metabolic diseases complicating pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JB64.3",
+    "description": "Diseases of the nervous system complicating pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JB64.4",
+    "description": "Diseases of the circulatory system complicating pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JB64.5",
+    "description": "Diseases of the respiratory system complicating pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JB64.6",
+    "description": "Diseases of the digestive system complicating pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JB64.7",
+    "description": "Diseases of the skin complicating pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JB64.8",
+    "description": "Congenital anomaly complicating pregnancy"
+  },
+  {
+    "code": "JB64.Y",
+    "description": "Other specified maternal diseases classifiable elsewhere but complicating pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JB65",
+    "description": "Sequelae of complication of pregnancy, childbirth or the puerperium"
+  },
+  {
+    "code": "JB6Y",
+    "description": "Other specified obstetric conditions, not elsewhere classified"
+  },
+  {
+    "code": "JB6Z",
+    "description": "Unspecified obstetric condition"
+  }
+]

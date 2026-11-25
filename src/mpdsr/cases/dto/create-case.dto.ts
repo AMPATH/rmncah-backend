@@ -1,4 +1,6 @@
 import {
+  ArrayUnique,
+  IsArray,
   IsDateString,
   IsEnum,
   IsNotEmpty,
@@ -20,6 +22,7 @@ import { CaseType, ReportingSetting, Gender } from '../enums/case.enum.js';
 import {
   IsNotFutureDate,
   IsSameOrAfterDate,
+  IsPerinatalDeathDateOnOrAfterBirthDate,
 } from './validators/date.validators.js';
 
 // Validates reporting setting, location IDs and near-miss restrictions.
@@ -97,8 +100,12 @@ export class CreateCaseDto {
   @IsNotFutureDate()
   dateOfBirth: string;
 
+  // Perinatal cases require the baby's gender.
+  // Maternal and near-miss gender is assigned by the backend.
+  @ValidateIf((dto) => dto.caseType === CaseType.PERINATAL)
+  @IsDefined()
   @IsEnum(Gender)
-  gender: Gender;
+  gender?: Gender;
 
   // Must be valid, cannot be in the future,
   // and cannot be earlier than dateOfBirth.
@@ -113,7 +120,17 @@ export class CreateCaseDto {
   @MaxLength(5000)
   comments?: string;
 
+  // IDs selected from the seeded contributing-factor catalogue.
+  @IsOptional()
+  @IsArray()
+  @ArrayUnique()
+  @IsUUID(undefined, { each: true })
+  contributingFactorIds?: string[];
+
+
   @IsDefined()
   @IsObject()
+  @ValidateIf((dto) => dto.caseType === CaseType.PERINATAL)
+  @IsPerinatalDeathDateOnOrAfterBirthDate()
   details: Record<string, unknown>;
 }

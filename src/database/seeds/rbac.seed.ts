@@ -23,8 +23,8 @@ const roles = [
     module: SystemModule.PLATFORM,
   },
   {
-    code: 'CHP',
-    name: 'Community Health Promoter',
+    code: 'CHA',
+    name: 'Community Health Assistant',
     description:
       'Reports community incidents and accesses records within assigned community units.',
     module: SystemModule.MPDSR,
@@ -678,7 +678,7 @@ const rolePermissionMappings: Record<string, string[]> = {
    * MPDSR
    */
 
-  CHP: [
+  CHA: [
     'mpdsr.cases.create',
     'mpdsr.cases.read',
     'mpdsr.cases.update',
@@ -698,11 +698,13 @@ const rolePermissionMappings: Record<string, string[]> = {
 
   FACILITY_CHAIR: [
     'mpdsr.cases.read',
+    'mpdsr.recommendations.reassign',
     'mpdsr.case_reviews.create',
     'mpdsr.case_reviews.read',
     'mpdsr.case_reviews.update',
     'mpdsr.case_reviews.finalize',
     'mpdsr.recommendations.read',
+    'mpdsr.recommendations.assign',
     'mpdsr.recommendations.approve',
     'mpdsr.recommendations.reject',
     'mpdsr.recommendations.request_correction',
@@ -714,10 +716,7 @@ const rolePermissionMappings: Record<string, string[]> = {
     'mpdsr.cases.read',
     'mpdsr.cases.update',
     'mpdsr.case_reviews.read',
-    'mpdsr.recommendations.create',
     'mpdsr.recommendations.read',
-    'mpdsr.recommendations.update',
-    'mpdsr.recommendations.assign',
     'mpdsr.recommendations.accept',
     'mpdsr.recommendations.mark_done',
     'mpdsr.reports.read',

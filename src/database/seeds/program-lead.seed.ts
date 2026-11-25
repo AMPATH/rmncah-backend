@@ -4,13 +4,15 @@ import dataSource from '../data-source.js';
 
 import * as argon2 from 'argon2';
 
-import { AccountStatus, User } from '../../shared/users/entities/user.entity.js';
+//import { AccountStatus, User } from '../../shared/users/entities/user.entity.js';
 
 
 import { Role } from '../../shared/rbac/roles/entities/role.entity.js';
 import { UserRoleAssignment } from '../../shared/rbac/user-role-assignments/entities/user-role-assignment.entity.js';
 
 import { SystemModule } from '../../shared/rbac/enum/system-module.enum.js';
+import { User } from '../../shared/users/entities/user.entity.js';
+import { AccountStatus } from '../../shared/users/enum/users.enum.js';
 
 async function createProgramLead(
   manager: EntityManager,

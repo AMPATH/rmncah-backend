@@ -3,17 +3,22 @@ import {
   PrimaryGeneratedColumn,
   Column,
   OneToOne,
+  ManyToOne,
   JoinColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  Index,
 } from 'typeorm';
 
 import type { Relation } from 'typeorm';
 
 import { Case } from './case.entity.js';
-import { DeliveryMode } from '../enums/case.enum.js';
+import { Icd11Cause } from '../../causes-of-death/entities/icd11-cause.entity.js';
+import { BirthOutcome } from '../enums/case.enum.js';
 
 @Entity('perinatalCaseDetails')
+@Index('IDX_PERINATAL_PROVISIONAL_CAUSE', ['provisionalCauseId'])
+@Index('IDX_PERINATAL_FINAL_CAUSE', ['finalCauseId'])
 export class PerinatalCaseDetail {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -22,29 +27,47 @@ export class PerinatalCaseDetail {
   caseId: string;
 
   @OneToOne(() => Case, (caseRecord) => caseRecord.perinatalDetails, {
+    nullable: false,
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'caseId' })
   case: Relation<Case>;
 
+  @Column({
+    type: 'enum',
+    enum: BirthOutcome,
+  })
+  birthOutcome: BirthOutcome;
+
   @Column({ type: 'date' })
-  dateOfDeath: string; // Date the baby died
+  dateOfDeath: string;
 
   @Column({ type: 'int', nullable: true })
-  gestationalAgeAtBirth: number | null; // Pregnancy duration at birth in completed weeks
-
-  @Column({ type: 'enum', enum: DeliveryMode })
-  modeOfDelivery: DeliveryMode; // Method of delivery, e.g. vaginal or caesarean
+  gestationalAgeDays: number | null;
 
   @Column({ type: 'varchar', length: 36 })
-  causeOfDeathId: string; // Links to the ICD-11 cause of death
+  provisionalCauseId: string;
 
-  @Column({ type: 'text' })
-  clinicalSummary: string; // Summary of the clinical circumstances
+  @ManyToOne(() => Icd11Cause, {
+    nullable: false,
+    onDelete: 'RESTRICT',
+  })
+  @JoinColumn({ name: 'provisionalCauseId' })
+  provisionalCause: Relation<Icd11Cause>;
+
+  @Column({ type: 'varchar', length: 36, nullable: true })
+  finalCauseId: string | null;
+
+  @ManyToOne(() => Icd11Cause, {
+    nullable: true,
+    onDelete: 'RESTRICT',
+  })
+  @JoinColumn({ name: 'finalCauseId' })
+  finalCause: Relation<Icd11Cause> | null;
 
   @CreateDateColumn({ type: 'datetime' })
-  createdAt: Date; // Date and time the record was created
+  createdAt: Date;
 
   @UpdateDateColumn({ type: 'datetime' })
-  updatedAt: Date; // Date and time the record was last updated
+  updatedAt: Date;
 }
