@@ -1,9 +1,5 @@
 
-import {
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
-
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import {
@@ -13,27 +9,20 @@ import {
 } from 'typeorm';
 
 import { User } from '../../shared/users/entities/user.entity.js';
-
 import { UsersService } from '../../shared/users/users.service.js';
-
 import { AccountStatus } from '../../shared/users/enum/users.enum.js';
 
 import { OrganizationLevel } from '../../shared/user-organization-assignments/enum/organization-level.enum.js';
-
 import { UserOrganizationAssignmentsService } from '../../shared/user-organization-assignments/user-organization-assignments.service.js';
 
 import { UserRoleAssignmentsService } from '../../shared/rbac/user-role-assignments/user-role-assignments.service.js';
-
 import { RolesService } from '../../shared/rbac/roles/roles.service.js';
 
 import { UserRoleAssignment } from '../../shared/rbac/user-role-assignments/entities/user-role-assignment.entity.js';
-
 import { Role } from '../../shared/rbac/roles/entities/role.entity.js';
-
 import { SystemModule } from '../../shared/rbac/enum/system-module.enum.js';
 
 import { InvitationsService } from '../mentors/invitations/invitations.service.js';
-
 import { CreateMenteeDto } from './dto/create-mentee.dto.js';
 
 @Injectable()
@@ -89,12 +78,13 @@ export class MenteesService {
         createdBy,
       );
 
-    // 3. Find the active MENTEE role.
+    // 3. Find the active EMONC MENTEE role.
     const menteeRole = await this.rolesService.findByCode('MENTEE');
 
     if (
       !menteeRole ||
-      menteeRole.module !== SystemModule.EMONC
+      menteeRole.module !== SystemModule.EMONC ||
+      !menteeRole.isActive
     ) {
       throw new NotFoundException(
         'Active EMONC MENTEE role not found',
@@ -117,9 +107,7 @@ export class MenteesService {
 
     return {
       message: 'Mentee created and invitation sent successfully',
-
       mentee,
-
       invitation: {
         id: invitation.invitationId,
         expiresAt: invitation.expiresAt,
@@ -129,6 +117,12 @@ export class MenteesService {
 
   /**
    * Base query for identifying legitimate EMONC mentees.
+   *
+   * A user qualifies only if they have:
+   * - An active facility-level organization assignment.
+   * - An active EMONC MENTEE role assigned to that organization.
+   * - A non-expired, non-revoked role assignment.
+   * - No soft deletion.
    */
   private createMenteeQuery(): SelectQueryBuilder<User> {
     const now = new Date();
@@ -191,7 +185,7 @@ export class MenteesService {
   }
 
   /**
-   * 1. Get all mentees.
+   * 1. Get all mentees with filtering and pagination.
    */
   async findAll(query: {
     search?: string;
@@ -265,7 +259,7 @@ export class MenteesService {
   }
 
   /**
-   * 3. Get eligible mentees.
+   * 3. Get eligible active mentees.
    */
   async findEligible() {
     return this.createMenteeQuery()

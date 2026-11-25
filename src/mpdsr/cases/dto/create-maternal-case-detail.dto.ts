@@ -2,21 +2,14 @@ import {
   IsDateString,
   IsEnum,
   IsInt,
-  IsNotEmpty,
-  IsString,
-  IsUUID,
+  IsDefined,
   Min,
   Max,
-  MaxLength,
   ValidateIf,
-  IsDefined,
+  IsUUID,
 } from 'class-validator';
 
-import {
-  PregnancyPeriod,
-  PregnancyOutcome,
-  DeliveryMode,
-} from '../enums/case.enum.js';
+import { PregnancyPeriod } from '../enums/case.enum.js';
 
 import { IsNotFutureDate } from './validators/date.validators.js';
 
@@ -28,10 +21,10 @@ export class CreateMaternalCaseDetailDto {
   @IsEnum(PregnancyPeriod)
   deathPeriod: PregnancyPeriod;
 
-  @IsInt()
-  @Min(0)
-  parity: number;
+  @IsUUID()
+  provisionalCauseId: string;
 
+  // Required for antenatal and intrapartum deaths.
   @ValidateIf(
     (dto) =>
       dto.deathPeriod === PregnancyPeriod.ANTENATAL ||
@@ -43,24 +36,11 @@ export class CreateMaternalCaseDetailDto {
   @Max(45)
   gestationAtDeath?: number;
 
+  // Required for postpartum deaths.
   @ValidateIf((dto) => dto.deathPeriod === PregnancyPeriod.POSTPARTUM)
   @IsDefined()
   @IsInt()
   @Min(0)
   @Max(42)
   daysPostpartum?: number;
-
-  @IsEnum(PregnancyOutcome)
-  pregnancyOutcome: PregnancyOutcome;
-
-  @IsEnum(DeliveryMode)
-  deliveryMode: DeliveryMode;
-
-  @IsUUID()
-  causeOfDeathId: string;
-
-  @IsString()
-  @IsNotEmpty()
-  @MaxLength(5000)
-  clinicalSummary: string;
 }

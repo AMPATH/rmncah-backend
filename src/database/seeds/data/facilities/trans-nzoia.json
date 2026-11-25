@@ -1,0 +1,102 @@
+[
+  {
+    "name": "TEST Trans Nzoia Facility 01",
+    "mflCode": "TEST-TN-F001",
+    "countyCode": "026",
+    "subCountyCode": "2601",
+    "level": "Level 3",
+    "type": "Health Centre",
+    "ownership": "Public",
+    "isActive": true
+  },
+  {
+    "name": "TEST Trans Nzoia Facility 02",
+    "mflCode": "TEST-TN-F002",
+    "countyCode": "026",
+    "subCountyCode": "2601",
+    "level": "Level 3",
+    "type": "Health Centre",
+    "ownership": "Public",
+    "isActive": true
+  },
+  {
+    "name": "TEST Trans Nzoia Facility 03",
+    "mflCode": "TEST-TN-F003",
+    "countyCode": "026",
+    "subCountyCode": "2601",
+    "level": "Level 3",
+    "type": "Health Centre",
+    "ownership": "Public",
+    "isActive": true
+  },
+  {
+    "name": "TEST Trans Nzoia Facility 04",
+    "mflCode": "TEST-TN-F004",
+    "countyCode": "026",
+    "subCountyCode": "2601",
+    "level": "Level 3",
+    "type": "Health Centre",
+    "ownership": "Public",
+    "isActive": true
+  },
+  {
+    "name": "TEST Trans Nzoia Facility 05",
+    "mflCode": "TEST-TN-F005",
+    "countyCode": "026",
+    "subCountyCode": "2601",
+    "level": "Level 3",
+    "type": "Health Centre",
+    "ownership": "Public",
+    "isActive": true
+  },
+  {
+    "name": "TEST Trans Nzoia Facility 06",
+    "mflCode": "TEST-TN-F006",
+    "countyCode": "026",
+    "subCountyCode": "2601",
+    "level": "Level 4",
+    "type": "Sub-County Hospital",
+    "ownership": "Public",
+    "isActive": true
+  },
+  {
+    "name": "TEST Trans Nzoia Facility 07",
+    "mflCode": "TEST-TN-F007",
+    "countyCode": "026",
+    "subCountyCode": "2601",
+    "level": "Level 4",
+    "type": "Sub-County Hospital",
+    "ownership": "Public",
+    "isActive": true
+  },
+  {
+    "name": "TEST Trans Nzoia Facility 08",
+    "mflCode": "TEST-TN-F008",
+    "countyCode": "026",
+    "subCountyCode": "2601",
+    "level": "Level 4",
+    "type": "Sub-County Hospital",
+    "ownership": "Public",
+    "isActive": true
+  },
+  {
+    "name": "TEST Trans Nzoia Facility 09",
+    "mflCode": "TEST-TN-F009",
+    "countyCode": "026",
+    "subCountyCode": "2601",
+    "level": "Level 5",
+    "type": "County Referral Hospital",
+    "ownership": "Public",
+    "isActive": true
+  },
+  {
+    "name": "TEST Trans Nzoia Facility 10",
+    "mflCode": "TEST-TN-F010",
+    "countyCode": "026",
+    "subCountyCode": "2601",
+    "level": "Level 5",
+    "type": "County Referral Hospital",
+    "ownership": "Public",
+    "isActive": true
+  }
+]

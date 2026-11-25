@@ -9,8 +9,15 @@ import {
   Patch,
   Post,
   Query,
-  BadRequestException,
+  UseGuards,
 } from '@nestjs/common';
+
+import { CurrentUser } from '../../auth/decorators/current-user.decorator.js';
+import type { AuthenticatedUser } from '../../auth/interfaces/authenticated-user.interface.js';
+
+import { RequirePermissions } from '../../shared/rbac/authorization/decorators/permissions.decorator.js';
+import { PermissionsGuard } from '../../shared/rbac/authorization/guards/permissions.guard.js';
+import { SystemModule } from '../../shared/rbac/enum/system-module.enum.js';
 
 import { CasesService } from './cases.service.js';
 
@@ -19,67 +26,58 @@ import { UpdateCaseDto } from './dto/update-case.dto.js';
 import { ListCasesQueryDto } from './dto/list-cases-query.dto.js';
 
 @Controller('cases')
+@UseGuards(PermissionsGuard)
 export class CasesController {
   constructor(private readonly casesService: CasesService) {}
 
-  /**
-   * Create a maternal, perinatal or near-miss case.
-   * POST /cases
-   *
-   * Temporary development header:
-   * x-reporter-id: UUID
-   */
   @Post()
+  @RequirePermissions(SystemModule.MPDSR, 'mpdsr.cases.create')
   create(
     @Body() dto: CreateCaseDto,
-    @Headers('x-reporter-id') reportedBy: string,
+    @CurrentUser() user: AuthenticatedUser,
+    @Headers('x-organization-assignment-id') assignmentId: string,
   ) {
-    const uuidRegex =
-      /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-
-    if (!reportedBy || !uuidRegex.test(reportedBy)) {
-      throw new BadRequestException(
-        'A valid x-reporter-id UUID header is required.',
-      );
-    }
-
-    return this.casesService.createCase(dto, reportedBy);
+    return this.casesService.createCase(dto, user.id, assignmentId);
   }
 
-  /**
-   * Retrieve all cases with optional filters and pagination.
-   * GET /cases
-   */
   @Get()
-  findAll(@Query() query: ListCasesQueryDto) {
-    return this.casesService.findAll(query);
+  @RequirePermissions(SystemModule.MPDSR, 'mpdsr.cases.read')
+  findAll(
+    @Query() query: ListCasesQueryDto,
+    @CurrentUser() user: AuthenticatedUser,
+    @Headers('x-organization-assignment-id') assignmentId: string,
+  ) {
+    return this.casesService.findAll(query, user.id, assignmentId);
   }
 
-  /**
-   * Retrieve a single case with its clinical details.
-   * GET /cases/:id
-   */
   @Get(':id')
-  findOne(@Param('id', new ParseUUIDPipe()) id: string) {
-    return this.casesService.findOne(id);
+  @RequirePermissions(SystemModule.MPDSR, 'mpdsr.cases.read')
+  findOne(
+    @Param('id', new ParseUUIDPipe()) id: string,
+    @CurrentUser() user: AuthenticatedUser,
+    @Headers('x-organization-assignment-id') assignmentId: string,
+  ) {
+    return this.casesService.findOne(id, user.id, assignmentId);
   }
 
-  /**
-   * Update an existing case and its clinical details.
-   * PATCH /cases/:id
-   */
   @Patch(':id')
+  @RequirePermissions(SystemModule.MPDSR, 'mpdsr.cases.update')
   update(
     @Param('id', new ParseUUIDPipe()) id: string,
     @Body() dto: UpdateCaseDto,
+    @CurrentUser() user: AuthenticatedUser,
+    @Headers('x-organization-assignment-id') assignmentId: string,
   ) {
-    return this.casesService.updateCase(id, dto);
+    return this.casesService.updateCase(id, dto, user.id, assignmentId);
   }
 
-  //Soft-delete a case.
-
   @Delete(':id')
-  remove(@Param('id', new ParseUUIDPipe()) id: string) {
-    return this.casesService.softDeleteCase(id);
+  @RequirePermissions(SystemModule.MPDSR, 'mpdsr.cases.archive')
+  remove(
+    @Param('id', new ParseUUIDPipe()) id: string,
+    @CurrentUser() user: AuthenticatedUser,
+    @Headers('x-organization-assignment-id') assignmentId: string,
+  ) {
+    return this.casesService.softDeleteCase(id, user.id, assignmentId);
   }
 }

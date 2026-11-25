@@ -1,0 +1,134 @@
+[
+  {
+    "name": "TEST Uasin Gishu CHU F01-01",
+    "code": "TEST-UG-CHU-F001-01",
+    "facilityMflCode": "TEST-UG-F001",
+    "isActive": true
+  },
+  {
+    "name": "TEST Uasin Gishu CHU F02-01",
+    "code": "TEST-UG-CHU-F002-01",
+    "facilityMflCode": "TEST-UG-F002",
+    "isActive": true
+  },
+  {
+    "name": "TEST Uasin Gishu CHU F03-01",
+    "code": "TEST-UG-CHU-F003-01",
+    "facilityMflCode": "TEST-UG-F003",
+    "isActive": true
+  },
+  {
+    "name": "TEST Uasin Gishu CHU F04-01",
+    "code": "TEST-UG-CHU-F004-01",
+    "facilityMflCode": "TEST-UG-F004",
+    "isActive": true
+  },
+  {
+    "name": "TEST Uasin Gishu CHU F05-01",
+    "code": "TEST-UG-CHU-F005-01",
+    "facilityMflCode": "TEST-UG-F005",
+    "isActive": true
+  },
+  {
+    "name": "TEST Uasin Gishu CHU F06-01",
+    "code": "TEST-UG-CHU-F006-01",
+    "facilityMflCode": "TEST-UG-F006",
+    "isActive": true
+  },
+  {
+    "name": "TEST Uasin Gishu CHU F06-02",
+    "code": "TEST-UG-CHU-F006-02",
+    "facilityMflCode": "TEST-UG-F006",
+    "isActive": true
+  },
+  {
+    "name": "TEST Uasin Gishu CHU F06-03",
+    "code": "TEST-UG-CHU-F006-03",
+    "facilityMflCode": "TEST-UG-F006",
+    "isActive": true
+  },
+  {
+    "name": "TEST Uasin Gishu CHU F07-01",
+    "code": "TEST-UG-CHU-F007-01",
+    "facilityMflCode": "TEST-UG-F007",
+    "isActive": true
+  },
+  {
+    "name": "TEST Uasin Gishu CHU F07-02",
+    "code": "TEST-UG-CHU-F007-02",
+    "facilityMflCode": "TEST-UG-F007",
+    "isActive": true
+  },
+  {
+    "name": "TEST Uasin Gishu CHU F07-03",
+    "code": "TEST-UG-CHU-F007-03",
+    "facilityMflCode": "TEST-UG-F007",
+    "isActive": true
+  },
+  {
+    "name": "TEST Uasin Gishu CHU F08-01",
+    "code": "TEST-UG-CHU-F008-01",
+    "facilityMflCode": "TEST-UG-F008",
+    "isActive": true
+  },
+  {
+    "name": "TEST Uasin Gishu CHU F08-02",
+    "code": "TEST-UG-CHU-F008-02",
+    "facilityMflCode": "TEST-UG-F008",
+    "isActive": true
+  },
+  {
+    "name": "TEST Uasin Gishu CHU F08-03",
+    "code": "TEST-UG-CHU-F008-03",
+    "facilityMflCode": "TEST-UG-F008",
+    "isActive": true
+  },
+  {
+    "name": "TEST Uasin Gishu CHU F09-01",
+    "code": "TEST-UG-CHU-F009-01",
+    "facilityMflCode": "TEST-UG-F009",
+    "isActive": true
+  },
+  {
+    "name": "TEST Uasin Gishu CHU F09-02",
+    "code": "TEST-UG-CHU-F009-02",
+    "facilityMflCode": "TEST-UG-F009",
+    "isActive": true
+  },
+  {
+    "name": "TEST Uasin Gishu CHU F09-03",
+    "code": "TEST-UG-CHU-F009-03",
+    "facilityMflCode": "TEST-UG-F009",
+    "isActive": true
+  },
+  {
+    "name": "TEST Uasin Gishu CHU F09-04",
+    "code": "TEST-UG-CHU-F009-04",
+    "facilityMflCode": "TEST-UG-F009",
+    "isActive": true
+  },
+  {
+    "name": "TEST Uasin Gishu CHU F10-01",
+    "code": "TEST-UG-CHU-F010-01",
+    "facilityMflCode": "TEST-UG-F010",
+    "isActive": true
+  },
+  {
+    "name": "TEST Uasin Gishu CHU F10-02",
+    "code": "TEST-UG-CHU-F010-02",
+    "facilityMflCode": "TEST-UG-F010",
+    "isActive": true
+  },
+  {
+    "name": "TEST Uasin Gishu CHU F10-03",
+    "code": "TEST-UG-CHU-F010-03",
+    "facilityMflCode": "TEST-UG-F010",
+    "isActive": true
+  },
+  {
+    "name": "TEST Uasin Gishu CHU F10-04",
+    "code": "TEST-UG-CHU-F010-04",
+    "facilityMflCode": "TEST-UG-F010",
+    "isActive": true
+  }
+]

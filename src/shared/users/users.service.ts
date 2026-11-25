@@ -16,15 +16,18 @@ import { UpdateUserDto } from './dto/update-user.dto.js';
 import { CreateUserDto } from './dto/create-user.dto.js';
 import { User } from './entities/user.entity.js';
 import { AccountStatus } from './enum/users.enum.js';
+import { InvitationsService } from '../invitations/invitations.service.js';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
+
+    private readonly invitationsService: InvitationsService,
   ) {}
 
-  // Create a new user account
+  // Create a new user account.
   async create(
     createUserDto: CreateUserDto,
     createdBy?: string,
@@ -36,7 +39,7 @@ export class UsersService {
 
     const email = createUserDto.email.toLowerCase();
 
-    // Check whether email already exists
+    // Check whether email already exists.
     const existingUser = await repository.findOne({
       where: { email },
     });
@@ -47,7 +50,7 @@ export class UsersService {
       );
     }
 
-    // Check whether phone number already exists
+    // Check whether phone number already exists.
     if (createUserDto.phoneNumber) {
       const existingPhoneNumber = await repository.findOne({
         where: {
@@ -62,7 +65,7 @@ export class UsersService {
       }
     }
 
-    // Prepare the new user
+    // Prepare the new pending user account.
     const newUser = repository.create({
       ...createUserDto,
       email,
@@ -72,16 +75,27 @@ export class UsersService {
       createdBy: createdBy ?? null,
     });
 
-    // Save user
-    return repository.save(newUser);
+    // Save using the transaction-aware repository.
+    const user = await repository.save(newUser);
+
+    // Invitations must only be issued after the transaction
+    // commits. The caller owns the transaction lifecycle.
+    if (!manager) {
+      await this.invitationsService.issueInvitation(
+        user.id,
+        createdBy ?? null,
+      );
+    }
+
+    return user;
   }
 
-  // Retrieve all users
+  // Retrieve all users.
   async findAll(): Promise<User[]> {
     return this.userRepository.find();
   }
 
-  // Retrieve one user by ID
+  // Retrieve one user by ID.
   async findOne(id: string): Promise<User> {
     const user = await this.userRepository.findOne({
       where: { id },
@@ -96,14 +110,14 @@ export class UsersService {
     return user;
   }
 
-  // Find user by email
+  // Find user by email.
   async findByEmail(email: string): Promise<User | null> {
     return this.userRepository.findOne({
       where: { email: email.toLowerCase() },
     });
   }
 
-  // Find user by email, including password hash
+  // Find user by email, including password hash.
   async findByEmailWithPassword(
     email: string,
   ): Promise<User | null> {
@@ -116,14 +130,45 @@ export class UsersService {
       .getOne();
   }
 
-  // Update last successful login timestamp
+  // Find a user by ID and explicitly include password hash.
+  async findByIdWithPassword(
+    id: string,
+  ): Promise<User | null> {
+    return this.userRepository
+      .createQueryBuilder('user')
+      .addSelect('user.passwordHash')
+      .where('user.id = :id', { id })
+      .getOne();
+  }
+
+  // Update password only if the verified hash has not changed.
+  async updatePasswordIfUnchanged(
+    id: string,
+    currentPasswordHash: string,
+    newPasswordHash: string,
+  ): Promise<boolean> {
+    const result = await this.userRepository.update(
+      {
+        id,
+        passwordHash: currentPasswordHash,
+      },
+      {
+        passwordHash: newPasswordHash,
+        mustChangePassword: false,
+      },
+    );
+
+    return (result.affected ?? 0) === 1;
+  }
+
+  // Update last successful login timestamp.
   async updateLastLogin(id: string): Promise<void> {
     await this.userRepository.update(id, {
       lastLoginAt: new Date(),
     });
   }
 
-  // Update user details
+  // Update user details.
   async update(
     id: string,
     updateData: UpdateUserDto & {
@@ -151,10 +196,9 @@ export class UsersService {
     return this.userRepository.save(user);
   }
 
-  // Delete user
+  // Delete user.
   async delete(id: string): Promise<void> {
     await this.findOne(id);
-
     await this.userRepository.delete(id);
   }
 }

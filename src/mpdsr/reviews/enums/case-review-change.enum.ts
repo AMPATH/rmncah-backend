@@ -1,0 +1,12 @@
+export enum CaseReviewChangeItemType {
+  CAUSE = 'CAUSE',
+  CONTRIBUTING_FACTOR = 'CONTRIBUTING_FACTOR',
+  RECOMMENDATION = 'RECOMMENDATION',
+}
+
+export enum CaseReviewChangeAction {
+  CONFIRMED = 'CONFIRMED',
+  CHANGED = 'CHANGED',
+  ADDED = 'ADDED',
+  REMOVED = 'REMOVED',
+}

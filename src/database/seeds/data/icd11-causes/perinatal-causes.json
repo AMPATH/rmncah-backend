@@ -1,0 +1,2486 @@
+[
+  {
+    "code": "KA00",
+    "description": "Fetus or newborn affected by maternal conditions that may be unrelated to present pregnancy"
+  },
+  {
+    "code": "KA00.0",
+    "description": "Fetus or newborn affected by maternal hypertensive disorders"
+  },
+  {
+    "code": "KA00.1",
+    "description": "Fetus or newborn affected by gestational oedema or proteinuria without hypertension"
+  },
+  {
+    "code": "KA00.2",
+    "description": "Fetus or newborn affected by maternal renal or urinary tract diseases"
+  },
+  {
+    "code": "KA00.3",
+    "description": "Fetus or newborn affected by maternal infectious diseases"
+  },
+  {
+    "code": "KA00.4",
+    "description": "Fetus or newborn affected by periodontal disease in mother"
+  },
+  {
+    "code": "KA00.5",
+    "description": "Fetus or newborn affected by maternal respiratory diseases"
+  },
+  {
+    "code": "KA00.6",
+    "description": "Fetus or newborn affected by maternal nutritional disorders"
+  },
+  {
+    "code": "KA00.60",
+    "description": "Fetus or newborn affected by maternal malnutrition"
+  },
+  {
+    "code": "KA00.61",
+    "description": "Fetus or newborn affected by maternal overweight or obesity"
+  },
+  {
+    "code": "KA00.6Y",
+    "description": "Other specified fetus or newborn affected by maternal nutritional disorders"
+  },
+  {
+    "code": "KA00.6Z",
+    "description": "Fetus or newborn affected by maternal nutritional disorders, unspecified"
+  },
+  {
+    "code": "KA00.7",
+    "description": "Fetus or newborn affected by abnormal maternal chemistry"
+  },
+  {
+    "code": "KA00.8",
+    "description": "Fetus or newborn affected by maternal injury"
+  },
+  {
+    "code": "KA00.9",
+    "description": "Fetus or newborn affected by maternal chemotherapy"
+  },
+  {
+    "code": "KA00.A",
+    "description": "Fetus or newborn affected by surgical procedure on mother"
+  },
+  {
+    "code": "KA00.B",
+    "description": "Fetus or newborn affected by maternal anaemia"
+  },
+  {
+    "code": "KA00.Y",
+    "description": "Fetus or newborn affected by other specified maternal condition that may be unrelated to present pregnancy"
+  },
+  {
+    "code": "KA00.Z",
+    "description": "Fetus or newborn affected by unspecified maternal condition that may be unrelated to present pregnancy"
+  },
+  {
+    "code": "KA01",
+    "description": "Fetus or newborn affected by maternal complications of pregnancy"
+  },
+  {
+    "code": "KA01.0",
+    "description": "Fetus or newborn affected by incompetence of cervix uteri"
+  },
+  {
+    "code": "KA01.1",
+    "description": "Fetus or newborn affected by premature rupture of membranes"
+  },
+  {
+    "code": "KA01.2",
+    "description": "Fetus or newborn affected by oligohydramnios"
+  },
+  {
+    "code": "KA01.3",
+    "description": "Fetus or newborn affected by polyhydramnios"
+  },
+  {
+    "code": "KA01.4",
+    "description": "Fetus or newborn affected by ectopic pregnancy"
+  },
+  {
+    "code": "KA01.5",
+    "description": "Fetus or newborn affected by multiple pregnancy"
+  },
+  {
+    "code": "KA01.6",
+    "description": "Fetus or newborn affected by maternal death"
+  },
+  {
+    "code": "KA01.7",
+    "description": "Fetus or newborn affected by malpresentation before labour"
+  },
+  {
+    "code": "KA01.8",
+    "description": "Fetus or newborn affected by maternal blood loss"
+  },
+  {
+    "code": "KA01.Y",
+    "description": "Fetus or newborn affected by other specified maternal complication of pregnancy"
+  },
+  {
+    "code": "KA01.Z",
+    "description": "Fetus or newborn affected by unspecified maternal complication of pregnancy"
+  },
+  {
+    "code": "KA02",
+    "description": "Fetus or newborn affected by complications of placenta"
+  },
+  {
+    "code": "KA02.0",
+    "description": "Fetus or newborn affected by placenta praevia"
+  },
+  {
+    "code": "KA02.1",
+    "description": "Fetus or newborn affected by placental oedema or large placenta"
+  },
+  {
+    "code": "KA02.2",
+    "description": "Fetus or newborn affected by placental infarction"
+  },
+  {
+    "code": "KA02.3",
+    "description": "Fetus or newborn affected by placental insufficiency or small placenta"
+  },
+  {
+    "code": "KA02.4",
+    "description": "Fetus or newborn affected by placental transfusion syndromes"
+  },
+  {
+    "code": "KA02.Y",
+    "description": "Fetus or newborn affected by other specified complication of placenta"
+  },
+  {
+    "code": "KA02.Z",
+    "description": "Fetus or newborn affected by unspecified complication of placenta"
+  },
+  {
+    "code": "KA03",
+    "description": "Fetus or newborn affected by complications of umbilical cord"
+  },
+  {
+    "code": "KA03.0",
+    "description": "Fetus or newborn affected by prolapsed cord"
+  },
+  {
+    "code": "KA03.1",
+    "description": "Fetus or newborn affected by other compression of umbilical cord"
+  },
+  {
+    "code": "KA03.2",
+    "description": "Fetus or newborn affected by abnormalities of umbilical cord length"
+  },
+  {
+    "code": "KA03.20",
+    "description": "Fetus or newborn affected by short umbilical cord"
+  },
+  {
+    "code": "KA03.21",
+    "description": "Fetus or newborn affected by long umbilical cord"
+  },
+  {
+    "code": "KA03.2Y",
+    "description": "Other specified fetus or newborn affected by abnormalities of umbilical cord length"
+  },
+  {
+    "code": "KA03.2Z",
+    "description": "Fetus or newborn affected by abnormalities of umbilical cord length, unspecified"
+  },
+  {
+    "code": "KA03.3",
+    "description": "Fetus or newborn affected by vasa praevia"
+  },
+  {
+    "code": "KA03.4",
+    "description": "Fetus or newborn affected by traumatic injury of the umbilical cord"
+  },
+  {
+    "code": "KA03.Y",
+    "description": "Fetus or newborn affected by other specified complication of umbilical cord"
+  },
+  {
+    "code": "KA03.Z",
+    "description": "Fetus or newborn affected by unspecified complication of umbilical cord"
+  },
+  {
+    "code": "KA04",
+    "description": "Fetus or newborn affected by other abnormalities of membranes"
+  },
+  {
+    "code": "KA04.0",
+    "description": "Fetus or newborn affected by chorioamnionitis"
+  },
+  {
+    "code": "KA04.1",
+    "description": "Fetus or newborn affected by amniotic band syndrome"
+  },
+  {
+    "code": "KA04.Y",
+    "description": "Fetus or newborn affected by other specified abnormality of membranes"
+  },
+  {
+    "code": "KA04.Z",
+    "description": "Fetus or newborn affected by unspecified abnormality of membranes"
+  },
+  {
+    "code": "KA05",
+    "description": "Fetus or newborn affected by certain complications of labour or delivery"
+  },
+  {
+    "code": "KA05.0",
+    "description": "Fetus or newborn affected by breech delivery or extraction"
+  },
+  {
+    "code": "KA05.1",
+    "description": "Fetus or newborn affected by other malpresentation, malposition or disproportion during labour or delivery"
+  },
+  {
+    "code": "KA05.2",
+    "description": "Fetus or newborn affected by forceps delivery"
+  },
+  {
+    "code": "KA05.3",
+    "description": "Fetus or newborn affected by delivery by vacuum extractor"
+  },
+  {
+    "code": "KA05.4",
+    "description": "Fetus or newborn affected by caesarean delivery"
+  },
+  {
+    "code": "KA05.5",
+    "description": "Fetus or newborn affected by precipitate delivery"
+  },
+  {
+    "code": "KA05.6",
+    "description": "Fetus or newborn affected by abnormal uterine contractions"
+  },
+  {
+    "code": "KA05.7",
+    "description": "Fetus or newborn affected by abnormality in fetal intrauterine heart rate or rhythm"
+  },
+  {
+    "code": "KA05.70",
+    "description": "Fetus and newborn affected by abnormality in fetal intrauterine heart rate or rhythm before onset of labour"
+  },
+  {
+    "code": "KA05.71",
+    "description": "Fetus and newborn affected by abnormality in fetal intrauterine heart rate or rhythm during labour"
+  },
+  {
+    "code": "KA05.7Z",
+    "description": "Fetus or newborn affected by abnormality in fetal intrauterine heart rate or rhythm, unspecified"
+  },
+  {
+    "code": "KA05.8",
+    "description": "Meconium passage during delivery"
+  },
+  {
+    "code": "KA05.Y",
+    "description": "Fetus or newborn affected or suspected to be affected by other specified complications of labour or delivery"
+  },
+  {
+    "code": "KA05.Z",
+    "description": "Fetus or newborn affected or suspected to be affected by unspecified complications of labour or delivery"
+  },
+  {
+    "code": "KA06",
+    "description": "Fetus or newborn affected by noxious influences transmitted via placenta or breast milk"
+  },
+  {
+    "code": "KA06.0",
+    "description": "Fetus or newborn affected by maternal anaesthesia or analgesia in pregnancy, labour or delivery"
+  },
+  {
+    "code": "KA06.1",
+    "description": "Fetus or newborn affected by maternal use of tobacco"
+  },
+  {
+    "code": "KA06.2",
+    "description": "Fetus or newborn affected by maternal use of alcohol"
+  },
+  {
+    "code": "KA06.3",
+    "description": "Fetus or newborn affected by maternal use of drugs of addiction"
+  },
+  {
+    "code": "KA06.4",
+    "description": "Fetus or newborn affected by maternal use of nutritional chemical substances"
+  },
+  {
+    "code": "KA06.5",
+    "description": "Fetus or newborn affected by maternal exposure to environmental chemical substances"
+  },
+  {
+    "code": "KA06.Y",
+    "description": "Fetus or newborn affected by other specified noxious influence transmitted via placenta or breast milk"
+  },
+  {
+    "code": "KA06.Z",
+    "description": "Fetus or newborn affected by unspecified noxious influence transmitted via placenta or breast milk"
+  },
+  {
+    "code": "KA07",
+    "description": "Neonatal dermatoses due to maternal antibodies"
+  },
+  {
+    "code": "KA07.0",
+    "description": "Neonatal lupus erythematosus"
+  },
+  {
+    "code": "KA07.1",
+    "description": "Neonatal pemphigus"
+  },
+  {
+    "code": "KA07.Y",
+    "description": "Other specified neonatal dermatoses due to maternal antibodies"
+  },
+  {
+    "code": "KA0Z",
+    "description": "Fetus or newborn affected by unspecified maternal factors or by complications of pregnancy, labour or delivery"
+  },
+  {
+    "code": "KA20",
+    "description": "Disorders of newborn related to slow fetal growth or fetal malnutrition"
+  },
+  {
+    "code": "KA20.0",
+    "description": "Small for gestational age"
+  },
+  {
+    "code": "KA20.00",
+    "description": "Small for gestational age, symmetrical"
+  },
+  {
+    "code": "KA20.01",
+    "description": "Small for gestational age, asymmetrical"
+  },
+  {
+    "code": "KA20.0Z",
+    "description": "Small for gestational age, unspecified"
+  },
+  {
+    "code": "KA20.1",
+    "description": "Intrauterine growth restriction"
+  },
+  {
+    "code": "KA20.10",
+    "description": "Asymmetrical intrauterine growth restriction"
+  },
+  {
+    "code": "KA20.11",
+    "description": "Symmetrical intrauterine growth restriction"
+  },
+  {
+    "code": "KA20.12",
+    "description": "Intrauterine growth restriction associated with small for gestational age"
+  },
+  {
+    "code": "KA20.1Y",
+    "description": "Other specified intrauterine growth restriction"
+  },
+  {
+    "code": "KA20.1Z",
+    "description": "Intrauterine growth restriction, unspecified"
+  },
+  {
+    "code": "KA20.2",
+    "description": "Fetal intrauterine malnutrition without mention of small for gestational age"
+  },
+  {
+    "code": "KA20.Y",
+    "description": "Other specified disorders of newborn related to slow fetal growth or fetal malnutrition"
+  },
+  {
+    "code": "KA20.Z",
+    "description": "Disorders of newborn related to slow fetal growth or fetal malnutrition, unspecified"
+  },
+  {
+    "code": "KA21",
+    "description": "Disorders of newborn related to short gestation or low birth weight, not elsewhere classified"
+  },
+  {
+    "code": "KA21.0",
+    "description": "Extremely low birth weight of newborn"
+  },
+  {
+    "code": "KA21.00",
+    "description": "Extremely low birth weight of newborn, 499g or less"
+  },
+  {
+    "code": "KA21.01",
+    "description": "Extremely low birth weight of newborn, 500-749g"
+  },
+  {
+    "code": "KA21.02",
+    "description": "Extremely low birth weight of newborn, 750-999g"
+  },
+  {
+    "code": "KA21.0Z",
+    "description": "Extremely low birth weight of newborn, unspecified"
+  },
+  {
+    "code": "KA21.1",
+    "description": "Very low birth weight of newborn"
+  },
+  {
+    "code": "KA21.10",
+    "description": "Very low birth weight of newborn, 1000-1249g"
+  },
+  {
+    "code": "KA21.11",
+    "description": "Very low birth weight of newborn, 1250-1499g"
+  },
+  {
+    "code": "KA21.1Z",
+    "description": "Very low birth weight of newborn, unspecified"
+  },
+  {
+    "code": "KA21.2",
+    "description": "Low birth weight of newborn"
+  },
+  {
+    "code": "KA21.20",
+    "description": "Low birth weight of newborn, 1500-1999g"
+  },
+  {
+    "code": "KA21.21",
+    "description": "Low birth weight of newborn, 2000-2499g"
+  },
+  {
+    "code": "KA21.2Z",
+    "description": "Low birth weight of newborn, unspecified"
+  },
+  {
+    "code": "KA21.3",
+    "description": "Extreme prematurity of newborn"
+  },
+  {
+    "code": "KA21.30",
+    "description": "Extreme prematurity of newborn, gestational age less than 22 completed weeks"
+  },
+  {
+    "code": "KA21.31",
+    "description": "Extreme prematurity of newborn, gestational age 22 completed weeks"
+  },
+  {
+    "code": "KA21.32",
+    "description": "Extreme prematurity of newborn, gestational age 23 completed weeks"
+  },
+  {
+    "code": "KA21.33",
+    "description": "Extreme prematurity of newborn, gestational age 24 completed weeks"
+  },
+  {
+    "code": "KA21.34",
+    "description": "Extreme prematurity of newborn, gestational age 25 completed weeks"
+  },
+  {
+    "code": "KA21.35",
+    "description": "Extreme prematurity of newborn, gestational age 26 completed weeks"
+  },
+  {
+    "code": "KA21.36",
+    "description": "Extreme prematurity of newborn, gestational age 27 completed weeks"
+  },
+  {
+    "code": "KA21.3Z",
+    "description": "Extreme prematurity of newborn, unspecified"
+  },
+  {
+    "code": "KA21.4",
+    "description": "Preterm newborn"
+  },
+  {
+    "code": "KA21.40",
+    "description": "Preterm newborn, gestational age 28 completed weeks"
+  },
+  {
+    "code": "KA21.41",
+    "description": "Preterm newborn, gestational age 29 completed weeks"
+  },
+  {
+    "code": "KA21.42",
+    "description": "Preterm newborn, gestational age 30 completed weeks"
+  },
+  {
+    "code": "KA21.43",
+    "description": "Preterm newborn, gestational age 31 completed weeks"
+  },
+  {
+    "code": "KA21.44",
+    "description": "Preterm newborn, gestational age 32 completed weeks"
+  },
+  {
+    "code": "KA21.45",
+    "description": "Preterm newborn, gestational age 33 completed weeks"
+  },
+  {
+    "code": "KA21.46",
+    "description": "Preterm newborn, gestational age 34 completed weeks"
+  },
+  {
+    "code": "KA21.47",
+    "description": "Preterm newborn, gestational age 35 completed weeks"
+  },
+  {
+    "code": "KA21.48",
+    "description": "Preterm newborn, gestational age 36 completed weeks"
+  },
+  {
+    "code": "KA21.4Z",
+    "description": "Preterm newborn, unspecified"
+  },
+  {
+    "code": "KA22",
+    "description": "Disorders of newborn related to long gestation or high birth weight"
+  },
+  {
+    "code": "KA22.0",
+    "description": "Exceptionally large newborn"
+  },
+  {
+    "code": "KA22.1",
+    "description": "Large newborn for gestational age"
+  },
+  {
+    "code": "KA22.2",
+    "description": "Post-term newborn"
+  },
+  {
+    "code": "KA22.3",
+    "description": "Postmaturity syndrome"
+  },
+  {
+    "code": "KA2Y",
+    "description": "Other specified disorders of newborn related to length of gestation or fetal growth"
+  },
+  {
+    "code": "KA2Z",
+    "description": "Disorders of newborn related to length of gestation or fetal growth, unspecified"
+  },
+  {
+    "code": "KA40",
+    "description": "Birth injury to central nervous system"
+  },
+  {
+    "code": "KA40.0",
+    "description": "Intracranial laceration or haemorrhage due to birth injury"
+  },
+  {
+    "code": "KA40.00",
+    "description": "Subdural haemorrhage due to birth injury"
+  },
+  {
+    "code": "KA40.01",
+    "description": "Cerebral haemorrhage due to birth injury"
+  },
+  {
+    "code": "KA40.02",
+    "description": "Cerebellar haemorrhage due to birth injury"
+  },
+  {
+    "code": "KA40.03",
+    "description": "Intraventricular haemorrhage due to birth injury"
+  },
+  {
+    "code": "KA40.04",
+    "description": "Subarachnoid haemorrhage due to birth injury"
+  },
+  {
+    "code": "KA40.05",
+    "description": "Tentorial tear due to birth injury"
+  },
+  {
+    "code": "KA40.06",
+    "description": "Cerebellar contusion due to birth injury"
+  },
+  {
+    "code": "KA40.07",
+    "description": "Cerebral contusion due to birth injury"
+  },
+  {
+    "code": "KA40.08",
+    "description": "Extradural or epidural haemorrhage due to birth injury"
+  },
+  {
+    "code": "KA40.0Y",
+    "description": "Other specified intracranial laceration or haemorrhage due to birth injury"
+  },
+  {
+    "code": "KA40.0Z",
+    "description": "Intracranial laceration or haemorrhage due to birth injury, unspecified"
+  },
+  {
+    "code": "KA40.1",
+    "description": "Cerebral oedema due to birth injury"
+  },
+  {
+    "code": "KA40.2",
+    "description": "Birth injury to spine or spinal cord"
+  },
+  {
+    "code": "KA40.3",
+    "description": "Birth injury to brainstem"
+  },
+  {
+    "code": "KA40.Y",
+    "description": "Other specified birth injury to central nervous system"
+  },
+  {
+    "code": "KA40.Z",
+    "description": "Birth injury to central nervous system, unspecified"
+  },
+  {
+    "code": "KA41",
+    "description": "Birth injury to eye"
+  },
+  {
+    "code": "KA42",
+    "description": "Birth injury to scalp"
+  },
+  {
+    "code": "KA42.0",
+    "description": "Bruising of scalp due to birth injury"
+  },
+  {
+    "code": "KA42.1",
+    "description": "Cephalohaematoma due to birth injury"
+  },
+  {
+    "code": "KA42.2",
+    "description": "Chignon due to birth injury"
+  },
+  {
+    "code": "KA42.3",
+    "description": "Monitoring injury of scalp of newborn"
+  },
+  {
+    "code": "KA42.4",
+    "description": "Subgaleal epicranial subaponeurotic haemorrhage due to birth injury"
+  },
+  {
+    "code": "KA42.Y",
+    "description": "Other specified birth injury to scalp"
+  },
+  {
+    "code": "KA42.Z",
+    "description": "Birth injury to scalp, unspecified"
+  },
+  {
+    "code": "KA43",
+    "description": "Birth injury to skin or soft tissues"
+  },
+  {
+    "code": "KA43.0",
+    "description": "Birth injury to sternocleidomastoid"
+  },
+  {
+    "code": "KA43.1",
+    "description": "Birth injury to external genitalia"
+  },
+  {
+    "code": "KA43.2",
+    "description": "Subcutaneous fat necrosis due to birth injury"
+  },
+  {
+    "code": "KA43.3",
+    "description": "Birth injury to face"
+  },
+  {
+    "code": "KA43.Y",
+    "description": "Other specified birth injury to skin or soft tissues"
+  },
+  {
+    "code": "KA43.Z",
+    "description": "Birth injury to skin or soft tissues, unspecified"
+  },
+  {
+    "code": "KA44",
+    "description": "Birth injury to peripheral nervous system"
+  },
+  {
+    "code": "KA44.0",
+    "description": "Birth injury to cranial nerves"
+  },
+  {
+    "code": "KA44.00",
+    "description": "Birth injury to facial nerve"
+  },
+  {
+    "code": "KA44.0Y",
+    "description": "Birth injury to other specified cranial nerve"
+  },
+  {
+    "code": "KA44.0Z",
+    "description": "Birth injury to unspecified cranial nerve"
+  },
+  {
+    "code": "KA44.1",
+    "description": "Brachial plexus palsy in newborn"
+  },
+  {
+    "code": "KA44.10",
+    "description": "Erb paralysis"
+  },
+  {
+    "code": "KA44.11",
+    "description": "Klumpke paralysis"
+  },
+  {
+    "code": "KA44.1Z",
+    "description": "Brachial plexus palsy in newborn, unspecified"
+  },
+  {
+    "code": "KA44.2",
+    "description": "Phrenic nerve paralysis due to birth injury"
+  },
+  {
+    "code": "KA44.Y",
+    "description": "Birth injury to other specified peripheral nerve"
+  },
+  {
+    "code": "KA44.Z",
+    "description": "Birth injury to unspecified peripheral nerve"
+  },
+  {
+    "code": "KA45",
+    "description": "Birth injury to skeleton"
+  },
+  {
+    "code": "KA45.0",
+    "description": "Fracture of skull due to birth injury"
+  },
+  {
+    "code": "KA45.00",
+    "description": "Linear skull fracture due to birth injury"
+  },
+  {
+    "code": "KA45.01",
+    "description": "Depressed skull fracture due to birth injury"
+  },
+  {
+    "code": "KA45.0Y",
+    "description": "Other specified fracture of skull due to birth injury"
+  },
+  {
+    "code": "KA45.0Z",
+    "description": "Fracture of skull due to birth injury, unspecified"
+  },
+  {
+    "code": "KA45.1",
+    "description": "Occipital osteodiastasis due to birth injury"
+  },
+  {
+    "code": "KA45.2",
+    "description": "Birth injury to facial bones"
+  },
+  {
+    "code": "KA45.20",
+    "description": "Mandibular bone fracture due to birth injury"
+  },
+  {
+    "code": "KA45.21",
+    "description": "Nasal bone fracture due to birth injury"
+  },
+  {
+    "code": "KA45.2Y",
+    "description": "Birth injury to other specified facial bones"
+  },
+  {
+    "code": "KA45.2Z",
+    "description": "Birth injury to facial bones, unspecified"
+  },
+  {
+    "code": "KA45.3",
+    "description": "Birth injury of thorax"
+  },
+  {
+    "code": "KA45.4",
+    "description": "Fracture, dislocation or subluxation of spine due to birth injury"
+  },
+  {
+    "code": "KA45.5",
+    "description": "Fracture of clavicle due to birth injury"
+  },
+  {
+    "code": "KA45.6",
+    "description": "Birth injury to long bones"
+  },
+  {
+    "code": "KA45.Y",
+    "description": "Other specified birth injury to skeleton"
+  },
+  {
+    "code": "KA45.Z",
+    "description": "Birth injury to skeleton, unspecified"
+  },
+  {
+    "code": "KA46",
+    "description": "Birth injury to other organs"
+  },
+  {
+    "code": "KA46.0",
+    "description": "Birth injury to liver"
+  },
+  {
+    "code": "KA46.1",
+    "description": "Birth injury to spleen"
+  },
+  {
+    "code": "KA46.2",
+    "description": "Adrenal haemorrhage due to birth injury"
+  },
+  {
+    "code": "KA46.Y",
+    "description": "Birth injury to other specified organ"
+  },
+  {
+    "code": "KA4Z",
+    "description": "Birth injury, unspecified"
+  },
+  {
+    "code": "KA60",
+    "description": "Sepsis of fetus or newborn"
+  },
+  {
+    "code": "KA61",
+    "description": "Other bacterial infections of the fetus or newborn"
+  },
+  {
+    "code": "KA61.0",
+    "description": "Congenital tuberculosis"
+  },
+  {
+    "code": "KA61.1",
+    "description": "Neonatal listeriosis"
+  },
+  {
+    "code": "KA61.Z",
+    "description": "Bacterial infection of the fetus or newborn, unspecified"
+  },
+  {
+    "code": "KA62",
+    "description": "Viral infection in the fetus or newborn"
+  },
+  {
+    "code": "KA62.0",
+    "description": "Congenital Zika virus infection"
+  },
+  {
+    "code": "KA62.1",
+    "description": "Congenital Epstein-Barr virus infection"
+  },
+  {
+    "code": "KA62.2",
+    "description": "Congenital Varicella Zoster virus infection"
+  },
+  {
+    "code": "KA62.3",
+    "description": "Congenital cytomegalovirus infection"
+  },
+  {
+    "code": "KA62.4",
+    "description": "Congenital echovirus infection"
+  },
+  {
+    "code": "KA62.5",
+    "description": "Congenital enterovirus infection"
+  },
+  {
+    "code": "KA62.6",
+    "description": "Congenital human immunodeficiency virus infection"
+  },
+  {
+    "code": "KA62.7",
+    "description": "Congenital parvovirus syndrome"
+  },
+  {
+    "code": "KA62.8",
+    "description": "Congenital rubella syndrome"
+  },
+  {
+    "code": "KA62.9",
+    "description": "Congenital viral hepatitis"
+  },
+  {
+    "code": "KA62.A",
+    "description": "Perinatal Herpes simplex infection"
+  },
+  {
+    "code": "KA62.Y",
+    "description": "Other specified viral infection in the fetus or newborn"
+  },
+  {
+    "code": "KA62.Z",
+    "description": "Viral infection in the fetus or newborn, unspecified"
+  },
+  {
+    "code": "KA63",
+    "description": "Fungal infection of fetus or newborn"
+  },
+  {
+    "code": "KA63.0",
+    "description": "Malassezia infection in newborn"
+  },
+  {
+    "code": "KA63.1",
+    "description": "Neonatal aspergillosis"
+  },
+  {
+    "code": "KA63.2",
+    "description": "Neonatal candidosis"
+  },
+  {
+    "code": "KA63.Y",
+    "description": "Other specified fungal infection of fetus or newborn"
+  },
+  {
+    "code": "KA63.Z",
+    "description": "Fungal infection of fetus or newborn, unspecified"
+  },
+  {
+    "code": "KA64",
+    "description": "Parasitic diseases in the fetus or newborn"
+  },
+  {
+    "code": "KA64.0",
+    "description": "Congenital toxoplasmosis"
+  },
+  {
+    "code": "KA64.1",
+    "description": "Congenital falciparum malaria"
+  },
+  {
+    "code": "KA64.Y",
+    "description": "Other specified parasitic diseases in the fetus or newborn"
+  },
+  {
+    "code": "KA64.Z",
+    "description": "Parasitic diseases in the fetus or newborn, unspecified"
+  },
+  {
+    "code": "KA65",
+    "description": "Neonatal infections of certain specified sites"
+  },
+  {
+    "code": "KA65.0",
+    "description": "Neonatal conjunctivitis or dacryocystitis"
+  },
+  {
+    "code": "KA65.1",
+    "description": "Omphalitis of newborn"
+  },
+  {
+    "code": "KA65.2",
+    "description": "Neonatal urinary tract infection"
+  },
+  {
+    "code": "KA65.3",
+    "description": "Neonatal infectious mastitis"
+  },
+  {
+    "code": "KA65.4",
+    "description": "Neonatal meningitis"
+  },
+  {
+    "code": "KA65.Y",
+    "description": "Neonatal infections of other specified sites"
+  },
+  {
+    "code": "KA6Y",
+    "description": "Other specified infections of the fetus or newborn"
+  },
+  {
+    "code": "KA6Z",
+    "description": "Infections of the fetus or newborn, unspecified"
+  },
+  {
+    "code": "KA80",
+    "description": "Fetal blood loss"
+  },
+  {
+    "code": "KA80.0",
+    "description": "Fetal blood loss from vasa praevia"
+  },
+  {
+    "code": "KA80.1",
+    "description": "Fetal blood loss from ruptured cord"
+  },
+  {
+    "code": "KA80.2",
+    "description": "Fetal blood loss from placenta"
+  },
+  {
+    "code": "KA80.3",
+    "description": "Haemorrhage into co-twin"
+  },
+  {
+    "code": "KA80.4",
+    "description": "Haemorrhage into maternal circulation"
+  },
+  {
+    "code": "KA80.5",
+    "description": "Fetal blood loss from cut end of co-twin cord"
+  },
+  {
+    "code": "KA80.Y",
+    "description": "Other specified fetal blood loss"
+  },
+  {
+    "code": "KA80.Z",
+    "description": "Fetal blood loss, unspecified"
+  },
+  {
+    "code": "KA81",
+    "description": "Umbilical haemorrhage of newborn"
+  },
+  {
+    "code": "KA82",
+    "description": "Intracranial nontraumatic haemorrhage of fetus or newborn"
+  },
+  {
+    "code": "KA82.0",
+    "description": "Intraventricular nontraumatic haemorrhage, grade 1, of fetus or newborn"
+  },
+  {
+    "code": "KA82.1",
+    "description": "Intraventricular nontraumatic haemorrhage, grade 2, of fetus or newborn"
+  },
+  {
+    "code": "KA82.2",
+    "description": "Intraventricular nontraumatic haemorrhage, grade 3, of fetus or newborn"
+  },
+  {
+    "code": "KA82.3",
+    "description": "Intraventricular nontraumatic haemorrhage, grade 4, of fetus or newborn"
+  },
+  {
+    "code": "KA82.4",
+    "description": "Intracerebral nontraumatic haemorrhage of fetus or newborn"
+  },
+  {
+    "code": "KA82.5",
+    "description": "Subarachnoid nontraumatic haemorrhage of fetus or newborn"
+  },
+  {
+    "code": "KA82.6",
+    "description": "Cerebellar nontraumatic, hemispheres or vermis or posterior fossa haemorrhage of fetus or newborn"
+  },
+  {
+    "code": "KA82.7",
+    "description": "Subdural nontraumatic haemorrhage of fetus or newborn"
+  },
+  {
+    "code": "KA82.Z",
+    "description": "Intracranial nontraumatic haemorrhage of fetus or newborn, unspecified"
+  },
+  {
+    "code": "KA83",
+    "description": "Certain specified neonatal haemorrhages"
+  },
+  {
+    "code": "KA83.0",
+    "description": "Neonatal bleeding originating in the mouth, nose or pharynx"
+  },
+  {
+    "code": "KA83.00",
+    "description": "Neonatal epistaxis"
+  },
+  {
+    "code": "KA83.0Y",
+    "description": "Other specified neonatal bleeding in the mouth, nose or pharynx"
+  },
+  {
+    "code": "KA83.0Z",
+    "description": "Neonatal bleeding originating in the mouth, nose or pharynx, unspecified"
+  },
+  {
+    "code": "KA83.1",
+    "description": "Neonatal bleeding originating in the oesophagus, stomach, small or large intestine"
+  },
+  {
+    "code": "KA83.2",
+    "description": "Neonatal rectal haemorrhage"
+  },
+  {
+    "code": "KA83.3",
+    "description": "Neonatal hepatic haemorrhage"
+  },
+  {
+    "code": "KA83.4",
+    "description": "Neonatal haemorrhage originating in adrenal gland"
+  },
+  {
+    "code": "KA83.5",
+    "description": "Neonatal haemorrhage originating in spleen"
+  },
+  {
+    "code": "KA83.6",
+    "description": "Neonatal haemorrhage originating in kidney or bladder"
+  },
+  {
+    "code": "KA83.7",
+    "description": "Neonatal haemorrhage originating in trachea or pulmonary parenchyma"
+  },
+  {
+    "code": "KA83.8",
+    "description": "Neonatal cutaneous haemorrhage"
+  },
+  {
+    "code": "KA83.9",
+    "description": "Neonatal vaginal or uterine haemorrhage"
+  },
+  {
+    "code": "KA84",
+    "description": "Haemolytic disease of fetus or newborn"
+  },
+  {
+    "code": "KA84.0",
+    "description": "Rh isoimmunization of fetus or newborn"
+  },
+  {
+    "code": "KA84.1",
+    "description": "Isoimmunization due to other red cell factors"
+  },
+  {
+    "code": "KA84.2",
+    "description": "ABO isoimmunization of fetus or newborn"
+  },
+  {
+    "code": "KA84.3",
+    "description": "Haemolytic anaemia due to other unclassified antibodies of fetus or newborn"
+  },
+  {
+    "code": "KA84.4",
+    "description": "Haemolytic disease due to disease of other neonatal organs"
+  },
+  {
+    "code": "KA84.5",
+    "description": "Neonatal haemolysis due to systemic bacterial infection with or without concomitant diffuse intravascular coagulation"
+  },
+  {
+    "code": "KA84.Z",
+    "description": "Haemolytic disease of fetus or newborn, unspecified"
+  },
+  {
+    "code": "KA85",
+    "description": "Hydrops fetalis due to haemolytic disease"
+  },
+  {
+    "code": "KA85.0",
+    "description": "Hydrops fetalis due to isoimmunization"
+  },
+  {
+    "code": "KA85.Y",
+    "description": "Other specified hydrops fetalis due to haemolytic disease"
+  },
+  {
+    "code": "KA85.Z",
+    "description": "Hydrops fetalis due to haemolytic disease, unspecified"
+  },
+  {
+    "code": "KA86",
+    "description": "Neonatal kernicterus"
+  },
+  {
+    "code": "KA87",
+    "description": "Neonatal hyperbilirubinaemia"
+  },
+  {
+    "code": "KA87.0",
+    "description": "Neonatal hyperbilirubinaemia due to swallowed maternal blood"
+  },
+  {
+    "code": "KA87.1",
+    "description": "Neonatal hyperbilirubinaemia due to enzymatic defect in bilirubin degradation"
+  },
+  {
+    "code": "KA87.2",
+    "description": "Neonatal hyperbilirubinaemia due to breast milk inhibitor of bilirubin conjugation"
+  },
+  {
+    "code": "KA87.3",
+    "description": "Neonatal hyperbilirubinaemia due to total parenteral nutrition"
+  },
+  {
+    "code": "KA87.4",
+    "description": "Neonatal hyperbilirubinaemia due to drugs or toxins transmitted from mother"
+  },
+  {
+    "code": "KA87.5",
+    "description": "Neonatal hyperbilirubinaemia due to drugs or toxins given to newborn"
+  },
+  {
+    "code": "KA87.6",
+    "description": "Neonatal hyperbilirubinaemia from other or unspecified hepatocellular damage"
+  },
+  {
+    "code": "KA87.Y",
+    "description": "Other specified neonatal hyperbilirubinaemia"
+  },
+  {
+    "code": "KA87.Z",
+    "description": "Neonatal hyperbilirubinaemia, unspecified"
+  },
+  {
+    "code": "KA88",
+    "description": "Disseminated intravascular coagulation of fetus or newborn"
+  },
+  {
+    "code": "KA89",
+    "description": "Transient neonatal thrombocytopaenia"
+  },
+  {
+    "code": "KA89.0",
+    "description": "Thrombocytopaenia following systemic infection, including diffuse intravascular coagulation"
+  },
+  {
+    "code": "KA89.Y",
+    "description": "Other specified transient neonatal thrombocytopaenia"
+  },
+  {
+    "code": "KA89.Z",
+    "description": "Transient neonatal thrombocytopaenia, unspecified"
+  },
+  {
+    "code": "KA8A",
+    "description": "Polycythaemia neonatorum"
+  },
+  {
+    "code": "KA8A.0",
+    "description": "Polycythaemia neonatorum due to placental insufficiency or fetal intrauterine growth restriction"
+  },
+  {
+    "code": "KA8A.1",
+    "description": "Polycythaemia neonatorum due to twin to twin transfusion"
+  },
+  {
+    "code": "KA8A.2",
+    "description": "Polycythaemia neonatorum due to inherited disorder of erythropoietin production"
+  },
+  {
+    "code": "KA8A.3",
+    "description": "Polycythaemia neonatorum following umbilical cord transfusion or stripping at delivery"
+  },
+  {
+    "code": "KA8A.4",
+    "description": "Polycythaemia neonatorum following blood transfusion"
+  },
+  {
+    "code": "KA8A.Y",
+    "description": "Other specified polycythaemia neonatorum"
+  },
+  {
+    "code": "KA8A.Z",
+    "description": "Polycythaemia neonatorum, unspecified"
+  },
+  {
+    "code": "KA8B",
+    "description": "Anaemia of prematurity"
+  },
+  {
+    "code": "KA8C",
+    "description": "Congenital hypoplastic anaemia"
+  },
+  {
+    "code": "KA8D",
+    "description": "Transient neonatal neutropaenia"
+  },
+  {
+    "code": "KA8E",
+    "description": "Alloimmune neonatal neutropaenia"
+  },
+  {
+    "code": "KA8F",
+    "description": "Neonatal vitamin K deficiency"
+  },
+  {
+    "code": "KA8F.0",
+    "description": "Diffuse bleeding diathesis due to vitamin K deficient haemorrhagic disease of fetus or newborn"
+  },
+  {
+    "code": "KA8F.Y",
+    "description": "Other specified neonatal vitamin K deficiency"
+  },
+  {
+    "code": "KA8F.Z",
+    "description": "Neonatal vitamin K deficiency, unspecified"
+  },
+  {
+    "code": "KA8Y",
+    "description": "Other specified haemorrhagic or haematological disorders of fetus or newborn"
+  },
+  {
+    "code": "KA8Z",
+    "description": "Haemorrhagic or haematological disorders of fetus or newborn, unspecified"
+  },
+  {
+    "code": "KB00",
+    "description": "Neonatal cerebral ischaemia"
+  },
+  {
+    "code": "KB00.0",
+    "description": "Perinatal arterial stroke"
+  },
+  {
+    "code": "KB00.1",
+    "description": "Neonatal cerebral sinovenous thrombosis"
+  },
+  {
+    "code": "KB00.Y",
+    "description": "Other specified neonatal cerebral ischaemia"
+  },
+  {
+    "code": "KB00.Z",
+    "description": "Neonatal cerebral ischaemia, unspecified"
+  },
+  {
+    "code": "KB01",
+    "description": "Periventricular cysts of newborn"
+  },
+  {
+    "code": "KB02",
+    "description": "Neonatal cerebral leukomalacia"
+  },
+  {
+    "code": "KB03",
+    "description": "Neonatal encephalopathy"
+  },
+  {
+    "code": "KB04",
+    "description": "Hypoxic ischaemic encephalopathy of newborn"
+  },
+  {
+    "code": "KB05",
+    "description": "Neonatal hydrocephalus"
+  },
+  {
+    "code": "KB05.0",
+    "description": "Neonatal obstructive hydrocephalus"
+  },
+  {
+    "code": "KB05.Y",
+    "description": "Other specified neonatal hydrocephalus"
+  },
+  {
+    "code": "KB05.Z",
+    "description": "Neonatal hydrocephalus, unspecified"
+  },
+  {
+    "code": "KB06",
+    "description": "Neonatal seizures"
+  },
+  {
+    "code": "KB07",
+    "description": "Compression of brain in neonate"
+  },
+  {
+    "code": "KB08",
+    "description": "Disorders of muscle tone of newborn"
+  },
+  {
+    "code": "KB08.0",
+    "description": "Transient neonatal myasthenia gravis"
+  },
+  {
+    "code": "KB08.1",
+    "description": "Congenital hypertonia"
+  },
+  {
+    "code": "KB08.2",
+    "description": "Congenital hypotonia"
+  },
+  {
+    "code": "KB08.Y",
+    "description": "Other specified disorders of muscle tone of newborn"
+  },
+  {
+    "code": "KB08.Z",
+    "description": "Disorders of muscle tone of newborn, unspecified"
+  },
+  {
+    "code": "KB0Y",
+    "description": "Other specified neurological disorders specific to the perinatal or neonatal period"
+  },
+  {
+    "code": "KB0Z",
+    "description": "Neurological disorders specific to the perinatal or neonatal period, unspecified"
+  },
+  {
+    "code": "KB20",
+    "description": "Intrauterine hypoxia"
+  },
+  {
+    "code": "KB20.0",
+    "description": "Intrauterine hypoxia first noted before onset of labour"
+  },
+  {
+    "code": "KB20.1",
+    "description": "Intrauterine hypoxia first noted during labour or delivery"
+  },
+  {
+    "code": "KB20.Z",
+    "description": "Intrauterine hypoxia, unspecified"
+  },
+  {
+    "code": "KB21",
+    "description": "Birth asphyxia"
+  },
+  {
+    "code": "KB21.0",
+    "description": "Severe birth asphyxia"
+  },
+  {
+    "code": "KB21.1",
+    "description": "Mild and moderate birth asphyxia"
+  },
+  {
+    "code": "KB21.Z",
+    "description": "Birth asphyxia, unspecified"
+  },
+  {
+    "code": "KB22",
+    "description": "Metabolic acidaemia in newborn"
+  },
+  {
+    "code": "KB23",
+    "description": "Respiratory distress of newborn"
+  },
+  {
+    "code": "KB23.0",
+    "description": "Respiratory distress syndrome of newborn"
+  },
+  {
+    "code": "KB23.00",
+    "description": "Respiratory distress syndrome of the newborn, altered by maternal corticosteroid therapy"
+  },
+  {
+    "code": "KB23.01",
+    "description": "Respiratory distress syndrome of the newborn, altered by pulmonary surfactant replacement therapy"
+  },
+  {
+    "code": "KB23.02",
+    "description": "Respiratory distress syndrome of the newborn, altered by maternal corticosteroid therapy or pulmonary surfactant replacement therapy"
+  },
+  {
+    "code": "KB23.0Y",
+    "description": "Other specified respiratory distress syndrome of newborn"
+  },
+  {
+    "code": "KB23.0Z",
+    "description": "Respiratory distress syndrome of newborn, unspecified"
+  },
+  {
+    "code": "KB23.1",
+    "description": "Transient tachypnoea of newborn"
+  },
+  {
+    "code": "KB23.2",
+    "description": "Respiratory instability of prematurity"
+  },
+  {
+    "code": "KB23.Y",
+    "description": "Other specified respiratory distress of newborn"
+  },
+  {
+    "code": "KB23.Z",
+    "description": "Respiratory distress of newborn, unspecified"
+  },
+  {
+    "code": "KB24",
+    "description": "Congenital pneumonia"
+  },
+  {
+    "code": "KB25",
+    "description": "Neonatal tracheitis"
+  },
+  {
+    "code": "KB26",
+    "description": "Neonatal aspiration syndromes"
+  },
+  {
+    "code": "KB26.0",
+    "description": "Neonatal aspiration of meconium"
+  },
+  {
+    "code": "KB26.1",
+    "description": "Neonatal aspiration of amniotic fluid or mucus"
+  },
+  {
+    "code": "KB26.2",
+    "description": "Neonatal aspiration of blood"
+  },
+  {
+    "code": "KB26.3",
+    "description": "Neonatal aspiration of milk or regurgitated food"
+  },
+  {
+    "code": "KB26.Y",
+    "description": "Other specified neonatal aspiration syndromes"
+  },
+  {
+    "code": "KB26.Z",
+    "description": "Neonatal aspiration syndromes, unspecified"
+  },
+  {
+    "code": "KB27",
+    "description": "Pulmonary air leak or related conditions originating in the perinatal period"
+  },
+  {
+    "code": "KB27.0",
+    "description": "Interstitial emphysema originating in the perinatal period"
+  },
+  {
+    "code": "KB27.1",
+    "description": "Pneumothorax originating in the perinatal period"
+  },
+  {
+    "code": "KB27.2",
+    "description": "Pneumomediastinum originating in the perinatal period"
+  },
+  {
+    "code": "KB27.3",
+    "description": "Pneumopericardium originating in the perinatal period"
+  },
+  {
+    "code": "KB27.4",
+    "description": "Pneumoperitoneum, originating in the perinatal period, due to primary pulmonary air leak syndromes"
+  },
+  {
+    "code": "KB27.Y",
+    "description": "Other specified pulmonary air leak or related conditions originating in the perinatal period"
+  },
+  {
+    "code": "KB27.Z",
+    "description": "Pulmonary air leak or related conditions originating in the perinatal period, unspecified"
+  },
+  {
+    "code": "KB28",
+    "description": "Pulmonary haemorrhage originating in the perinatal period"
+  },
+  {
+    "code": "KB28.0",
+    "description": "Tracheobronchial haemorrhage originating in the perinatal period"
+  },
+  {
+    "code": "KB28.1",
+    "description": "Traumatic pulmonary haemorrhage originating in the perinatal period"
+  },
+  {
+    "code": "KB28.Y",
+    "description": "Other specified pulmonary haemorrhage originating in the perinatal period"
+  },
+  {
+    "code": "KB28.Z",
+    "description": "Pulmonary haemorrhage originating in the perinatal period, unspecified"
+  },
+  {
+    "code": "KB29",
+    "description": "Chronic respiratory disease originating in the perinatal period"
+  },
+  {
+    "code": "KB29.0",
+    "description": "Bronchopulmonary dysplasia originating in the perinatal period"
+  },
+  {
+    "code": "KB29.Y",
+    "description": "Other specified chronic respiratory disease originating in the perinatal period"
+  },
+  {
+    "code": "KB29.Z",
+    "description": "Chronic respiratory disease originating in the perinatal period, unspecified"
+  },
+  {
+    "code": "KB2A",
+    "description": "Apnoea of newborn"
+  },
+  {
+    "code": "KB2A.0",
+    "description": "Central neonatal apnoea"
+  },
+  {
+    "code": "KB2A.1",
+    "description": "Obstructive neonatal apnoea"
+  },
+  {
+    "code": "KB2A.2",
+    "description": "Mixed neonatal apnoea"
+  },
+  {
+    "code": "KB2A.3",
+    "description": "Apnoea of newborn, due to neurologic injury"
+  },
+  {
+    "code": "KB2A.Y",
+    "description": "Other specified apnoea of newborn"
+  },
+  {
+    "code": "KB2A.Z",
+    "description": "Apnoea of newborn, unspecified"
+  },
+  {
+    "code": "KB2B",
+    "description": "Primary atelectasis of newborn"
+  },
+  {
+    "code": "KB2C",
+    "description": "Cyanotic attacks of newborn"
+  },
+  {
+    "code": "KB2D",
+    "description": "Respiratory failure of newborn"
+  },
+  {
+    "code": "KB2E",
+    "description": "Respiratory arrest of newborn"
+  },
+  {
+    "code": "KB2F",
+    "description": "Congenital lung or lobar atelectasis"
+  },
+  {
+    "code": "KB2G",
+    "description": "Tracheal haemorrhage of newborn due to airway trauma"
+  },
+  {
+    "code": "KB2H",
+    "description": "Acquired vocal cord paralysis in newborn"
+  },
+  {
+    "code": "KB2J",
+    "description": "Airway obstruction in the neonate due to airway abnormality"
+  },
+  {
+    "code": "KB2J.0",
+    "description": "Hypotonia of hypopharynx in neonate"
+  },
+  {
+    "code": "KB2J.1",
+    "description": "Hypopharyngeal mass in neonate"
+  },
+  {
+    "code": "KB2J.2",
+    "description": "Tracheo-bronchial malacia in neonate"
+  },
+  {
+    "code": "KB2J.Y",
+    "description": "Other specified airway obstruction in the neonate due to airway abnormality"
+  },
+  {
+    "code": "KB2J.Z",
+    "description": "Airway obstruction in the neonate due to airway abnormality, unspecified"
+  },
+  {
+    "code": "KB2K",
+    "description": "Pulmonary cysts in newborn"
+  },
+  {
+    "code": "KB2K.0",
+    "description": "Acquired pulmonary cysts in newborn"
+  },
+  {
+    "code": "KB2K.Z",
+    "description": "Pulmonary cysts in newborn, unspecified"
+  },
+  {
+    "code": "KB2Y",
+    "description": "Other specified respiratory disorders specific to the perinatal or neonatal period"
+  },
+  {
+    "code": "KB2Z",
+    "description": "Respiratory disorders specific to the perinatal or neonatal period, unspecified"
+  },
+  {
+    "code": "KB40",
+    "description": "Neonatal cardiac failure"
+  },
+  {
+    "code": "KB40.0",
+    "description": "Neonatal cardiac failure due to pulmonary overperfusion"
+  },
+  {
+    "code": "KB40.1",
+    "description": "Neonatal cardiac failure due to decreased left ventricular output"
+  },
+  {
+    "code": "KB40.Y",
+    "description": "Other specified neonatal cardiac failure"
+  },
+  {
+    "code": "KB40.Z",
+    "description": "Neonatal cardiac failure, unspecified"
+  },
+  {
+    "code": "KB41",
+    "description": "Cardiac arrhythmias in the neonate"
+  },
+  {
+    "code": "KB42",
+    "description": "Persistent pulmonary hypertension of the newborn"
+  },
+  {
+    "code": "KB44",
+    "description": "Transient myocardial ischaemia of newborn"
+  },
+  {
+    "code": "KB45",
+    "description": "Neonatal hypertension"
+  },
+  {
+    "code": "KB46",
+    "description": "Neonatal hypotension"
+  },
+  {
+    "code": "KB47",
+    "description": "Benign or innocent cardiac murmurs in newborn"
+  },
+  {
+    "code": "KB48",
+    "description": "Patent arterial duct of prematurity"
+  },
+  {
+    "code": "KB4Y",
+    "description": "Other specified cardiovascular disorders present in the perinatal or neonatal period"
+  },
+  {
+    "code": "KB4Z",
+    "description": "Cardiovascular disorders present in the perinatal or neonatal period, unspecified"
+  },
+  {
+    "code": "KB60",
+    "description": "Transitory disorders of carbohydrate metabolism specific to fetus or newborn"
+  },
+  {
+    "code": "KB60.0",
+    "description": "Syndrome of infant of mother with gestational diabetes"
+  },
+  {
+    "code": "KB60.1",
+    "description": "Syndrome of infant of a diabetic mother, type 1 or 2, nongestational, insulin dependent"
+  },
+  {
+    "code": "KB60.2",
+    "description": "Neonatal diabetes mellitus"
+  },
+  {
+    "code": "KB60.20",
+    "description": "Transient neonatal diabetes mellitus"
+  },
+  {
+    "code": "KB60.2Y",
+    "description": "Other specified neonatal diabetes mellitus"
+  },
+  {
+    "code": "KB60.2Z",
+    "description": "Neonatal diabetes mellitus, unspecified"
+  },
+  {
+    "code": "KB60.3",
+    "description": "Neonatal hyperglycaemia"
+  },
+  {
+    "code": "KB60.30",
+    "description": "Neonatal hyperglycaemia due to insulin deficiency"
+  },
+  {
+    "code": "KB60.31",
+    "description": "Neonatal hyperglycaemia due to iatrogenic intravenous therapy"
+  },
+  {
+    "code": "KB60.3Y",
+    "description": "Other specified neonatal hyperglycaemia"
+  },
+  {
+    "code": "KB60.3Z",
+    "description": "Neonatal hyperglycaemia, unspecified"
+  },
+  {
+    "code": "KB60.4",
+    "description": "Neonatal hypoglycaemia"
+  },
+  {
+    "code": "KB60.40",
+    "description": "Transient hyperinsulinaemic neonatal hypoglycaemia"
+  },
+  {
+    "code": "KB60.41",
+    "description": "Transitory iatrogenic neonatal hypoglycaemia"
+  },
+  {
+    "code": "KB60.42",
+    "description": "Other transitory neonatal hypoglycaemia"
+  },
+  {
+    "code": "KB60.4Y",
+    "description": "Other specified neonatal hypoglycaemia"
+  },
+  {
+    "code": "KB60.4Z",
+    "description": "Neonatal hypoglycaemia, unspecified"
+  },
+  {
+    "code": "KB60.Y",
+    "description": "Other specified transitory disorders of carbohydrate metabolism specific to fetus or newborn"
+  },
+  {
+    "code": "KB60.Z",
+    "description": "Transitory disorders of carbohydrate metabolism specific to fetus or newborn, unspecified"
+  },
+  {
+    "code": "KB61",
+    "description": "Transitory neonatal disorders of calcium or magnesium metabolism"
+  },
+  {
+    "code": "KB61.0",
+    "description": "Neonatal hypomagnesaemia"
+  },
+  {
+    "code": "KB61.1",
+    "description": "Neonatal tetany without calcium or magnesium deficiency"
+  },
+  {
+    "code": "KB61.2",
+    "description": "Neonatal hypocalcaemia"
+  },
+  {
+    "code": "KB61.3",
+    "description": "Neonatal osteopenia"
+  },
+  {
+    "code": "KB61.Y",
+    "description": "Other specified transitory neonatal disorders of calcium or magnesium metabolism"
+  },
+  {
+    "code": "KB61.Z",
+    "description": "Transitory neonatal disorders of calcium or magnesium metabolism, unspecified"
+  },
+  {
+    "code": "KB62",
+    "description": "Transitory neonatal disorders of thyroid function"
+  },
+  {
+    "code": "KB62.0",
+    "description": "Transitory neonatal hyperthyroidism"
+  },
+  {
+    "code": "KB62.1",
+    "description": "Other transitory neonatal disorders of thyroid function, not elsewhere classified"
+  },
+  {
+    "code": "KB62.2",
+    "description": "Transient hyperthyrotropinaemia"
+  },
+  {
+    "code": "KB62.3",
+    "description": "Transient hypothyroxinaemia"
+  },
+  {
+    "code": "KB62.Y",
+    "description": "Other specified transitory neonatal disorders of thyroid function"
+  },
+  {
+    "code": "KB62.Z",
+    "description": "Transitory neonatal disorders of thyroid function, unspecified"
+  },
+  {
+    "code": "KB63",
+    "description": "Certain specified transitory neonatal electrolyte or metabolic disturbances"
+  },
+  {
+    "code": "KB63.0",
+    "description": "Late metabolic acidosis of newborn"
+  },
+  {
+    "code": "KB63.1",
+    "description": "Dehydration of newborn"
+  },
+  {
+    "code": "KB63.2",
+    "description": "Disturbances of sodium balance of newborn"
+  },
+  {
+    "code": "KB63.20",
+    "description": "Hyponatremia of newborn"
+  },
+  {
+    "code": "KB63.21",
+    "description": "Hypernatremia of newborn"
+  },
+  {
+    "code": "KB63.2Y",
+    "description": "Other specified disturbances of sodium balance of newborn"
+  },
+  {
+    "code": "KB63.2Z",
+    "description": "Disturbances of sodium balance of newborn, unspecified"
+  },
+  {
+    "code": "KB63.3",
+    "description": "Disturbances of potassium balance of newborn"
+  },
+  {
+    "code": "KB63.30",
+    "description": "Hypokalaemia of newborn"
+  },
+  {
+    "code": "KB63.31",
+    "description": "Hyperkalaemia of newborn"
+  },
+  {
+    "code": "KB63.3Y",
+    "description": "Other specified disturbances of potassium balance of newborn"
+  },
+  {
+    "code": "KB63.3Z",
+    "description": "Disturbances of potassium balance of newborn, unspecified"
+  },
+  {
+    "code": "KB63.4",
+    "description": "Transitory tyrosinaemia of newborn"
+  },
+  {
+    "code": "KB63.5",
+    "description": "Metabolic bone disease of prematurity"
+  },
+  {
+    "code": "KB64",
+    "description": "Transitory neonatal hypoparathyroidism"
+  },
+  {
+    "code": "KB6Z",
+    "description": "Transitory endocrine or metabolic disorders specific to fetus or newborn, unspecified"
+  },
+  {
+    "code": "KB80",
+    "description": "Gastro-oesophageal reflux disease in newborn"
+  },
+  {
+    "code": "KB81",
+    "description": "Oesophagitis in newborn"
+  },
+  {
+    "code": "KB81.0",
+    "description": "Neonatal eosinophilic oesophagitis"
+  },
+  {
+    "code": "KB81.Y",
+    "description": "Other specified oesophagitis in newborn"
+  },
+  {
+    "code": "KB81.Z",
+    "description": "Oesophagitis in newborn, unspecified"
+  },
+  {
+    "code": "KB82",
+    "description": "Prenatal gastric perforation"
+  },
+  {
+    "code": "KB83",
+    "description": "Postnatal gastric perforation"
+  },
+  {
+    "code": "KB84",
+    "description": "Postnatal isolated ileal perforation"
+  },
+  {
+    "code": "KB85",
+    "description": "Prenatal intrauterine intestinal perforation"
+  },
+  {
+    "code": "KB85.0",
+    "description": "Prenatal intrauterine intestinal perforation due to in utero volvulus"
+  },
+  {
+    "code": "KB85.1",
+    "description": "Prenatal intrauterine intestinal perforation due to intestinal atresia or stenosis"
+  },
+  {
+    "code": "KB85.2",
+    "description": "Prenatal intrauterine intestinal perforation due to intraluminal obstruction"
+  },
+  {
+    "code": "KB85.Y",
+    "description": "Other specified prenatal intrauterine intestinal perforation"
+  },
+  {
+    "code": "KB85.Z",
+    "description": "Prenatal intrauterine intestinal perforation, unspecified"
+  },
+  {
+    "code": "KB86",
+    "description": "Postnatal intestinal perforation"
+  },
+  {
+    "code": "KB86.0",
+    "description": "Postnatal intestinal perforation due to drugs"
+  },
+  {
+    "code": "KB86.1",
+    "description": "Postnatal intestinal perforation due to in utero volvulus"
+  },
+  {
+    "code": "KB86.2",
+    "description": "Postnatal intestinal perforation due to intestinal atresia or stenosis"
+  },
+  {
+    "code": "KB86.3",
+    "description": "Postnatal intestinal perforation due to intraluminal obstruction"
+  },
+  {
+    "code": "KB86.Y",
+    "description": "Other specified postnatal intestinal perforation"
+  },
+  {
+    "code": "KB86.Z",
+    "description": "Postnatal intestinal perforation, unspecified"
+  },
+  {
+    "code": "KB87",
+    "description": "Intestinal obstruction of newborn"
+  },
+  {
+    "code": "KB87.0",
+    "description": "Intestinal obstruction due to inspissated milk"
+  },
+  {
+    "code": "KB87.1",
+    "description": "Meconium plug without ileus"
+  },
+  {
+    "code": "KB87.2",
+    "description": "Meconium ileus without perforation"
+  },
+  {
+    "code": "KB87.3",
+    "description": "Transitory ileus of newborn"
+  },
+  {
+    "code": "KB87.4",
+    "description": "Meconium ileus with perforation"
+  },
+  {
+    "code": "KB87.Y",
+    "description": "Other specified intestinal obstruction of newborn"
+  },
+  {
+    "code": "KB87.Z",
+    "description": "Intestinal obstruction of newborn, unspecified"
+  },
+  {
+    "code": "KB88",
+    "description": "Necrotising enterocolitis of newborn"
+  },
+  {
+    "code": "KB88.0",
+    "description": "Necrotising enterocolitis of newborn, Stage 1A & B"
+  },
+  {
+    "code": "KB88.1",
+    "description": "Necrotising enterocolitis of newborn, Stage 2A & B"
+  },
+  {
+    "code": "KB88.2",
+    "description": "Necrotising enterocolitis of newborn, Stage 3A"
+  },
+  {
+    "code": "KB88.3",
+    "description": "Necrotising enterocolitis of newborn, Stage 3B"
+  },
+  {
+    "code": "KB88.Y",
+    "description": "Other specified necrotising enterocolitis of newborn"
+  },
+  {
+    "code": "KB88.Z",
+    "description": "Necrotising enterocolitis of newborn, unspecified"
+  },
+  {
+    "code": "KB89",
+    "description": "Neonatal malabsorption syndromes"
+  },
+  {
+    "code": "KB89.0",
+    "description": "Neonatal malabsorption due to endocrine secreting tumour"
+  },
+  {
+    "code": "KB89.1",
+    "description": "Short bowel syndrome in neonate"
+  },
+  {
+    "code": "KB89.Y",
+    "description": "Other specified neonatal malabsorption syndromes"
+  },
+  {
+    "code": "KB89.Z",
+    "description": "Neonatal malabsorption syndromes, unspecified"
+  },
+  {
+    "code": "KB8A",
+    "description": "Neonatal haematemesis or melaena due to swallowed maternal blood"
+  },
+  {
+    "code": "KB8B",
+    "description": "Neonatal peritonitis"
+  },
+  {
+    "code": "KB8C",
+    "description": "Noninfectious neonatal diarrhoea"
+  },
+  {
+    "code": "KB8Y",
+    "description": "Other specified digestive system disorders of fetus or newborn"
+  },
+  {
+    "code": "KB8Z",
+    "description": "Digestive system disorders of fetus or newborn, unspecified"
+  },
+  {
+    "code": "KC00",
+    "description": "Congenital hydrocele"
+  },
+  {
+    "code": "KC01",
+    "description": "Congenital renal failure"
+  },
+  {
+    "code": "KC0Y",
+    "description": "Other specified genitourinary system disorders specific to the perinatal or neonatal period"
+  },
+  {
+    "code": "KC0Z",
+    "description": "Genitourinary system disorders specific to the perinatal or neonatal period, unspecified"
+  },
+  {
+    "code": "KC20",
+    "description": "Conditions involving the umbilical cord"
+  },
+  {
+    "code": "KC20.0",
+    "description": "Delayed separation of umbilical cord"
+  },
+  {
+    "code": "KC20.1",
+    "description": "Umbilical cutis or polyp of newborn"
+  },
+  {
+    "code": "KC20.2",
+    "description": "Umbilical granuloma of newborn"
+  },
+  {
+    "code": "KC20.Y",
+    "description": "Other specified conditions involving the umbilical cord"
+  },
+  {
+    "code": "KC20.Z",
+    "description": "Conditions involving the umbilical cord, unspecified"
+  },
+  {
+    "code": "KC21",
+    "description": "Inflammatory dermatoses of the newborn"
+  },
+  {
+    "code": "KC21.0",
+    "description": "Neonatal acne"
+  },
+  {
+    "code": "KC21.1",
+    "description": "Neonatal toxic erythema"
+  },
+  {
+    "code": "KC21.2",
+    "description": "Perianal dermatitis of the newborn"
+  },
+  {
+    "code": "KC21.Y",
+    "description": "Other specified inflammatory dermatoses of the newborn"
+  },
+  {
+    "code": "KC21.Z",
+    "description": "Inflammatory dermatoses of the newborn, unspecified"
+  },
+  {
+    "code": "KC22",
+    "description": "Neonatal disorders of subcutaneous fat"
+  },
+  {
+    "code": "KC22.0",
+    "description": "Subcutaneous fat necrosis of the newborn"
+  },
+  {
+    "code": "KC22.1",
+    "description": "Cold panniculitis of the newborn"
+  },
+  {
+    "code": "KC22.2",
+    "description": "Sclerema neonatorum"
+  },
+  {
+    "code": "KC22.Y",
+    "description": "Other specified neonatal disorders of subcutaneous fat"
+  },
+  {
+    "code": "KC22.Z",
+    "description": "Neonatal disorders of subcutaneous fat, unspecified"
+  },
+  {
+    "code": "KC23",
+    "description": "Neonatal disorders of the oral mucosa"
+  },
+  {
+    "code": "KC24",
+    "description": "Neonatal nutritional disorders affecting the skin"
+  },
+  {
+    "code": "KC30",
+    "description": "Skin fragility of prematurity"
+  },
+  {
+    "code": "KC31",
+    "description": "Congenital erosive or vesicular dermatosis healing with reticulated supple scarring"
+  },
+  {
+    "code": "KC3Y",
+    "description": "Other specified skin disorders associated with prematurity"
+  },
+  {
+    "code": "KC40",
+    "description": "Miscellaneous skin disorders in the neonate"
+  },
+  {
+    "code": "KC40.0",
+    "description": "Congenital sucking blisters"
+  },
+  {
+    "code": "KC40.1",
+    "description": "Neonatal milia"
+  },
+  {
+    "code": "KC40.Y",
+    "description": "Other specified skin disorders in the neonate"
+  },
+  {
+    "code": "KC41",
+    "description": "Miscellaneous specified conditions of integument specific to fetus or newborn"
+  },
+  {
+    "code": "KC41.0",
+    "description": "Breast engorgement of newborn"
+  },
+  {
+    "code": "KC41.1",
+    "description": "Hydrops fetalis not due to haemolytic disease"
+  },
+  {
+    "code": "KC41.Y",
+    "description": "Other specified conditions of integument specific to fetus and newborn"
+  },
+  {
+    "code": "KC50",
+    "description": "Neonatal phototherapy burn"
+  },
+  {
+    "code": "KC5Y",
+    "description": "Other specified postnatal iatrogenic skin injury"
+  },
+  {
+    "code": "KC5Z",
+    "description": "Postnatal iatrogenic skin injury, unspecified"
+  },
+  {
+    "code": "KC7Y",
+    "description": "Other specified iatrogenic injuries involving the skin of the neonate"
+  },
+  {
+    "code": "KC9Z",
+    "description": "Disorders involving the integument of fetus or newborn, unspecified"
+  },
+  {
+    "code": "KD10",
+    "description": "Environmental hyperthermia of newborn"
+  },
+  {
+    "code": "KD11",
+    "description": "Fever of newborn"
+  },
+  {
+    "code": "KD12",
+    "description": "Hypothermia of newborn"
+  },
+  {
+    "code": "KD12.0",
+    "description": "Neonatal cold injury syndrome"
+  },
+  {
+    "code": "KD12.Y",
+    "description": "Other specified hypothermia of newborn"
+  },
+  {
+    "code": "KD12.Z",
+    "description": "Hypothermia of newborn, unspecified"
+  },
+  {
+    "code": "KD1Y",
+    "description": "Other specified disturbances of temperature regulation of newborn"
+  },
+  {
+    "code": "KD1Z",
+    "description": "Disturbances of temperature regulation of newborn, unspecified"
+  },
+  {
+    "code": "KD30",
+    "description": "Birth depression"
+  },
+  {
+    "code": "KD30.0",
+    "description": "Birth depression with 5 minute Apgar score 0-3"
+  },
+  {
+    "code": "KD30.1",
+    "description": "Birth depression with 5 minute Apgar score 4-6"
+  },
+  {
+    "code": "KD30.2",
+    "description": "Birth depression with associated metabolic acidaemia of cord blood"
+  },
+  {
+    "code": "KD30.Z",
+    "description": "Birth depression, unspecified"
+  },
+  {
+    "code": "KD31",
+    "description": "Wide cranial sutures of newborn"
+  },
+  {
+    "code": "KD32",
+    "description": "Feeding problems of newborn"
+  },
+  {
+    "code": "KD32.0",
+    "description": "Slow feeding of newborn"
+  },
+  {
+    "code": "KD32.1",
+    "description": "Underfeeding of newborn"
+  },
+  {
+    "code": "KD32.2",
+    "description": "Overfeeding of newborn"
+  },
+  {
+    "code": "KD32.3",
+    "description": "Neonatal difficulty in feeding at breast"
+  },
+  {
+    "code": "KD32.4",
+    "description": "Failure to thrive in newborn"
+  },
+  {
+    "code": "KD32.Y",
+    "description": "Other specified feeding problems of newborn"
+  },
+  {
+    "code": "KD32.Z",
+    "description": "Feeding problems of newborn, unspecified"
+  },
+  {
+    "code": "KD33",
+    "description": "Jittery baby, not elsewhere classified"
+  },
+  {
+    "code": "KD34",
+    "description": "Reactions or intoxications due to drugs administered to fetus or newborn"
+  },
+  {
+    "code": "KD35",
+    "description": "Neonatal withdrawal syndrome from maternal use of drugs of addiction"
+  },
+  {
+    "code": "KD36",
+    "description": "Withdrawal symptoms from therapeutic use of drugs in newborn"
+  },
+  {
+    "code": "KD37",
+    "description": "Exposure to tobacco smoke in the perinatal period"
+  },
+  {
+    "code": "KD38",
+    "description": "Meconium staining"
+  },
+  {
+    "code": "KD39",
+    "description": "Complications of intrauterine procedures, not elsewhere classified"
+  },
+  {
+    "code": "KD39.0",
+    "description": "Fetus or newborn affected by amniocentesis"
+  },
+  {
+    "code": "KD39.1",
+    "description": "Fetus or newborn affected by chorionic villous sampling"
+  },
+  {
+    "code": "KD39.2",
+    "description": "Fetus or newborn affected by fetal blood sampling"
+  },
+  {
+    "code": "KD39.3",
+    "description": "Fetus or newborn affected by complications of fetal surgery"
+  },
+  {
+    "code": "KD39.4",
+    "description": "Fetus or newborn affected by complications of intrauterine fetal surgery"
+  },
+  {
+    "code": "KD39.Y",
+    "description": "Other specified complications of intrauterine procedures, not elsewhere classified"
+  },
+  {
+    "code": "KD39.Z",
+    "description": "Complications of intrauterine procedures, not elsewhere classified, unspecified"
+  },
+  {
+    "code": "KD3A",
+    "description": "Termination of pregnancy, affecting surviving fetus or newborn"
+  },
+  {
+    "code": "KD3B",
+    "description": "Fetal death, cause not specified"
+  },
+  {
+    "code": "KD3B.0",
+    "description": "Antepartum fetal death"
+  },
+  {
+    "code": "KD3B.1",
+    "description": "Intrapartum fetal death"
+  },
+  {
+    "code": "KD3B.Z",
+    "description": "Unspecified time of fetal death, cause not specified"
+  },
+  {
+    "code": "KD3C",
+    "description": "Vomiting in newborn"
+  },
+  {
+    "code": "KD3C.0",
+    "description": "Bilious vomiting of newborn"
+  },
+  {
+    "code": "KD3C.Y",
+    "description": "Other specified vomiting in newborn"
+  },
+  {
+    "code": "KD3C.Z",
+    "description": "Vomiting in newborn, unspecified"
+  },
+  {
+    "code": "KD3Y",
+    "description": "Other specified disorders originating in the perinatal period"
+  },
+  {
+    "code": "KD5Z",
+    "description": "Conditions originating in the perinatal or neonatal period, unspecified"
+  }
+]

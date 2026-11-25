@@ -6,13 +6,16 @@ import {
   UpdateDateColumn,
   OneToOne,
   JoinColumn,
+  Index,
 } from 'typeorm';
+
 import type { Relation } from 'typeorm';
 
 import { Case } from './case.entity.js';
 import { PregnancyPeriod } from '../enums/case.enum.js';
 
 @Entity('nearMissDetails')
+@Index('IDX_NEAR_MISS_DATE_OF_COMPLICATION', ['dateOfComplication'])
 export class NearMissDetail {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -21,6 +24,7 @@ export class NearMissDetail {
   caseId: string;
 
   @OneToOne(() => Case, (caseRecord) => caseRecord.nearMissDetails, {
+    nullable: false,
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'caseId' })

@@ -12,7 +12,7 @@ import {
 import { User } from '../../../../shared/users/entities/user.entity.js';
 import { MentorInvitationStatus } from '../enum/invitation.enum.js';
 
-@Entity('mentor_invitations')
+@Entity('mentorInvitations')
 @Index(['userId', 'status'])
 export class MentorInvitation {
   @PrimaryGeneratedColumn('uuid')

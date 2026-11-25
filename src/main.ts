@@ -1,15 +1,52 @@
-
+import { setDefaultResultOrder } from 'node:dns';
+import { randomUUID } from 'node:crypto';
+import type { NextFunction, Request, Response } from 'express';
 import { NestFactory } from '@nestjs/core';
-import { ValidationPipe } from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
+import { ClassSerializerInterceptor, Logger, ValidationPipe } from '@nestjs/common';
+import { HttpExceptionFilter } from './common/filters/http-exception.filter.js';
 import { AppModule, ObserveInstrument } from './app.module.js';
+import { ApiResponseInterceptor } from './common/interceptors/api-response.interceptor.js';
+
+// Prefer IPv4 to avoid SMTP connection timeouts caused by IPv6 routing.
+setDefaultResultOrder('ipv4first');
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     instrument: ObserveInstrument,
   });
 
+  const httpLogger = new Logger('HTTP');
+
   // Global API prefix
   app.setGlobalPrefix('api');
+
+
+  // Assign a unique ID to every request and log its outcome.
+  app.use((request: Request, response: Response, next: NextFunction) => {
+    const requestId = randomUUID();
+    const startedAt = process.hrtime.bigint();
+
+    request.headers['x-request-id'] = requestId;
+    response.setHeader('X-Request-ID', requestId);
+
+    response.on('finish', () => {
+      const durationMs =
+        Number(process.hrtime.bigint() - startedAt) / 1_000_000;
+
+      httpLogger.log(
+        JSON.stringify({
+          requestId,
+          method: request.method,
+          path: request.path,
+          statusCode: response.statusCode,
+          durationMs: Number(durationMs.toFixed(2)),
+        }),
+      );
+    });
+
+    next();
+  });
 
   // Global validation
   app.useGlobalPipes(
@@ -18,6 +55,15 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
       transform: true,
     }),
+  );
+
+  app.useGlobalFilters(
+    new HttpExceptionFilter(),
+  );
+
+  app.useGlobalInterceptors(
+    new ApiResponseInterceptor(),
+    new ClassSerializerInterceptor(app.get(Reflector)),
   );
 
   // Enable CORS when needed

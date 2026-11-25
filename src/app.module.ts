@@ -11,7 +11,6 @@ import { getDatabaseConfig } from './config/database.config.js';
 
 import { UsersModule } from './shared/users/users.module.js';
 import { MpdsrModule } from './mpdsr/mpdsr.module.js';
-// import { EmoncModule } from './emonc/emonc.module.js';
 import { EmoncModule } from './emonc/emonc.module.js';
 import { LocationsModule } from './locations/locations.module.js';
 import { FacilitiesModule } from './facilities/facilities.module.js';
@@ -19,6 +18,10 @@ import { UserLocationsModule } from './shared/users/user-locations/user-location
 import { UserOrganizationAssignmentsModule } from './shared/user-organization-assignments/user-organization-assignments.module.js';
 import { RbacModule } from './shared/rbac/rbac.module.js';
 import { AuthModule } from './auth/auth.module.js';
+import { APP_GUARD } from '@nestjs/core';
+import { JwtAuthGuard } from './auth/guards/jwt-auth.guard.js';
+import { EmailModule } from './shared/email/email.module.js';
+import { InvitationsModule } from './shared/invitations/invitations.module.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -46,7 +49,9 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     UsersModule,
     MpdsrModule,
     EmoncModule,
-    // EmoncModule,
+    EmailModule,
+    InvitationsModule,
+    EmoncModule,
     LocationsModule,
     UserLocationsModule,
     FacilitiesModule,
@@ -56,6 +61,12 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
   ],
 
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
+  ],
 })
 export class AppModule {}
