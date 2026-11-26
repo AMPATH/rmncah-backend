@@ -9,7 +9,7 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 
 import {
-  Repository,
+
   EntityManager,
 } from 'typeorm';
 import { DataSource, Repository } from 'typeorm';
@@ -96,7 +96,7 @@ export class UsersService {
       );
     }
     // Automatically invite the newly created pending account.
-    await this.invitationsService.issueInvitation(user.id, createdBy ?? null);
+    //await this.invitationsService.issueInvitation(user.id, createdBy ?? null);
 
     return user;
   }
@@ -270,7 +270,9 @@ export class UsersService {
   async delete(id: string): Promise<void> {
     await this.findOne(id);
     await this.userRepository.delete(id);
+  }
   // Soft-deactivate a user account and revoke its access.
+
   async deactivate(id: string, deletedBy: string): Promise<void> {
     await this.dataSource.transaction(async (manager) => {
       const userRepository = manager.getRepository(User);
