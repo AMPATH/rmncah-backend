@@ -1,10 +1,17 @@
+
 import {
   Injectable,
   NotFoundException,
   ConflictException,
   ForbiddenException,
 } from '@nestjs/common';
+
 import { InjectRepository } from '@nestjs/typeorm';
+
+import {
+  Repository,
+  EntityManager,
+} from 'typeorm';
 import { DataSource, Repository } from 'typeorm';
 
 import { UpdateUserDto } from './dto/update-user.dto.js';
@@ -29,33 +36,46 @@ export class UsersService {
     private readonly dataSource: DataSource,
   ) {}
 
-  // Create a new user account
+  // Create a new user account.
   async create(
     createUserDto: CreateUserDto,
     createdBy?: string,
+    manager?: EntityManager,
   ): Promise<User> {
+    const repository = manager
+      ? manager.getRepository(User)
+      : this.userRepository;
+
     const email = createUserDto.email.toLowerCase();
 
-    // Check whether email already exists
-    const existingUser = await this.findByEmail(email);
+    // Check whether email already exists.
+    const existingUser = await repository.findOne({
+      where: { email },
+    });
 
     if (existingUser) {
-      throw new ConflictException('Email is already registered');
+      throw new ConflictException(
+        'Email is already registered',
+      );
     }
 
-    // Check whether phone number already exists, if provided
+    // Check whether phone number already exists.
     if (createUserDto.phoneNumber) {
-      const existingPhoneNumber = await this.userRepository.findOne({
-        where: { phoneNumber: createUserDto.phoneNumber },
+      const existingPhoneNumber = await repository.findOne({
+        where: {
+          phoneNumber: createUserDto.phoneNumber,
+        },
       });
 
       if (existingPhoneNumber) {
-        throw new ConflictException('Phone number is already registered');
+        throw new ConflictException(
+          'Phone number is already registered',
+        );
       }
     }
 
-    // Prepare the new pending user account
-    const newUser = this.userRepository.create({
+    // Prepare the new pending user account.
+    const newUser = repository.create({
       ...createUserDto,
       email,
       passwordHash: null,
@@ -64,8 +84,17 @@ export class UsersService {
       createdBy: createdBy ?? null,
     });
 
-    const user = await this.userRepository.save(newUser);
+    // Save using the transaction-aware repository.
+    const user = await repository.save(newUser);
 
+    // Invitations must only be issued after the transaction
+    // commits. The caller owns the transaction lifecycle.
+    if (!manager) {
+      await this.invitationsService.issueInvitation(
+        user.id,
+        createdBy ?? null,
+      );
+    }
     // Automatically invite the newly created pending account.
     await this.invitationsService.issueInvitation(user.id, createdBy ?? null);
 
@@ -136,28 +165,32 @@ export class UsersService {
     return this.userRepository.find();
   }
 
-  // Retrieve one user by ID
+  // Retrieve one user by ID.
   async findOne(id: string): Promise<User> {
     const user = await this.userRepository.findOne({
       where: { id },
     });
 
     if (!user) {
-      throw new NotFoundException(`User with ID ${id} not found`);
+      throw new NotFoundException(
+        `User with ID ${id} not found`,
+      );
     }
 
     return user;
   }
 
-  // Find user by email
+  // Find user by email.
   async findByEmail(email: string): Promise<User | null> {
     return this.userRepository.findOne({
       where: { email: email.toLowerCase() },
     });
   }
 
-  // Find user by email, including password hash for authentication
-  async findByEmailWithPassword(email: string): Promise<User | null> {
+  // Find user by email, including password hash.
+  async findByEmailWithPassword(
+    email: string,
+  ): Promise<User | null> {
     return this.userRepository
       .createQueryBuilder('user')
       .addSelect('user.passwordHash')
@@ -167,8 +200,10 @@ export class UsersService {
       .getOne();
   }
 
-  // Find a user by ID and explicitly include the password hash.
-  async findByIdWithPassword(id: string): Promise<User | null> {
+  // Find a user by ID and explicitly include password hash.
+  async findByIdWithPassword(
+    id: string,
+  ): Promise<User | null> {
     return this.userRepository
       .createQueryBuilder('user')
       .addSelect('user.passwordHash')
@@ -176,14 +211,17 @@ export class UsersService {
       .getOne();
   }
 
-  // Update the password only if the verified hash has not changed.
+  // Update password only if the verified hash has not changed.
   async updatePasswordIfUnchanged(
     id: string,
     currentPasswordHash: string,
     newPasswordHash: string,
   ): Promise<boolean> {
     const result = await this.userRepository.update(
-      { id, passwordHash: currentPasswordHash },
+      {
+        id,
+        passwordHash: currentPasswordHash,
+      },
       {
         passwordHash: newPasswordHash,
         mustChangePassword: false,
@@ -193,15 +231,20 @@ export class UsersService {
     return (result.affected ?? 0) === 1;
   }
 
-  // Update the user's last successful login timestamp
+  // Update last successful login timestamp.
   async updateLastLogin(id: string): Promise<void> {
     await this.userRepository.update(id, {
       lastLoginAt: new Date(),
     });
   }
 
-  // Update user details
-  async update(id: string, updateData: UpdateUserDto): Promise<User> {
+  // Update user details.
+  async update(
+    id: string,
+    updateData: UpdateUserDto & {
+      status?: AccountStatus;
+    },
+  ): Promise<User> {
     const user = await this.findOne(id);
 
     if (updateData.email) {
@@ -210,7 +253,9 @@ export class UsersService {
       const existingUser = await this.findByEmail(email);
 
       if (existingUser && existingUser.id !== id) {
-        throw new ConflictException('Email is already registered');
+        throw new ConflictException(
+          'Email is already registered',
+        );
       }
 
       updateData.email = email;
@@ -221,6 +266,10 @@ export class UsersService {
     return this.userRepository.save(user);
   }
 
+  // Delete user.
+  async delete(id: string): Promise<void> {
+    await this.findOne(id);
+    await this.userRepository.delete(id);
   // Soft-deactivate a user account and revoke its access.
   async deactivate(id: string, deletedBy: string): Promise<void> {
     await this.dataSource.transaction(async (manager) => {

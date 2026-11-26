@@ -5,6 +5,15 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { MentorsModule } from './mentors/mentors.module.js';
 import { MenteesModule } from './mentees/mentees.module.js';
 import { CohortsModule } from './cohorts/cohorts.module.js';
+import { RbacModule } from '../shared/rbac/rbac.module.js';
+
+@Module({
+    imports: [
+        MentorsModule,
+        MenteesModule,
+        CohortsModule,
+        RbacModule
+    ],
 import { ModulesModule } from './modules/modules.module.js';
 
 
