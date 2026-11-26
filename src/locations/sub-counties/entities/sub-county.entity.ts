@@ -14,7 +14,6 @@ import {
 import type { Relation } from 'typeorm';
 
 import { County } from '../../counties/entities/county.entity.js';
-import { PrimaryCareNetwork } from '../../../mpdsr/pcns/entities/primary-care-network.entity.js';
 import { Facility } from '../../../facilities/entities/facility.entity.js';
 
 @Entity('subCounties')
@@ -38,9 +37,6 @@ export class SubCounty {
   })
   @JoinColumn({ name: 'countyId' })
   county: Relation<County>;
-
-  @OneToMany(() => PrimaryCareNetwork, (pcn) => pcn.subCounty)
-  pcns: Relation<PrimaryCareNetwork[]>;
 
   @OneToMany(() => Facility, (facility) => facility.subCounty)
   facilities: Relation<Facility[]>;

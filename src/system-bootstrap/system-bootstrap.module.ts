@@ -12,8 +12,6 @@ import { UserOrganizationAssignment } from '../shared/user-organization-assignme
 
 import { County } from '../locations/counties/entities/county.entity.js';
 import { SubCounty } from '../locations/sub-counties/entities/sub-county.entity.js';
-import { PrimaryCareNetwork } from '../mpdsr/pcns/entities/primary-care-network.entity.js';
-import { FacilityPcnMembership } from '../mpdsr/pcns/entities/facility-pcn-membership.entity.js';
 import { Facility } from '../facilities/entities/facility.entity.js';
 import { CommunityUnit } from '../locations/community-units/entities/community-unit.entity.js';
 
@@ -44,8 +42,6 @@ import { RolePermission } from '../shared/rbac/role-permissions/entities/role-pe
       UserOrganizationAssignment,
       County,
       SubCounty,
-      PrimaryCareNetwork,
-      FacilityPcnMembership,
       Facility,
       CommunityUnit,
       Permission,

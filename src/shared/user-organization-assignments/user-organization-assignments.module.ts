@@ -5,7 +5,6 @@ import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard.js';
 
 import { County } from '../../locations/counties/entities/county.entity.js';
 import { SubCounty } from '../../locations/sub-counties/entities/sub-county.entity.js';
-import { PrimaryCareNetwork } from '../../mpdsr/pcns/entities/primary-care-network.entity.js';
 import { Facility } from '../../facilities/entities/facility.entity.js';
 import { CommunityUnit } from '../../locations/community-units/entities/community-unit.entity.js';
 
@@ -13,6 +12,7 @@ import { AuthorizationModule } from '../rbac/authorization/authorization.module.
 import { User } from '../users/entities/user.entity.js';
 
 import { UserOrganizationAssignment } from './entities/user-organization-assignment.entity.js';
+import { UserRoleAssignment } from '../rbac/user-role-assignments/entities/user-role-assignment.entity.js';
 import { UserOrganizationAssignmentsController } from './user-organization-assignments.controller.js';
 import { UserOrganizationAssignmentsService } from './user-organization-assignments.service.js';
 
@@ -23,9 +23,9 @@ import { UserOrganizationAssignmentsService } from './user-organization-assignme
       User,
       County,
       SubCounty,
-      PrimaryCareNetwork,
       Facility,
       CommunityUnit,
+      UserRoleAssignment,
     ]),
     AuthorizationModule,
   ],

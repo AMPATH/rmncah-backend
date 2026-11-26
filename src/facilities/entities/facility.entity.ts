@@ -13,7 +13,6 @@ import {
 import type { Relation } from 'typeorm';
 
 import { SubCounty } from '../../locations/sub-counties/entities/sub-county.entity.js';
-import { FacilityPcnMembership } from '../../mpdsr/pcns/entities/facility-pcn-membership.entity.js';
 import { CommunityUnit } from '../../locations/community-units/entities/community-unit.entity.js';
 
 import {
@@ -79,9 +78,6 @@ export class Facility {
   })
   @JoinColumn({ name: 'subCountyId' })
   subCounty: Relation<SubCounty>;
-
-  @OneToMany(() => FacilityPcnMembership, (membership) => membership.facility)
-  pcnMemberships: Relation<FacilityPcnMembership[]>;
 
   @OneToMany(() => CommunityUnit, (communityUnit) => communityUnit.facility)
   communityUnits: Relation<CommunityUnit[]>;

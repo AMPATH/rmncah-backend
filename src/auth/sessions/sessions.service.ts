@@ -1,7 +1,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { createHash, randomBytes } from 'node:crypto';
-import { DataSource, IsNull, Repository } from 'typeorm';
+import { DataSource, EntityManager, IsNull, Repository } from 'typeorm';
 
 import { UserSession } from './entities/user-session.entity.js';
 import { UserSessionRefreshToken } from './entities/user-session-refresh-token.entity.js';
@@ -184,8 +184,17 @@ export class SessionsService {
   }
 
   // Revokes all active sessions belonging to a user.
-  async revokeAllSessions(userId: string): Promise<void> {
-    await this.sessionsRepository.update(
+  // An optional EntityManager allows this operation to participate
+  // in a transaction started by another service.
+  async revokeAllSessions(
+    userId: string,
+    manager?: EntityManager,
+  ): Promise<void> {
+    const repository = manager
+      ? manager.getRepository(UserSession)
+      : this.sessionsRepository;
+
+    await repository.update(
       {
         userId,
         revokedAt: IsNull(),

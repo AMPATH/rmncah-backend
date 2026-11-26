@@ -1,6 +1,7 @@
 import {
   BadRequestException,
   ConflictException,
+  ForbiddenException,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
@@ -9,6 +10,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { User } from '../../users/entities/user.entity.js';
+import { AccountStatus } from '../../users/enum/users.enum.js';
+import { Facility } from '../../../facilities/entities/facility.entity.js';
 import { UserOrganizationAssignment } from '../../user-organization-assignments/entities/user-organization-assignment.entity.js';
 import { OrganizationLevel } from '../../user-organization-assignments/enum/organization-level.enum.js';
 
@@ -56,7 +59,7 @@ const ROLE_RULES: Record<string, RoleRule> = {
 
   PCN_COORDINATOR: {
     module: SystemModule.MPDSR,
-    organizationLevel: OrganizationLevel.PCN,
+    organizationLevel: OrganizationLevel.FACILITY,
   },
 
   SUBCOUNTY_COORDINATOR: {
@@ -104,11 +107,128 @@ export class UserRoleAssignmentsService {
 
     @InjectRepository(UserOrganizationAssignment)
     private readonly organizationAssignmentRepository: Repository<UserOrganizationAssignment>,
+
+    @InjectRepository(Facility)
+    private readonly facilityRepository: Repository<Facility>,
   ) {}
 
   /**
    * Assign a role after validating the user, role and organizational scope.
    */
+  /**
+   * Assign only MENTOR or MENTEE to a facility in the Program Lead's county.
+   */
+  async assignRoleForProgramLead(
+    dto: CreateUserRoleAssignmentDto,
+    assignedBy: string,
+    actorOrganizationAssignmentId: string,
+  ): Promise<UserRoleAssignment> {
+    const now = new Date();
+
+    const actorRoleAssignment = await this.assignmentRepository
+      .createQueryBuilder('roleAssignment')
+      .innerJoinAndSelect('roleAssignment.role', 'role')
+      .innerJoin('roleAssignment.user', 'actorUser')
+      .innerJoinAndSelect(
+        'roleAssignment.organizationAssignment',
+        'organizationAssignment',
+      )
+      .where('roleAssignment.userId = :actorId', { actorId: assignedBy })
+      .andWhere('actorUser.status = :accountStatus', {
+        accountStatus: AccountStatus.ACTIVE,
+      })
+      .andWhere('organizationAssignment.userId = :actorId', {
+        actorId: assignedBy,
+      })
+      .andWhere('role.code = :roleCode', { roleCode: 'PROGRAM_LEAD' })
+      .andWhere('role.module = :module', { module: SystemModule.EMONC })
+      .andWhere('role.isActive = :isActive', { isActive: true })
+      .andWhere(
+        'roleAssignment.organizationAssignmentId = :assignmentId',
+        { assignmentId: actorOrganizationAssignmentId },
+      )
+      .andWhere('roleAssignment.revokedAt IS NULL')
+      .andWhere(
+        '(roleAssignment.expiresAt IS NULL OR roleAssignment.expiresAt > :now)',
+        { now },
+      )
+      .andWhere('organizationAssignment.level = :level', {
+        level: OrganizationLevel.COUNTY,
+      })
+      .andWhere('organizationAssignment.endDate IS NULL')
+      .andWhere('organizationAssignment.startDate <= :now', { now })
+      .getOne();
+
+    const actorCountyId =
+      actorRoleAssignment?.organizationAssignment?.countyId;
+
+    if (!actorCountyId) {
+      throw new ForbiddenException(
+        'An active Program Lead county assignment is required',
+      );
+    }
+
+    const targetRole = await this.roleRepository.findOne({
+      where: { id: dto.roleId },
+    });
+
+    if (!targetRole) {
+      throw new NotFoundException('Role not found');
+    }
+
+    if (
+      targetRole.module !== SystemModule.EMONC ||
+      !['MENTOR', 'MENTEE'].includes(targetRole.code)
+    ) {
+      throw new ForbiddenException(
+        'Program Leads may assign only the MENTOR or MENTEE role',
+      );
+    }
+
+    if (!dto.organizationAssignmentId) {
+      throw new BadRequestException(
+        'A facility organizational assignment is required',
+      );
+    }
+
+    const targetOrganizationAssignment =
+      await this.organizationAssignmentRepository.findOne({
+        where: { id: dto.organizationAssignmentId },
+      });
+
+    if (
+      !targetOrganizationAssignment ||
+      targetOrganizationAssignment.userId !== dto.userId ||
+      targetOrganizationAssignment.level !== OrganizationLevel.FACILITY ||
+      !targetOrganizationAssignment.facilityId
+    ) {
+      throw new ForbiddenException(
+        'The target role must be assigned through a facility-level assignment',
+      );
+    }
+
+    const facility = await this.facilityRepository.findOne({
+      where: {
+        id: targetOrganizationAssignment.facilityId,
+        isActive: true,
+      },
+      relations: { subCounty: true },
+    });
+
+    if (!facility || !facility.subCounty) {
+      throw new NotFoundException('Active facility or its sub-county not found');
+    }
+
+    if (facility.subCounty.countyId !== actorCountyId) {
+      throw new ForbiddenException(
+        'You may assign roles only to facilities within your assigned county',
+      );
+    }
+
+    // Reuse the standard role assignment validations and persistence.
+    return this.assignRole(dto, assignedBy);
+  }
+
   async assignRole(
     dto: CreateUserRoleAssignmentDto,
     assignedBy: string,
