@@ -1,6 +1,8 @@
+
 import { setDefaultResultOrder } from 'node:dns';
 import { randomUUID } from 'node:crypto';
 import type { NextFunction, Request, Response } from 'express';
+
 import { NestFactory, Reflector } from '@nestjs/core';
 import {
   ClassSerializerInterceptor,
@@ -11,6 +13,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { HttpExceptionFilter } from './common/filters/http-exception.filter.js';
 import { AppModule, ObserveInstrument } from './app.module.js';
+import { HttpExceptionFilter } from './common/filters/http-exception.filter.js';
 import { ApiResponseInterceptor } from './common/interceptors/api-response.interceptor.js';
 
 // Prefer IPv4 to avoid SMTP connection timeouts caused by IPv6 routing.
@@ -61,8 +64,26 @@ async function bootstrap() {
     }),
   );
 
+  // Swagger configuration
+  const config = new DocumentBuilder()
+    .setTitle('RMNCAH API')
+    .setDescription('RMNCAH and EmONC Management System API')
+    .setVersion('1.0')
+    .addBearerAuth()
+    .build();
+
+  const document = SwaggerModule.createDocument(app, config);
+
+  SwaggerModule.setup('api/docs', app, document, {
+    useGlobalPrefix: false,
+  });
+
+  console.log('Swagger configured at /api/docs');
+
+  // Global exception filter
   app.useGlobalFilters(new HttpExceptionFilter());
 
+  // Global interceptors
   app.useGlobalInterceptors(
     new ApiResponseInterceptor(),
     new ClassSerializerInterceptor(app.get(Reflector)),
