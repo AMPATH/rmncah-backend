@@ -6,19 +6,10 @@ import { MentorsModule } from './mentors/mentors.module.js';
 import { MenteesModule } from './mentees/mentees.module.js';
 import { CohortsModule } from './cohorts/cohorts.module.js';
 import { RbacModule } from '../shared/rbac/rbac.module.js';
-
-@Module({
-    imports: [
-        MentorsModule,
-        MenteesModule,
-        CohortsModule,
-        RbacModule
-    ],
 import { ModulesModule } from './modules/modules.module.js';
-
-
 import { UserRoleAssignment } from '../shared/rbac/user-role-assignments/entities/user-role-assignment.entity.js';
 import { RolesGuard } from '../shared/rbac/roles/guards/roles.guard.js';
+import { ProgressModule } from './progress/progress.module.js';
 
 @Module({
   imports: [
@@ -26,8 +17,12 @@ import { RolesGuard } from '../shared/rbac/roles/guards/roles.guard.js';
     MentorsModule,
     MenteesModule,
     CohortsModule,
+    ProgressModule,
+    RbacModule,
     ModulesModule,
   ],
+ 
+    
   controllers: [],
   providers: [RolesGuard],
   exports: [RolesGuard],

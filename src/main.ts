@@ -11,7 +11,7 @@ import {
 } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
-import { HttpExceptionFilter } from './common/filters/http-exception.filter.js';
+//import { HttpExceptionFilter } from './common/filters/http-exception.filter.js';
 import { AppModule, ObserveInstrument } from './app.module.js';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter.js';
 import { ApiResponseInterceptor } from './common/interceptors/api-response.interceptor.js';
