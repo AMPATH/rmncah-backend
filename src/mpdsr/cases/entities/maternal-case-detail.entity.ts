@@ -18,6 +18,7 @@ import { PregnancyPeriod } from '../enums/case.enum.js';
 
 @Entity('maternalCaseDetails')
 @Index('IDX_MATERNAL_PROVISIONAL_CAUSE', ['provisionalCauseId'])
+@Index('IDX_MATERNAL_FINAL_CAUSE', ['finalCauseId'])
 export class MaternalCaseDetail {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -56,6 +57,16 @@ export class MaternalCaseDetail {
   })
   @JoinColumn({ name: 'provisionalCauseId' })
   provisionalCause: Relation<Icd11Cause>;
+
+  @Column({ type: 'varchar', length: 36, nullable: true })
+  finalCauseId: string | null;
+
+  @ManyToOne(() => Icd11Cause, {
+    nullable: true,
+    onDelete: 'RESTRICT',
+  })
+  @JoinColumn({ name: 'finalCauseId' })
+  finalCause: Relation<Icd11Cause> | null;
 
   @CreateDateColumn({ type: 'datetime' })
   createdAt: Date;

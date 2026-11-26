@@ -1,3 +1,5 @@
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+
 import {
   Controller,
   Get,
@@ -17,10 +19,13 @@ import { PermissionsGuard } from '../authorization/guards/permissions.guard.js';
 import { RolesService } from './roles.service.js';
 
 @Controller('roles')
+@ApiTags('RBAC - Roles')
+@ApiBearerAuth()
 @UseGuards(JwtAuthGuard, PermissionsGuard)
 export class RolesController {
   constructor(private readonly rolesService: RolesService) {}
 
+  @ApiOperation({ summary: 'Retrieve all roles, optionally filtered by module' })
   @Get()
   @RequirePermissions(SystemModule.PLATFORM, 'platform.roles.read')
   findAll(
@@ -30,6 +35,7 @@ export class RolesController {
     return this.rolesService.findAll(module);
   }
 
+  @ApiOperation({ summary: 'Retrieve a role by its code' })
   @Get(':code')
   @RequirePermissions(SystemModule.PLATFORM, 'platform.roles.read')
   async findByCode(@Param('code') code: string) {

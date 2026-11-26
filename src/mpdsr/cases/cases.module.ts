@@ -9,7 +9,6 @@ import { Facility } from '../../facilities/entities/facility.entity.js';
 import { CommunityUnit } from '../../locations/community-units/entities/community-unit.entity.js';
 import { SubCounty } from '../../locations/sub-counties/entities/sub-county.entity.js';
 
-import { FacilityPcnMembership } from '../pcns/entities/facility-pcn-membership.entity.js';
 
 import { CasesController } from './cases.controller.js';
 import { CasesService } from './cases.service.js';
@@ -41,7 +40,6 @@ import { PerinatalCaseDetail } from './entities/perinatal-case-detail.entity.js'
       Facility,
       CommunityUnit,
       SubCounty,
-      FacilityPcnMembership,
     ]),
   ],
   controllers: [CasesController],

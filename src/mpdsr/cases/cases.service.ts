@@ -24,7 +24,12 @@ import { MaternalCaseDetail } from './entities/maternal-case-detail.entity.js';
 import { PerinatalCaseDetail } from './entities/perinatal-case-detail.entity.js';
 import { NearMissDetail } from './entities/near-miss-detail.entity.js';
 
-import { CaseType, ReportingSetting, Gender } from './enums/case.enum.js';
+import {
+  CaseType,
+  ReportingSetting,
+  Gender,
+  CaseStatus,
+} from './enums/case.enum.js';
 
 import { CreateCaseDto } from './dto/create-case.dto.js';
 import { UpdateCaseDto } from './dto/update-case.dto.js';
@@ -39,7 +44,6 @@ import { OrganizationLevel } from '../../shared/user-organization-assignments/en
 
 import { Facility } from '../../facilities/entities/facility.entity.js';
 import { CommunityUnit } from '../../locations/community-units/entities/community-unit.entity.js';
-import { FacilityPcnMembership } from '../pcns/entities/facility-pcn-membership.entity.js';
 import { Icd11CauseType, Icd11CauseCaseType } from '../causes-of-death/entities/icd11-cause-type.entity.js';
 
 type ClinicalDetails = Record<string, unknown>;
@@ -265,28 +269,6 @@ export class CasesService {
         });
 
         return facility ? [facility.id] : [];
-      }
-
-      case OrganizationLevel.PCN: {
-        if (!assignment.pcnId) {
-          return [];
-        }
-
-        const memberships = await manager
-          .getRepository(FacilityPcnMembership)
-          .createQueryBuilder('membership')
-          .innerJoin('membership.facility', 'facility')
-          .where('membership.pcnId = :pcnId', {
-            pcnId: assignment.pcnId,
-          })
-          .andWhere('membership.endedAt IS NULL')
-          .andWhere('facility.isActive = :isActive', {
-            isActive: true,
-          })
-          .select('membership.facilityId', 'facilityId')
-          .getRawMany<{ facilityId: string }>();
-
-        return memberships.map((item) => item.facilityId);
       }
 
       case OrganizationLevel.SUB_COUNTY: {
@@ -819,7 +801,6 @@ export class CasesService {
       const selected = selectedIds.has(row.contributingFactorId);
 
       row.reporterSelected = selected;
-      row.reviewerSelected = selected;
 
       rowsToSave.push(row);
     }
@@ -834,10 +815,6 @@ export class CasesService {
           caseId,
           contributingFactorId: factorId,
           reporterSelected: true,
-          reviewerSelected: true,
-          reviewedBy: null,
-          reviewedAt: null,
-          reviewerNotes: null,
         }),
       );
     }
@@ -1118,7 +1095,23 @@ export class CasesService {
       .getRepository(Case)
       .createQueryBuilder('case')
       .leftJoinAndSelect('case.maternalDetails', 'maternalDetails')
+      .leftJoinAndSelect(
+        'maternalDetails.provisionalCause',
+        'maternalProvisionalCause',
+      )
+      .leftJoinAndSelect(
+        'maternalDetails.finalCause',
+        'maternalFinalCause',
+      )
       .leftJoinAndSelect('case.perinatalDetails', 'perinatalDetails')
+      .leftJoinAndSelect(
+        'perinatalDetails.provisionalCause',
+        'perinatalProvisionalCause',
+      )
+      .leftJoinAndSelect(
+        'perinatalDetails.finalCause',
+        'perinatalFinalCause',
+      )
       .leftJoinAndSelect('case.nearMissDetails', 'nearMissDetails')
       .where('case.id = :caseId', {
         caseId: id,
@@ -1171,6 +1164,18 @@ export class CasesService {
 
       if (!caseRecord) {
         throw new NotFoundException(`Case with ID ${id} was not found.`);
+      }
+
+      if (caseRecord.reportedBy !== userId) {
+        throw new ForbiddenException(
+          'Only the original reporter can update the case notification.',
+        );
+      }
+
+      if (caseRecord.status !== CaseStatus.NOTIFIED) {
+        throw new BadRequestException(
+          'Case notification details can only be updated before review starts.',
+        );
       }
 
       // Reporting location, case type, case number and reporter identity

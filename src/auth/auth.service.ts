@@ -104,55 +104,115 @@ export class AuthService {
 
   // Authenticates a user and creates a login session.
   async login(
-    loginDto: LoginDto,
-    ipAddress: string | null = null,
-    userAgent: string | null = null,
-  ) {
-    const user = await this.usersService.findByEmailWithPassword(
-      loginDto.email,
-    );
+  loginDto: LoginDto,
+  ipAddress: string | null = null,
+  userAgent: string | null = null,
+) {
+  const user = await this.usersService.findByEmailWithPassword(
+    loginDto.email,
+  );
 
-    if (!user || !user.passwordHash || user.status !== AccountStatus.ACTIVE) {
-      throw new UnauthorizedException('Invalid email or password');
-    }
+  console.log('LOGIN CHECK:', {
+    userFound: !!user,
+    email: loginDto.email,
+    hasPasswordHash: !!user?.passwordHash,
+    status: user?.status,
+    accountStatusActive: user?.status === AccountStatus.ACTIVE,
+  });
 
-    const passwordIsValid = await this.passwordService.verify(
-      user.passwordHash,
-      loginDto.password,
-    );
-
-    if (!passwordIsValid) {
-      throw new UnauthorizedException('Invalid email or password');
-    }
-
-    await this.usersService.updateLastLogin(user.id);
-
-    const { session, refreshToken } = await this.sessionsService.createSession(
-      user.id,
-      ipAddress,
-      userAgent,
-    );
-
-    const accessToken = await this.jwtService.signAsync({
-      sub: user.id,
-      sid: session.id,
-    });
-
-    return {
-      accessToken,
-      refreshToken,
-      tokenType: 'Bearer',
-      expiresIn: 900,
-      user: {
-        id: user.id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        status: user.status,
-        mustChangePassword: user.mustChangePassword,
-      },
-    };
+  if (!user || !user.passwordHash || user.status !== AccountStatus.ACTIVE) {
+    throw new UnauthorizedException('Invalid email or password');
   }
+
+  const passwordIsValid = await this.passwordService.verify(
+    user.passwordHash,
+    loginDto.password,
+  );
+
+  console.log('PASSWORD VERIFICATION:', passwordIsValid);
+
+  if (!passwordIsValid) {
+    throw new UnauthorizedException('Invalid email or password');
+  }
+
+  await this.usersService.updateLastLogin(user.id);
+
+  const { session, refreshToken } = await this.sessionsService.createSession(
+    user.id,
+    ipAddress,
+    userAgent,
+  );
+
+  const accessToken = await this.jwtService.signAsync({
+    sub: user.id,
+    sid: session.id,
+  });
+
+  return {
+    accessToken,
+    refreshToken,
+    tokenType: 'Bearer',
+    expiresIn: 900,
+    user: {
+      id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      status: user.status,
+      mustChangePassword: user.mustChangePassword,
+    },
+  };
+}
+  // async login(
+  //   loginDto: LoginDto,
+  //   ipAddress: string | null = null,
+  //   userAgent: string | null = null,
+  // ) {
+  //   const user = await this.usersService.findByEmailWithPassword(
+  //     loginDto.email,
+  //   );
+
+  //   if (!user || !user.passwordHash || user.status !== AccountStatus.ACTIVE) {
+  //     throw new UnauthorizedException('Invalid email or password');
+  //   }
+
+  //   const passwordIsValid = await this.passwordService.verify(
+  //     user.passwordHash,
+  //     loginDto.password,
+  //   );
+
+  //   if (!passwordIsValid) {
+  //     throw new UnauthorizedException('Invalid email or password');
+  //   }
+
+  //   await this.usersService.updateLastLogin(user.id);
+
+  //   const { session, refreshToken } = await this.sessionsService.createSession(
+  //     user.id,
+  //     ipAddress,
+  //     userAgent,
+  //   );
+
+  //   const accessToken = await this.jwtService.signAsync({
+  //     sub: user.id,
+  //     sid: session.id,
+  //   });
+
+  //   return {
+  //     accessToken,
+  //     refreshToken,
+  //     tokenType: 'Bearer',
+  //     expiresIn: 900,
+  //     user: {
+  //       id: user.id,
+  //       firstName: user.firstName,
+  //       lastName: user.lastName,
+  //       email: user.email,
+  //       status: user.status,
+  //       mustChangePassword: user.mustChangePassword,
+  //     },
+  //   };
+  // }
 
   // Rotates the refresh token and issues a new access token.
   async refresh(currentRefreshToken: string) {

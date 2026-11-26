@@ -9,6 +9,17 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
+import {
+  ApiTags,
+  ApiOperation,
+  ApiBearerAuth,
+  ApiBody,
+  ApiParam,
+  ApiOkResponse,
+  ApiNoContentResponse,
+  ApiUnauthorizedResponse,
+  ApiBadRequestResponse,
+} from '@nestjs/swagger';
 
 import { JwtAuthGuard } from './guards/jwt-auth.guard.js';
 import { CurrentUser } from './decorators/current-user.decorator.js';
@@ -22,7 +33,14 @@ import { Public } from './decorators/public.decorator.js';
 import { PasswordResetsService } from './password-resets/password-resets.service.js';
 import { ForgotPasswordDto } from './password-resets/dto/forgot-password.dto.js';
 import { ResetPasswordDto } from './password-resets/dto/reset-password.dto.js';
+import { ApiErrorResponseDto } from '../common/dto/api-error-response.dto.js';
+import { AuthenticatedUserApiResponseDto } from './dto/responses/authenticated-user-response.dto.js';
+import { LoginResponseDto } from './dto/responses/login-response.dto.js';
+import { RefreshTokenResponseDto } from './dto/responses/refresh-token-response.dto.js';
+import { MessageResponseDto } from './dto/responses/message-response.dto.js';
+import { UserSessionsResponseDto } from './dto/responses/user-session-response.dto.js';
 
+@ApiTags('Authentication')
 @Controller('auth')
 export class AuthController {
   constructor(
@@ -31,6 +49,19 @@ export class AuthController {
   ) {}
 
   // Returns the currently authenticated user.
+  @ApiOperation({
+    summary: 'Get current authenticated user',
+    description: 'Returns the profile of the currently authenticated user.',
+  })
+  @ApiBearerAuth('access-token')
+  @ApiOkResponse({
+    description: 'Authenticated user retrieved successfully.',
+    type: AuthenticatedUserApiResponseDto,
+  })
+  @ApiUnauthorizedResponse({
+    type: ApiErrorResponseDto,
+    description: 'Missing, invalid or expired access token.',
+  })
   @Get('me')
   @UseGuards(JwtAuthGuard)
   getProfile(@CurrentUser() user: AuthenticatedUser) {
@@ -38,6 +69,23 @@ export class AuthController {
   }
 
   // Authenticates a user and creates a session.
+  @ApiOperation({
+    summary: 'Login',
+    description: 'Authenticates a user and creates a login session.',
+  })
+  @ApiBody({ type: LoginDto })
+  @ApiOkResponse({
+    description: 'Authentication successful.',
+    type: LoginResponseDto,
+  })
+  @ApiBadRequestResponse({
+    type: ApiErrorResponseDto,
+    description: 'Invalid request data.',
+  })
+  @ApiUnauthorizedResponse({
+    type: ApiErrorResponseDto,
+    description: 'Invalid login credentials.',
+  })
   @Post('login')
   @Public()
   @HttpCode(HttpStatus.OK)
@@ -46,6 +94,20 @@ export class AuthController {
   }
 
   // Accepts an invitation and activates the user's account.
+  @ApiOperation({
+    summary: 'Accept account invitation',
+    description:
+      'Validates an invitation token and activates the user account.',
+  })
+  @ApiBody({ type: AcceptInvitationDto })
+  @ApiOkResponse({
+    description: 'Invitation accepted successfully.',
+    type: MessageResponseDto,
+  })
+  @ApiBadRequestResponse({
+    type: ApiErrorResponseDto,
+    description: 'Invalid invitation or request data.',
+  })
   @Post('accept-invitation')
   @Public()
   @HttpCode(HttpStatus.OK)
@@ -54,6 +116,24 @@ export class AuthController {
   }
 
   // Changes the authenticated user's password.
+  @ApiOperation({
+    summary: 'Change password',
+    description: 'Changes the password of the authenticated user.',
+  })
+  @ApiBearerAuth('access-token')
+  @ApiBody({ type: ChangePasswordDto })
+  @ApiOkResponse({
+    description: 'Password changed successfully.',
+    type: MessageResponseDto,
+  })
+  @ApiUnauthorizedResponse({
+    type: ApiErrorResponseDto,
+    description: 'Authentication required.',
+  })
+  @ApiBadRequestResponse({
+    type: ApiErrorResponseDto,
+    description: 'Invalid password or request data.',
+  })
   @Post('change-password')
   @UseGuards(JwtAuthGuard)
   @HttpCode(HttpStatus.OK)
@@ -65,6 +145,20 @@ export class AuthController {
   }
 
   // Sends a password-reset link without revealing whether the email exists.
+  @ApiOperation({
+    summary: 'Request password reset',
+    description:
+      'Requests a password-reset link without revealing whether the email exists.',
+  })
+  @ApiBody({ type: ForgotPasswordDto })
+  @ApiOkResponse({
+    description: 'Password-reset request processed.',
+    type: MessageResponseDto,
+  })
+  @ApiBadRequestResponse({
+    type: ApiErrorResponseDto,
+    description: 'Invalid email address.',
+  })
   @Post('forgot-password')
   @Public()
   @HttpCode(HttpStatus.OK)
@@ -73,6 +167,19 @@ export class AuthController {
   }
 
   // Resets a password using a valid single-use email token.
+  @ApiOperation({
+    summary: 'Reset password',
+    description: 'Resets a password using a valid single-use email token.',
+  })
+  @ApiBody({ type: ResetPasswordDto })
+  @ApiOkResponse({
+    description: 'Password reset successfully.',
+    type: MessageResponseDto,
+  })
+  @ApiBadRequestResponse({
+    type: ApiErrorResponseDto,
+    description: 'Invalid request data or reset token.',
+  })
   @Post('reset-password')
   @Public()
   @HttpCode(HttpStatus.OK)
@@ -81,6 +188,25 @@ export class AuthController {
   }
 
   // Rotates the refresh token and issues new tokens.
+  @ApiOperation({
+    summary: 'Refresh authentication tokens',
+    description:
+      'Rotates the refresh token and issues new authentication tokens.',
+  })
+  @ApiBody({ type: RefreshTokenDto })
+  @ApiOkResponse({
+    description: 'Authentication tokens refreshed successfully.',
+    type: RefreshTokenResponseDto,
+  })
+  @ApiBadRequestResponse({
+    type: ApiErrorResponseDto,
+    description: 'Invalid request data.',
+  })
+  @ApiUnauthorizedResponse({
+    type: ApiErrorResponseDto,
+    description:
+      'Invalid, expired, revoked or reused refresh token, or inactive account.',
+  })
   @Post('refresh')
   @Public()
   @HttpCode(HttpStatus.OK)
@@ -89,6 +215,20 @@ export class AuthController {
   }
 
   // Returns all sessions belonging to the authenticated user.
+  @ApiOperation({
+    summary: 'Get active sessions',
+    description:
+      'Returns the login sessions belonging to the authenticated user.',
+  })
+  @ApiBearerAuth('access-token')
+  @ApiOkResponse({
+    description: 'User sessions retrieved successfully.',
+    type: UserSessionsResponseDto,
+  })
+  @ApiUnauthorizedResponse({
+    type: ApiErrorResponseDto,
+    description: 'Authentication required.',
+  })
   @Get('sessions')
   @UseGuards(JwtAuthGuard)
   getSessions(@CurrentUser() user: AuthenticatedUser) {
@@ -96,6 +236,22 @@ export class AuthController {
   }
 
   // Revokes a specific session belonging to the authenticated user.
+  @ApiOperation({
+    summary: 'Revoke a session',
+    description:
+      'Revokes a specific login session belonging to the authenticated user.',
+  })
+  @ApiBearerAuth('access-token')
+  @ApiParam({
+    name: 'id',
+    description: 'ID of the session to revoke.',
+    type: String,
+  })
+  @ApiNoContentResponse({ description: 'Session revoked successfully.' })
+  @ApiUnauthorizedResponse({
+    type: ApiErrorResponseDto,
+    description: 'Authentication required.',
+  })
   @Delete('sessions/:id')
   @UseGuards(JwtAuthGuard)
   @HttpCode(HttpStatus.NO_CONTENT)
@@ -107,6 +263,16 @@ export class AuthController {
   }
 
   // Revokes the current login session.
+  @ApiOperation({
+    summary: 'Logout',
+    description: 'Revokes the current authenticated session.',
+  })
+  @ApiBearerAuth('access-token')
+  @ApiNoContentResponse({ description: 'Logout successful.' })
+  @ApiUnauthorizedResponse({
+    type: ApiErrorResponseDto,
+    description: 'Authentication required.',
+  })
   @Post('logout')
   @UseGuards(JwtAuthGuard)
   @HttpCode(HttpStatus.NO_CONTENT)
@@ -115,6 +281,17 @@ export class AuthController {
   }
 
   // Revokes all login sessions belonging to the authenticated user.
+  @ApiOperation({
+    summary: 'Logout from all sessions',
+    description:
+      'Revokes all login sessions belonging to the authenticated user.',
+  })
+  @ApiBearerAuth('access-token')
+  @ApiNoContentResponse({ description: 'All sessions revoked successfully.' })
+  @ApiUnauthorizedResponse({
+    type: ApiErrorResponseDto,
+    description: 'Authentication required.',
+  })
   @Post('logout-all')
   @UseGuards(JwtAuthGuard)
   @HttpCode(HttpStatus.NO_CONTENT)

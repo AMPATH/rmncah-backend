@@ -23,8 +23,8 @@ const roles = [
     module: SystemModule.PLATFORM,
   },
   {
-    code: 'CHP',
-    name: 'Community Health Promoter',
+    code: 'CHA',
+    name: 'Community Health Assistant',
     description:
       'Reports community incidents and accesses records within assigned community units.',
     module: SystemModule.MPDSR,
@@ -54,7 +54,7 @@ const roles = [
     code: 'PCN_COORDINATOR',
     name: 'PCN Coordinator',
     description:
-      'Manages overdue or unaccepted recommendations and handles reassignment within the assigned PCN.',
+      'Manages overdue or unaccepted recommendations and handles reassignment for assigned facilities.',
     module: SystemModule.MPDSR,
   },
   {
@@ -363,35 +363,6 @@ const permissions = [
   },
 
   /*
-   * MPDSR - PCN CONFIGURATION
-   */
-
-  {
-    code: 'mpdsr.pcns.create',
-    name: 'Create PCNs',
-    description: 'Create a Primary Care Network.',
-    module: SystemModule.MPDSR,
-  },
-  {
-    code: 'mpdsr.pcns.read',
-    name: 'View PCNs',
-    description: 'View PCN information.',
-    module: SystemModule.MPDSR,
-  },
-  {
-    code: 'mpdsr.pcns.update',
-    name: 'Update PCNs',
-    description: 'Update PCN information.',
-    module: SystemModule.MPDSR,
-  },
-  {
-    code: 'mpdsr.pcns.assign_facilities',
-    name: 'Assign Facilities to PCNs',
-    description: 'Assign or transfer facilities between PCNs.',
-    module: SystemModule.MPDSR,
-  },
-
-  /*
    * MPDSR - ESCALATION CONFIGURATION
    */
 
@@ -434,6 +405,18 @@ const permissions = [
     code: 'emonc.modules.publish',
     name: 'Publish Modules',
     description: 'Publish module versions for training.',
+    module: SystemModule.EMONC,
+  },
+
+  /*
+   * EMONC - USER ACCOUNT CREATION
+   */
+
+  {
+    code: 'emonc.users.create_mentor_mentee',
+    name: 'Create EmONC Mentor and Mentee Accounts',
+    description:
+      'Allows Program Leads to create shared user accounts with MENTOR or MENTEE roles.',
     module: SystemModule.EMONC,
   },
 
@@ -678,7 +661,7 @@ const rolePermissionMappings: Record<string, string[]> = {
    * MPDSR
    */
 
-  CHP: [
+  CHA: [
     'mpdsr.cases.create',
     'mpdsr.cases.read',
     'mpdsr.cases.update',
@@ -698,13 +681,12 @@ const rolePermissionMappings: Record<string, string[]> = {
 
   FACILITY_CHAIR: [
     'mpdsr.cases.read',
+    'mpdsr.recommendations.reassign',
     'mpdsr.case_reviews.create',
     'mpdsr.case_reviews.read',
     'mpdsr.case_reviews.update',
     'mpdsr.case_reviews.finalize',
-    'mpdsr.recommendations.create',
     'mpdsr.recommendations.read',
-    'mpdsr.recommendations.update',
     'mpdsr.recommendations.assign',
     'mpdsr.recommendations.approve',
     'mpdsr.recommendations.reject',
@@ -717,10 +699,7 @@ const rolePermissionMappings: Record<string, string[]> = {
     'mpdsr.cases.read',
     'mpdsr.cases.update',
     'mpdsr.case_reviews.read',
-    'mpdsr.recommendations.create',
     'mpdsr.recommendations.read',
-    'mpdsr.recommendations.update',
-    'mpdsr.recommendations.assign',
     'mpdsr.recommendations.accept',
     'mpdsr.recommendations.mark_done',
     'mpdsr.reports.read',
@@ -753,10 +732,6 @@ const rolePermissionMappings: Record<string, string[]> = {
     'mpdsr.recommendations.reopen',
     'mpdsr.reports.read',
     'mpdsr.reports.export',
-    'mpdsr.pcns.create',
-    'mpdsr.pcns.read',
-    'mpdsr.pcns.update',
-    'mpdsr.pcns.assign_facilities',
     'mpdsr.escalation_matrix.read',
   ],
 
@@ -769,6 +744,7 @@ const rolePermissionMappings: Record<string, string[]> = {
     'emonc.modules.read',
     'emonc.modules.update',
     'emonc.modules.publish',
+    'emonc.users.create_mentor_mentee',
     'emonc.reports.read',
     'emonc.reports.export',
   ],

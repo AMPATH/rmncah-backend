@@ -4,7 +4,11 @@ import {
   Index,
   PrimaryGeneratedColumn,
   Column,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
+
+import { User } from '../../../shared/users/entities/user.entity.js';
 
 // Stores hashed, single-use password-reset tokens.
 @Entity('passwordResets')
@@ -22,6 +26,13 @@ export class PasswordReset {
     length: 36,
   })
   userId: string;
+
+  @ManyToOne(() => User, { onDelete: 'CASCADE' })
+  @JoinColumn({
+    name: 'userId',
+    foreignKeyConstraintName: 'FK_password_resets_userId',
+  })
+  user: User;
 
   // SHA-256 hash of the reset token; the raw token is never stored.
   @Column({

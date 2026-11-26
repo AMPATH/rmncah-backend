@@ -1,3 +1,5 @@
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+
 import {
   Controller,
   Post,
@@ -14,6 +16,9 @@ import type { AuthenticatedUser } from '../../auth/interfaces/authenticated-user
 import { InvitationsService } from './invitations.service.js';
 
 @Controller('invitations')
+
+@ApiTags('Platform - Invitations')
+@ApiBearerAuth()
 export class InvitationsController {
   constructor(
     private readonly invitationsService: InvitationsService,
@@ -21,6 +26,7 @@ export class InvitationsController {
 
   // Create a pending user account and send an invitation email.
   // Resend an invitation to a pending user account.
+  @ApiOperation({ summary: 'Resend a user invitation' })
   @Post(':userId/resend')
   resend(
     @Param('userId', ParseUUIDPipe) userId: string,
@@ -33,6 +39,7 @@ export class InvitationsController {
   }
 
   // Revoke an outstanding invitation.
+  @ApiOperation({ summary: 'Revoke a pending invitation' })
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
   async revoke(

@@ -16,8 +16,7 @@ export class EmailService {
     this.transporter = nodemailer.createTransport({
       host: this.configService.getOrThrow<string>('SMTP_HOST'),
       port: Number(this.configService.getOrThrow<string>('SMTP_PORT')),
-      secure:
-        this.configService.get<string>('SMTP_SECURE') === 'true',
+      secure: this.configService.get<string>('SMTP_SECURE') === 'true',
       auth: {
         user: this.configService.getOrThrow<string>('SMTP_USER'),
         pass: this.configService.getOrThrow<string>('SMTP_PASSWORD'),
@@ -40,6 +39,35 @@ export class EmailService {
     });
   }
 
+  // Generic email method used by password resets and other features.
+  async sendEmail(arg0: {
+    to: string;
+    subject: string;
+    text: string;
+    html: string;
+  }): Promise<void> {
+    try {
+      await this.transporter.sendMail({
+        from: this.configService.getOrThrow<string>('SMTP_FROM'),
+        to: arg0.to,
+        subject: arg0.subject,
+        text: arg0.text,
+        html: arg0.html,
+      });
+
+      this.logger.log(`Email successfully sent to ${arg0.to}`);
+    } catch (error) {
+      this.logger.error(
+        `Failed to send email to ${arg0.to}`,
+        error instanceof Error ? error.stack : String(error),
+      );
+
+      throw new InternalServerErrorException(
+        'Failed to send email',
+      );
+    }
+  }
+
   // Send mentor invitation email.
   async sendMentorInvitation(
     email: string,
@@ -59,6 +87,7 @@ export class EmailService {
 
       const safeFirstName = this.escapeHtml(firstName);
       const link = invitationLink.toString();
+      const safeLink = this.escapeHtml(link);
 
       await this.transporter.sendMail({
         from: this.configService.getOrThrow<string>('SMTP_FROM'),
@@ -88,14 +117,15 @@ If you were not expecting this invitation, please ignore this email.
           </p>
 
           <p>Click the button below to accept your invitation:</p>
+
           <p>Or copy and paste this link into your browser:</p>
 
-    <p style="word-break: break-all;">
-      ${this.escapeHtml(link)}
-    </p>
+          <p style="word-break: break-all;">
+            ${safeLink}
+          </p>
 
           <a
-            href="${link}"
+            href="${safeLink}"
             style="
               display: inline-block;
               padding: 12px 20px;
@@ -116,6 +146,8 @@ If you were not expecting this invitation, please ignore this email.
           </p>
         `,
       });
+
+      this.logger.log(`Mentor invitation email sent to ${email}`);
     } catch (error) {
       this.logger.error(
         'Failed to send mentor invitation email',
@@ -170,6 +202,8 @@ If you did not request this verification, please ignore this email.
           </p>
         `,
       });
+
+      this.logger.log(`OTP verification email sent to ${email}`);
     } catch (error) {
       this.logger.error(
         'Failed to send OTP verification email',
