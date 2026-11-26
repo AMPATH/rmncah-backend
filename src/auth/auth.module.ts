@@ -23,6 +23,7 @@ import { SessionsModule } from './sessions/sessions.module.js';
     EmailModule,
     TypeOrmModule.forFeature([PasswordReset]),
     PassportModule,
+    
     SessionsModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],

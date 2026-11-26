@@ -10,6 +10,7 @@ import { CohortMentee } from './entities/cohort-mentee.entity.js';
 
 import { Facility } from '../../facilities/entities/facility.entity.js';
 import { User } from '../../shared/users/entities/user.entity.js';
+import { CohortModuleAssignmentsModule } from './cohort-module-assignments/cohort-module-assignments.module.js';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { User } from '../../shared/users/entities/user.entity.js';
       Facility,
       User,
     ]),
+    CohortModuleAssignmentsModule,
   ],
   controllers: [CohortsController],
   providers: [CohortsService],

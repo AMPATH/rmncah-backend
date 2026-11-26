@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { JwtAuthGuard } from '../../../auth/guards/jwt-auth.guard.js';
 
 import { User } from '../../users/entities/user.entity.js';
+import { Facility } from '../../../facilities/entities/facility.entity.js';
 import { UserOrganizationAssignment } from '../../user-organization-assignments/entities/user-organization-assignment.entity.js';
 
 import { Role } from '../roles/entities/role.entity.js';
@@ -20,6 +21,7 @@ import { UserRoleAssignmentsService } from './user-role-assignments.service.js';
       User,
       Role,
       UserOrganizationAssignment,
+      Facility,
     ]),
     AuthorizationModule,
   ],

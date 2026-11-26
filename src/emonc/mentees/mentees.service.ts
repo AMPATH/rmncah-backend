@@ -348,6 +348,7 @@ export class MenteesService {
         phoneNumber: mentee.phoneNumber,
         level: organization?.level,
         facilityId: organization?.facilityId,
+        level: mentee.organizationAssignments,
         status: mentee.status,
         cadreId: mentee.cadreId,
         joinedAt: mentee.createdAt,

@@ -16,9 +16,6 @@ import {
   timingSafeEqual,
 } from 'crypto';
 
-import * as bcrypt from 'bcrypt';
-
-
 import { MentorInvitation } from './entities/mentor-invitation.entity.js';
 import { EmailService } from './email.service.js';
 
@@ -29,6 +26,7 @@ import { VerifyMentorOtpDto } from '../dto/verify-mentor-otp.dto.js';
 import { MentorInvitationStatus } from './enum/invitation.enum.js';
 import { AccountStatus } from '../../../shared/users/enum/users.enum.js';
 import { User } from '../../../shared/users/entities/user.entity.js';
+import { PasswordService } from '../../../auth/password.service.js';
 
 @Injectable()
 export class InvitationsService {
@@ -40,6 +38,8 @@ export class InvitationsService {
     private readonly userRepository: Repository<User>,
 
     private readonly emailService: EmailService,
+
+    private readonly passwordService: PasswordService,
   ) {}
 
   // Hash tokens and OTPs before storing them
@@ -80,7 +80,6 @@ export class InvitationsService {
       );
     }
 
-    // Find existing active invitations
     const existingInvitations =
       await this.invitationRepository.find({
         where: {
@@ -107,7 +106,6 @@ export class InvitationsService {
       await this.invitationRepository.save(existingInvitations);
     }
 
-    // Generate secure invitation token
     const token = randomBytes(32).toString('hex');
 
     const invitation = this.invitationRepository.create({
@@ -120,7 +118,6 @@ export class InvitationsService {
     const savedInvitation =
       await this.invitationRepository.save(invitation);
 
-    // Send invitation email
     try {
       await this.emailService.sendMentorInvitation(
         user.email,
@@ -158,7 +155,6 @@ export class InvitationsService {
       );
     }
 
-    // Find existing invitations
     const existingInvitations =
       await this.invitationRepository.find({
         where: {
@@ -171,7 +167,6 @@ export class InvitationsService {
         },
       });
 
-    // Expire previous invitations
     for (const invitation of existingInvitations) {
       invitation.status = MentorInvitationStatus.EXPIRED;
     }
@@ -180,7 +175,6 @@ export class InvitationsService {
       await this.invitationRepository.save(existingInvitations);
     }
 
-    // Generate new invitation token
     const token = randomBytes(32).toString('hex');
 
     const invitation = this.invitationRepository.create({
@@ -193,7 +187,6 @@ export class InvitationsService {
     const savedInvitation =
       await this.invitationRepository.save(invitation);
 
-    // Send new invitation email
     try {
       await this.emailService.sendMentorInvitation(
         user.email,
@@ -235,7 +228,6 @@ export class InvitationsService {
       );
     }
 
-    // Check invitation expiry
     if (invitation.expiresAt <= new Date()) {
       invitation.status = MentorInvitationStatus.EXPIRED;
 
@@ -244,7 +236,6 @@ export class InvitationsService {
       throw new ConflictException('This invitation has expired');
     }
 
-    // Retrieve associated mentor
     const user = await this.userRepository.findOne({
       where: { id: invitation.userId },
     });
@@ -259,27 +250,21 @@ export class InvitationsService {
       );
     }
 
-    // Generate secure six-digit OTP
     const otp = randomInt(100000, 1000000).toString();
 
     invitation.otpHash = this.hashToken(otp);
 
-    // OTP expires after 10 minutes
     invitation.otpExpiresAt = new Date(
       Date.now() + 10 * 60 * 1000,
     );
 
     invitation.attempts = 0;
-
     invitation.acceptedAt = new Date();
-
     invitation.status = MentorInvitationStatus.OTP_SENT;
 
-    // Save OTP information
     const savedInvitation =
       await this.invitationRepository.save(invitation);
 
-    // Send OTP to mentor
     try {
       await this.emailService.sendOtp(
         user.email,
@@ -287,7 +272,6 @@ export class InvitationsService {
         otp,
       );
     } catch (error) {
-      // Restore invitation if email delivery fails
       savedInvitation.status = MentorInvitationStatus.PENDING;
       savedInvitation.otpHash = null;
       savedInvitation.otpExpiresAt = null;
@@ -321,7 +305,6 @@ export class InvitationsService {
       );
     }
 
-    // Check maximum attempts
     if (invitation.attempts >= 5) {
       invitation.status = MentorInvitationStatus.REVOKED;
 
@@ -332,7 +315,6 @@ export class InvitationsService {
       );
     }
 
-    // Check OTP expiry
     if (
       !invitation.otpExpiresAt ||
       invitation.otpExpiresAt <= new Date()
@@ -350,7 +332,6 @@ export class InvitationsService {
       throw new ConflictException('OTP is no longer available');
     }
 
-    // Hash submitted OTP and compare
     const submittedOtpHash = this.hashToken(dto.otp);
 
     const isValidOtp = this.compareHashes(
@@ -372,11 +353,9 @@ export class InvitationsService {
       throw new BadRequestException('Invalid OTP');
     }
 
-    // OTP successfully verified
     invitation.status = MentorInvitationStatus.VERIFIED;
     invitation.verifiedAt = new Date();
 
-    // Prevent OTP reuse
     invitation.otpHash = null;
     invitation.otpExpiresAt = null;
 
@@ -391,12 +370,10 @@ export class InvitationsService {
 
   // 5. Set mentor password and activate account
   async setPassword(dto: SetMentorPasswordDto) {
-    // Validate password confirmation
     if (dto.password !== dto.confirmPassword) {
       throw new BadRequestException('Passwords do not match');
     }
 
-    // Find invitation
     const invitation = await this.invitationRepository.findOne({
       where: { id: dto.invitationId },
     });
@@ -405,14 +382,12 @@ export class InvitationsService {
       throw new NotFoundException('Invitation not found');
     }
 
-    // Ensure OTP was verified
     if (invitation.status !== MentorInvitationStatus.VERIFIED) {
       throw new ConflictException(
         'You must verify your OTP before setting your password',
       );
     }
 
-    // Find mentor
     const user = await this.userRepository.findOne({
       where: { id: invitation.userId },
     });
@@ -427,10 +402,9 @@ export class InvitationsService {
       );
     }
 
-    // Hash password
-    const passwordHash = await bcrypt.hash(dto.password, 12);
+    // Use Argon2id, matching AuthService login verification
+    const passwordHash = await this.passwordService.hash(dto.password);
 
-    // Update account
     user.passwordHash = passwordHash;
     user.mustChangePassword = false;
     user.status = AccountStatus.ACTIVE;
@@ -438,7 +412,6 @@ export class InvitationsService {
     invitation.status = MentorInvitationStatus.COMPLETED;
     invitation.completedAt = new Date();
 
-    // Save both changes in one transaction
     await this.userRepository.manager.transaction(
       async (manager) => {
         await manager.save(User, user);
