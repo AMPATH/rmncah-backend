@@ -11,6 +11,7 @@ import {
 } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
+import { HttpExceptionFilter } from './common/filters/http-exception.filter.js';
 import { AppModule, ObserveInstrument } from './app.module.js';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter.js';
 import { ApiResponseInterceptor } from './common/interceptors/api-response.interceptor.js';
@@ -87,6 +88,33 @@ async function bootstrap() {
     new ApiResponseInterceptor(),
     new ClassSerializerInterceptor(app.get(Reflector)),
   );
+
+  // Swagger / OpenAPI configuration
+  const swaggerConfig = new DocumentBuilder()
+    .setTitle('RMNCAH API')
+    .setDescription('API documentation for the RMNCAH System.')
+    .setVersion('1.0')
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        in: 'header',
+        name: 'Authorization',
+        description: 'Enter your JWT access token.',
+      },
+      'access-token',
+    )
+    .build();
+
+  const swaggerDocument = SwaggerModule.createDocument(app, swaggerConfig);
+
+  SwaggerModule.setup('docs', app, swaggerDocument, {
+    useGlobalPrefix: true,
+    swaggerOptions: {
+      persistAuthorization: true,
+    },
+  });
 
   // Enable CORS when needed
   // app.enableCors({

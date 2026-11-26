@@ -1,3 +1,5 @@
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+
 import {
   Body,
   Controller,
@@ -22,10 +24,13 @@ import { ReviewCaseRecommendationDto } from './dto/review-case-recommendation.dt
 import { ReviewsService } from './reviews.service.js';
 
 @Controller('reviews')
+@ApiTags('MPDSR - Case Reviews')
+@ApiBearerAuth()
 @UseGuards(PermissionsGuard)
 export class ReviewsController {
   constructor(private readonly reviewsService: ReviewsService) {}
 
+  @ApiOperation({ summary: 'Start a case review' })
   @Post('cases/:caseId')
   @RequirePermissions(SystemModule.MPDSR, 'mpdsr.case_reviews.create')
   startReview(
@@ -36,6 +41,7 @@ export class ReviewsController {
     return this.reviewsService.startReview(caseId, user.id, assignmentId);
   }
 
+  @ApiOperation({ summary: 'Retrieve a case review' })
   @Get('cases/:caseId')
   @RequirePermissions(SystemModule.MPDSR, 'mpdsr.case_reviews.read')
   findOne(
@@ -46,6 +52,7 @@ export class ReviewsController {
     return this.reviewsService.findOne(caseId, user.id, assignmentId);
   }
 
+  @ApiOperation({ summary: 'Review a case contributing factor' })
   @Post('cases/:caseId/review-contributing-factor')
   @RequirePermissions(SystemModule.MPDSR, 'mpdsr.case_reviews.update')
   reviewContributingFactor(
@@ -62,6 +69,7 @@ export class ReviewsController {
     );
   }
 
+  @ApiOperation({ summary: 'Review a case recommendation' })
   @Post('cases/:caseId/review-recommendation')
   @RequirePermissions(SystemModule.MPDSR, 'mpdsr.case_reviews.update')
   reviewRecommendation(
@@ -78,6 +86,7 @@ export class ReviewsController {
     );
   }
 
+  @ApiOperation({ summary: 'Review a cause of death' })
   @Post('cases/:caseId/review-cause')
   @RequirePermissions(SystemModule.MPDSR, 'mpdsr.case_reviews.update')
   reviewCause(
@@ -95,6 +104,7 @@ export class ReviewsController {
   }
 
   // The Chair explicitly completes each section after reviewing its contents.
+  @ApiOperation({ summary: 'Complete a case review section' })
   @Post('cases/:caseId/complete-section')
   @RequirePermissions(SystemModule.MPDSR, 'mpdsr.case_reviews.update')
   completeSection(
@@ -111,6 +121,7 @@ export class ReviewsController {
     );
   }
 
+  @ApiOperation({ summary: 'Finalize a case review' })
   @Post('cases/:caseId/finalize')
   @RequirePermissions(SystemModule.MPDSR, 'mpdsr.case_reviews.finalize')
   finalize(

@@ -10,7 +10,6 @@ import { OrganizationLevel } from './enum/organization-level.enum.js';
 import { User } from '../users/entities/user.entity.js';
 import { County } from '../../locations/counties/entities/county.entity.js';
 import { SubCounty } from '../../locations/sub-counties/entities/sub-county.entity.js';
-import { PrimaryCareNetwork } from '../../mpdsr/pcns/entities/primary-care-network.entity.js';
 import { Facility } from '../../facilities/entities/facility.entity.js';
 import { CommunityUnit } from '../../locations/community-units/entities/community-unit.entity.js';
 
@@ -34,10 +33,6 @@ describe('UserOrganizationAssignmentsService', () => {
   };
 
   const subCountyRepository = {
-    findOne: vi.fn(),
-  };
-
-  const pcnRepository = {
     findOne: vi.fn(),
   };
 
@@ -70,10 +65,6 @@ describe('UserOrganizationAssignmentsService', () => {
         {
           provide: getRepositoryToken(SubCounty),
           useValue: subCountyRepository,
-        },
-        {
-          provide: getRepositoryToken(PrimaryCareNetwork),
-          useValue: pcnRepository,
         },
         {
           provide: getRepositoryToken(Facility),
@@ -111,7 +102,6 @@ describe('UserOrganizationAssignmentsService', () => {
         level: dto.level,
         countyId: dto.countyId,
         subCountyId: null,
-        pcnId: null,
         facilityId: null,
         communityUnitId: null,
         endDate: null,
